@@ -7,6 +7,8 @@ package Interfaz;
 
 import Clases.Usuario;
 import com.sun.awt.AWTUtilities;
+import java.awt.MouseInfo;
+import java.awt.Point;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -57,6 +59,16 @@ public class Login extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 51));
+        jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel1MouseDragged(evt);
+            }
+        });
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel1MousePressed(evt);
+            }
+        });
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
@@ -141,9 +153,9 @@ public class Login extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         if (user.IncioSesion(DigestUtils.md5Hex(PssContrasenia.getText()), txtUs.getText())) {
-            new rojerusan.RSNotifyAnimated("¡Correcto!", "Bienvenido",
-                    5, RSNotifyAnimated.PositionNotify.BottomLeft, RSNotifyAnimated.AnimationNotify.BottomUp,
-                    RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
+            this.dispose();
+            Menus m = new Menus();
+            m.setVisible(true);
         } else {
             new rojerusan.RSNotifyAnimated("¡ERROR!", "Usuario y/o contraseña incorrecta",
                     5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
@@ -154,6 +166,16 @@ public class Login extends javax.swing.JFrame {
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
+        x = evt.getX();
+        y = evt.getY();
+    }//GEN-LAST:event_jPanel1MousePressed
+
+    private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
+        Point p = MouseInfo.getPointerInfo().getLocation();
+        this.setLocation(p.x - x, p.y - y);
+    }//GEN-LAST:event_jPanel1MouseDragged
 
     /**
      * @param args the command line arguments
@@ -193,6 +215,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     private final Usuario user;
+    private int x, y;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField PssContrasenia;
     private javax.swing.JButton btnCerrar;

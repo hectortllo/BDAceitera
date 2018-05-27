@@ -5,7 +5,10 @@
  */
 package Interfaz;
 
+import Clases.Usuario;
 import com.sun.awt.AWTUtilities;
+import java.awt.MouseInfo;
+import java.awt.Point;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
 
@@ -19,6 +22,7 @@ public class Registro extends javax.swing.JFrame {
      * Creates new form Registro
      */
     public Registro() {
+        user = new Usuario();
         this.setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
@@ -64,6 +68,16 @@ public class Registro extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 51));
+        jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel1MouseDragged(evt);
+            }
+        });
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel1MousePressed(evt);
+            }
+        });
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
@@ -221,7 +235,7 @@ public class Registro extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.dispose();
-        Login p =new Login();
+        Login p = new Login();
         p.setVisible(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
@@ -229,6 +243,18 @@ public class Registro extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
 
+    private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
+        x = evt.getX();
+        y = evt.getY();
+    }//GEN-LAST:event_jPanel1MousePressed
+
+    private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
+        Point p = MouseInfo.getPointerInfo().getLocation();
+        this.setLocation(p.x - x, p.y - y);
+    }//GEN-LAST:event_jPanel1MouseDragged
+
+    private final Usuario user;
+    private int x, y;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField PssConfirContrasenia;
     private javax.swing.JPasswordField PssContrasenia;
