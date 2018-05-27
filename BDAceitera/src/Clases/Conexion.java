@@ -16,15 +16,15 @@ import javax.swing.JOptionPane;
  *
  * @author mynor
  */
-public class Conexion 
-{
-    private String nombreBD="proyecto";
-    private String usuario="root";
-    private String password="";
-    private String url="jdbc:mysql://localhost:3306/"+nombreBD+"?autoReconnect=true&useSSL=false";
-    private Connection con=null;
-    public  Conexion()
-    {
+public class Conexion {
+
+    private String nombreBD = "bd_aceitera";
+    private String usuario = "root";
+    private String password = "";
+    private String url = "jdbc:mysql://localhost:3306/" + nombreBD + "?autoReconnect=true&useSSL=false";
+    private Connection con = null;
+
+    public Conexion() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(url, usuario, password);
@@ -34,10 +34,10 @@ public class Conexion
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    public Connection getConnection()
-    {
+
+    public Connection getConnection() {
         return con;
     }
 }
