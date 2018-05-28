@@ -20,20 +20,26 @@ public class Usuario {
 
     private final Connection con;
     private final Conexion conexion;
+    private String usuario;
 
     public Usuario() {
         conexion = new Conexion();
         con = conexion.getConnection();
     }
 
-    public boolean IncioSesion(String Contrasenia,String Usuario) {
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public boolean IncioSesion(String Contrasenia, String Usuario) {
         try {
-            String sql = "SELECT contrasenia FROM usuario where usuario = '"+Usuario+"';";
+            String sql = "SELECT contrasenia, nombre FROM usuario where usuario = '" + Usuario + "';";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
-            String pass="";
+            String pass = "";
             while (rs.next()) {
-                pass=rs.getString("contrasenia");
+                pass = rs.getString("contrasenia");
+                usuario=rs.getString("nombre");
             }
             return pass.equals(Contrasenia);
         } catch (SQLException ex) {

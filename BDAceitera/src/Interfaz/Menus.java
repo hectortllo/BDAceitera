@@ -10,6 +10,7 @@ import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
+import java.beans.PropertyVetoException;
 
 /**
  *
@@ -26,6 +27,19 @@ public class Menus extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 27, 27);
         AWTUtilities.setWindowShape(this, forma);
+        Principal cargar = new Principal();
+        DesktopPane.add(cargar);
+        try {
+            cargar.setMaximum(true);
+        } catch (PropertyVetoException e) {
+            e.printStackTrace();
+        }
+        cargar.setVisible(true);
+    }
+
+    public void setUs(String us) {
+        this.us = us;
+        lblUsuario.setText(us);
     }
 
     /**
@@ -37,18 +51,17 @@ public class Menus extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         btnCerrar = new javax.swing.JButton();
+        lblUsuario = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        DesktopPane = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(0, 51, 51));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 820, 300));
-
         jPanel2.setBackground(new java.awt.Color(0, 51, 51));
+        jPanel2.setBorder(null);
         jPanel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 jPanel2MouseDragged(evt);
@@ -70,9 +83,27 @@ public class Menus extends javax.swing.JFrame {
                 btnCerrarActionPerformed(evt);
             }
         });
-        jPanel2.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 0, 60, -1));
+        jPanel2.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 0, 60, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 60));
+        lblUsuario.setFont(new java.awt.Font("Lucida Calligraphy", 3, 14)); // NOI18N
+        lblUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 360, 40));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Cerrar Sesion.png"))); // NOI18N
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Cerrar Sesion Select.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 0, -1, -1));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 60));
+
+        DesktopPane.setBackground(new java.awt.Color(0, 51, 51));
+        getContentPane().add(DesktopPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1100, 550));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -91,10 +122,18 @@ public class Menus extends javax.swing.JFrame {
         this.setLocation(p.x - x, p.y - y);
     }//GEN-LAST:event_jPanel2MouseDragged
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+        new Login().setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private int x, y;
+    private String us;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane DesktopPane;
     private javax.swing.JButton btnCerrar;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblUsuario;
     // End of variables declaration//GEN-END:variables
 }
