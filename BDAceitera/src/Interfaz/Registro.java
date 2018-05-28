@@ -229,14 +229,10 @@ public class Registro extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
-        Registro reg = new Registro();
-        reg.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.dispose();
-        Login p = new Login();
-        p.setVisible(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed

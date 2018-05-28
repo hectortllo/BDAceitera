@@ -103,12 +103,22 @@ public class Login extends javax.swing.JFrame {
         txtUs.setBackground(new java.awt.Color(255, 255, 255));
         txtUs.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         txtUs.setForeground(new java.awt.Color(0, 51, 51));
+        txtUs.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUsKeyPressed(evt);
+            }
+        });
         jPanel1.add(txtUs, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 280, 40));
 
         PssContrasenia.setBackground(new java.awt.Color(255, 255, 255));
         PssContrasenia.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         PssContrasenia.setForeground(new java.awt.Color(0, 51, 51));
         PssContrasenia.setText("jPasswordField1");
+        PssContrasenia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                PssContraseniaKeyPressed(evt);
+            }
+        });
         jPanel1.add(PssContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 280, 40));
 
         btnEntrar.setBackground(new java.awt.Color(255, 255, 255));
@@ -152,16 +162,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        if (user.IncioSesion(DigestUtils.md5Hex(PssContrasenia.getText()), txtUs.getText())) {
-            this.dispose();
-            Menus m = new Menus();
-            m.setVisible(true);
-            m.setUs(user.getUsuario());
-        } else {
-            new rojerusan.RSNotifyAnimated("¡ERROR!", "Usuario y/o contraseña incorrecta",
-                    5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
-                    RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
-        }
+        IncioSesion();
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
@@ -178,6 +179,32 @@ public class Login extends javax.swing.JFrame {
         this.setLocation(p.x - x, p.y - y);
     }//GEN-LAST:event_jPanel1MouseDragged
 
+    private void PssContraseniaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PssContraseniaKeyPressed
+        if(evt.getKeyChar()==10){
+            IncioSesion();
+        }
+    }//GEN-LAST:event_PssContraseniaKeyPressed
+
+    private void txtUsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsKeyPressed
+        if(evt.getKeyChar()==10){
+            PssContrasenia.setText("");
+            PssContrasenia.requestFocus();
+        }
+    }//GEN-LAST:event_txtUsKeyPressed
+
+    private void IncioSesion() {
+        if (user.IncioSesion(DigestUtils.md5Hex(PssContrasenia.getText()), txtUs.getText())) {
+            this.dispose();
+            Menus m = new Menus();
+            m.setVisible(true);
+            m.setUs(user.getUsuario());
+        } else {
+            new rojerusan.RSNotifyAnimated("¡ERROR!", "Usuario y/o contraseña incorrecta",
+                    5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
+                    RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
+            txtUs.requestFocus();
+        }
+    }
     /**
      * @param args the command line arguments
      */
