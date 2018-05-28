@@ -5,6 +5,7 @@
  */
 package Clases;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -46,5 +47,23 @@ public class Usuario {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
+    }
+    
+    public boolean insertarUsuario(String nombre, String apellido, String usuario, String password,
+            boolean activo, String TipoUsuario)
+    {
+        try {
+            CallableStatement procedimiento = con.prepareCall("{call InsertarUsuario(?,?,?,?,?,?)}");
+            procedimiento.setString(1, nombre);
+            procedimiento.setString(2, apellido);
+            procedimiento.setString(3, usuario);
+            procedimiento.setString(4, password);
+            procedimiento.setBoolean(5, activo);
+            procedimiento.setString(5, TipoUsuario);
+            procedimiento.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return true;
     }
 }
