@@ -41,11 +41,11 @@ public class Principal extends javax.swing.JInternalFrame {
         btnHome = new javax.swing.JButton();
         btnAddUser = new javax.swing.JButton();
         btnRealizarVenta = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnVerVentas = new javax.swing.JButton();
+        btnVCompras = new javax.swing.JButton();
+        btnRealizarCompras = new javax.swing.JButton();
+        btnNProveedor = new javax.swing.JButton();
+        btnVerProveedor = new javax.swing.JButton();
         rSPanelsSlider1 = new rojerusan.RSPanelsSlider();
         pnlInventario = new javax.swing.JPanel();
         txtNomProd = new javax.swing.JTextField();
@@ -86,6 +86,7 @@ public class Principal extends javax.swing.JInternalFrame {
         PnlControl.add(lbltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 310, 40));
 
         btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Home.png"))); // NOI18N
+        btnHome.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Inventario</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
         btnHome.setBorderPainted(false);
         btnHome.setContentAreaFilled(false);
         btnHome.setSelected(true);
@@ -95,15 +96,17 @@ public class Principal extends javax.swing.JInternalFrame {
                 btnHomeActionPerformed(evt);
             }
         });
-        PnlControl.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        PnlControl.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 50));
 
         btnAddUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/add user.png"))); // NOI18N
+        btnAddUser.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Agregar Nuevo Usuario</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
         btnAddUser.setBorderPainted(false);
         btnAddUser.setContentAreaFilled(false);
         btnAddUser.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/add user Select.png"))); // NOI18N
-        PnlControl.add(btnAddUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 0, -1, -1));
+        PnlControl.add(btnAddUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 0, -1, 50));
 
         btnRealizarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/venta.png"))); // NOI18N
+        btnRealizarVenta.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Realizar Ventas</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
         btnRealizarVenta.setBorderPainted(false);
         btnRealizarVenta.setContentAreaFilled(false);
         btnRealizarVenta.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Venta Select.png"))); // NOI18N
@@ -112,47 +115,67 @@ public class Principal extends javax.swing.JInternalFrame {
                 btnRealizarVentaActionPerformed(evt);
             }
         });
-        PnlControl.add(btnRealizarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, -1, -1));
+        PnlControl.add(btnRealizarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, -1, 50));
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnVerVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/VerVentas.png"))); // NOI18N
+        btnVerVentas.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Ver Ventas Realizadas</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
+        btnVerVentas.setBorderPainted(false);
+        btnVerVentas.setContentAreaFilled(false);
+        btnVerVentas.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/VerVentas Select.png"))); // NOI18N
+        btnVerVentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnVerVentasActionPerformed(evt);
             }
         });
-        PnlControl.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
+        PnlControl.add(btnVerVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 0, -1, 50));
 
-        jButton2.setText("jButton2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnVCompras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/VerVentas.png"))); // NOI18N
+        btnVCompras.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Ver Compras</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
+        btnVCompras.setBorderPainted(false);
+        btnVCompras.setContentAreaFilled(false);
+        btnVCompras.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/VerVentas Select.png"))); // NOI18N
+        btnVCompras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnVComprasActionPerformed(evt);
             }
         });
-        PnlControl.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, -1, -1));
+        PnlControl.add(btnVCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, -1, 50));
 
-        jButton3.setText("jButton3");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnRealizarCompras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/venta.png"))); // NOI18N
+        btnRealizarCompras.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Realizar Compras</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
+        btnRealizarCompras.setBorderPainted(false);
+        btnRealizarCompras.setContentAreaFilled(false);
+        btnRealizarCompras.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Venta Select.png"))); // NOI18N
+        btnRealizarCompras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnRealizarComprasActionPerformed(evt);
             }
         });
-        PnlControl.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, -1));
+        PnlControl.add(btnRealizarCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, -1, 50));
 
-        jButton4.setText("jButton4");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnNProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/add user.png"))); // NOI18N
+        btnNProveedor.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Agregar Nuevo Proveedor</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
+        btnNProveedor.setBorderPainted(false);
+        btnNProveedor.setContentAreaFilled(false);
+        btnNProveedor.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/add user Select.png"))); // NOI18N
+        btnNProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnNProveedorActionPerformed(evt);
             }
         });
-        PnlControl.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 10, -1, -1));
+        PnlControl.add(btnNProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 0, -1, 50));
 
-        jButton5.setText("jButton5");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnVerProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Proveedores.png"))); // NOI18N
+        btnVerProveedor.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Ver Proveedores</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
+        btnVerProveedor.setBorderPainted(false);
+        btnVerProveedor.setContentAreaFilled(false);
+        btnVerProveedor.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Proveedores Select.png"))); // NOI18N
+        btnVerProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnVerProveedorActionPerformed(evt);
             }
         });
-        PnlControl.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 10, -1, -1));
+        PnlControl.add(btnVerProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 0, 70, 50));
 
         jPanel1.add(PnlControl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 50));
 
@@ -413,29 +436,29 @@ public class Principal extends javax.swing.JInternalFrame {
             this.btnHome.setSelected(true);
             this.btnRealizarVenta.setSelected(false);
             this.btnAddUser.setSelected(false);
-            rSPanelsSlider1.setPanelSlider(20, pnlInventario, RSPanelsSlider.DIRECT.RIGHT);
+            rSPanelsSlider1.setPanelSlider(20, pnlInventario, RSPanelsSlider.DIRECT.LEFT);
         }
     }//GEN-LAST:event_btnHomeActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        rSPanelsSlider1.setPanelSlider(20, pnl3, RSPanelsSlider.DIRECT.RIGHT);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnVerVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerVentasActionPerformed
+        rSPanelsSlider1.setPanelSlider(20, pnl3, RSPanelsSlider.DIRECT.LEFT);
+    }//GEN-LAST:event_btnVerVentasActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        rSPanelsSlider1.setPanelSlider(20, pnl4, RSPanelsSlider.DIRECT.RIGHT);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnVComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVComprasActionPerformed
+        rSPanelsSlider1.setPanelSlider(20, pnl4, RSPanelsSlider.DIRECT.LEFT);
+    }//GEN-LAST:event_btnVComprasActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        rSPanelsSlider1.setPanelSlider(20, pnl5, RSPanelsSlider.DIRECT.RIGHT);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void btnRealizarComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarComprasActionPerformed
+        rSPanelsSlider1.setPanelSlider(20, pnl5, RSPanelsSlider.DIRECT.LEFT);
+    }//GEN-LAST:event_btnRealizarComprasActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        rSPanelsSlider1.setPanelSlider(20, pnl6, RSPanelsSlider.DIRECT.RIGHT);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void btnNProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNProveedorActionPerformed
+        rSPanelsSlider1.setPanelSlider(20, pnl6, RSPanelsSlider.DIRECT.LEFT);
+    }//GEN-LAST:event_btnNProveedorActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        rSPanelsSlider1.setPanelSlider(20, pnl7, RSPanelsSlider.DIRECT.RIGHT);
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void btnVerProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerProveedorActionPerformed
+        rSPanelsSlider1.setPanelSlider(20, pnl7, RSPanelsSlider.DIRECT.LEFT);
+    }//GEN-LAST:event_btnVerProveedorActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -443,13 +466,13 @@ public class Principal extends javax.swing.JInternalFrame {
     private rojerusan.RSTableMetro TBInventario;
     private javax.swing.JButton btnAddUser;
     private javax.swing.JButton btnHome;
+    private javax.swing.JButton btnNProveedor;
+    private javax.swing.JButton btnRealizarCompras;
     private javax.swing.JButton btnRealizarVenta;
+    private javax.swing.JButton btnVCompras;
+    private javax.swing.JButton btnVerProveedor;
+    private javax.swing.JButton btnVerVentas;
     private rojerusan.RSComboMetro cmbPresentacion;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
