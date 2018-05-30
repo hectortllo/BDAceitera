@@ -42,7 +42,7 @@ public class Principal extends javax.swing.JInternalFrame {
         btnAddUser = new javax.swing.JButton();
         btnRealizarVenta = new javax.swing.JButton();
         btnVerVentas = new javax.swing.JButton();
-        btnVCompras = new javax.swing.JButton();
+        btnVerCompras = new javax.swing.JButton();
         btnRealizarCompras = new javax.swing.JButton();
         btnNProveedor = new javax.swing.JButton();
         btnVerProveedor = new javax.swing.JButton();
@@ -57,8 +57,21 @@ public class Principal extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         txaDescripcion = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
-        pnl2 = new javax.swing.JPanel();
+        lbltitulo2 = new javax.swing.JLabel();
+        pnlRVentas = new javax.swing.JPanel();
+        btnVender = new javax.swing.JButton();
+        btnNuevaVenta = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        TBVentas = new rojerusan.RSTableMetro();
+        lbltitulo4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        txtTotalVenta = new javax.swing.JTextField();
+        txtMontoVenta = new javax.swing.JTextField();
+        btnVueltoVenta = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        lblFecha = new rojeru_san.RSLabelFecha();
         pnl3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         pnl4 = new javax.swing.JPanel();
@@ -68,7 +81,6 @@ public class Principal extends javax.swing.JInternalFrame {
         pnl6 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         pnl7 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1100, 550));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -83,7 +95,7 @@ public class Principal extends javax.swing.JInternalFrame {
         lbltitulo.setFont(new java.awt.Font("Lucida Calligraphy", 3, 24)); // NOI18N
         lbltitulo.setForeground(new java.awt.Color(255, 255, 255));
         lbltitulo.setText("Aceitera de occidente");
-        PnlControl.add(lbltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 310, 40));
+        PnlControl.add(lbltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 300, 50));
 
         btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Home.png"))); // NOI18N
         btnHome.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Inventario</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
@@ -96,14 +108,19 @@ public class Principal extends javax.swing.JInternalFrame {
                 btnHomeActionPerformed(evt);
             }
         });
-        PnlControl.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 50));
+        PnlControl.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 50));
 
         btnAddUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/add user.png"))); // NOI18N
         btnAddUser.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Agregar Nuevo Usuario</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
         btnAddUser.setBorderPainted(false);
         btnAddUser.setContentAreaFilled(false);
         btnAddUser.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/add user Select.png"))); // NOI18N
-        PnlControl.add(btnAddUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 0, -1, 50));
+        btnAddUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddUserActionPerformed(evt);
+            }
+        });
+        PnlControl.add(btnAddUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 0, 70, 50));
 
         btnRealizarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/venta.png"))); // NOI18N
         btnRealizarVenta.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Realizar Ventas</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
@@ -115,7 +132,7 @@ public class Principal extends javax.swing.JInternalFrame {
                 btnRealizarVentaActionPerformed(evt);
             }
         });
-        PnlControl.add(btnRealizarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, -1, 50));
+        PnlControl.add(btnRealizarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 70, 50));
 
         btnVerVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/VerVentas.png"))); // NOI18N
         btnVerVentas.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Ver Ventas Realizadas</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
@@ -127,19 +144,19 @@ public class Principal extends javax.swing.JInternalFrame {
                 btnVerVentasActionPerformed(evt);
             }
         });
-        PnlControl.add(btnVerVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 0, -1, 50));
+        PnlControl.add(btnVerVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 0, 70, 50));
 
-        btnVCompras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/VerVentas.png"))); // NOI18N
-        btnVCompras.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Ver Compras</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
-        btnVCompras.setBorderPainted(false);
-        btnVCompras.setContentAreaFilled(false);
-        btnVCompras.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/VerVentas Select.png"))); // NOI18N
-        btnVCompras.addActionListener(new java.awt.event.ActionListener() {
+        btnVerCompras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/VerVentas.png"))); // NOI18N
+        btnVerCompras.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Ver Compras Realizadas</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
+        btnVerCompras.setBorderPainted(false);
+        btnVerCompras.setContentAreaFilled(false);
+        btnVerCompras.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/VerVentas Select.png"))); // NOI18N
+        btnVerCompras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVComprasActionPerformed(evt);
+                btnVerComprasActionPerformed(evt);
             }
         });
-        PnlControl.add(btnVCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, -1, 50));
+        PnlControl.add(btnVerCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 70, 50));
 
         btnRealizarCompras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/venta.png"))); // NOI18N
         btnRealizarCompras.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Realizar Compras</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
@@ -151,7 +168,7 @@ public class Principal extends javax.swing.JInternalFrame {
                 btnRealizarComprasActionPerformed(evt);
             }
         });
-        PnlControl.add(btnRealizarCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, -1, 50));
+        PnlControl.add(btnRealizarCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 70, 50));
 
         btnNProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/add user.png"))); // NOI18N
         btnNProveedor.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Agregar Nuevo Proveedor</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
@@ -163,7 +180,7 @@ public class Principal extends javax.swing.JInternalFrame {
                 btnNProveedorActionPerformed(evt);
             }
         });
-        PnlControl.add(btnNProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 0, -1, 50));
+        PnlControl.add(btnNProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 70, 50));
 
         btnVerProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Proveedores.png"))); // NOI18N
         btnVerProveedor.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Ver Proveedores</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
@@ -175,7 +192,7 @@ public class Principal extends javax.swing.JInternalFrame {
                 btnVerProveedorActionPerformed(evt);
             }
         });
-        PnlControl.add(btnVerProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 0, 70, 50));
+        PnlControl.add(btnVerProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 70, 50));
 
         jPanel1.add(PnlControl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 50));
 
@@ -188,12 +205,12 @@ public class Principal extends javax.swing.JInternalFrame {
         txtNomProd.setBackground(new java.awt.Color(0, 51, 51));
         txtNomProd.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         txtNomProd.setForeground(new java.awt.Color(255, 255, 255));
-        pnlInventario.add(txtNomProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 430, -1));
+        pnlInventario.add(txtNomProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 430, -1));
 
         jLabel1.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 51, 51));
         jLabel1.setText("Presentación:");
-        pnlInventario.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 10, 150, 40));
+        pnlInventario.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 60, 150, 40));
 
         TBInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 51)));
         TBInventario.setModel(new javax.swing.table.DefaultTableModel(
@@ -222,12 +239,12 @@ public class Principal extends javax.swing.JInternalFrame {
         TBInventario.setFuenteHead(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         jScrollPane1.setViewportView(TBInventario);
 
-        pnlInventario.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 1060, 350));
+        pnlInventario.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 1060, 300));
 
         jLabel2.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 51, 51));
         jLabel2.setText("Descripción del producto");
-        pnlInventario.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 280, 40));
+        pnlInventario.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 280, 40));
 
         cmbPresentacion.setMaximumRowCount(4);
         cmbPresentacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "a", "b", "c" }));
@@ -235,7 +252,7 @@ public class Principal extends javax.swing.JInternalFrame {
         cmbPresentacion.setColorBorde(new java.awt.Color(0, 51, 51));
         cmbPresentacion.setColorFondo(new java.awt.Color(0, 51, 51));
         cmbPresentacion.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
-        pnlInventario.add(cmbPresentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 10, 330, -1));
+        pnlInventario.add(cmbPresentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 60, 330, -1));
 
         txaDescripcion.setBackground(new java.awt.Color(0, 51, 51));
         txaDescripcion.setColumns(20);
@@ -244,175 +261,166 @@ public class Principal extends javax.swing.JInternalFrame {
         txaDescripcion.setRows(5);
         jScrollPane2.setViewportView(txaDescripcion);
 
-        pnlInventario.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 400, 560, 90));
+        pnlInventario.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 430, 560, 70));
 
         jLabel3.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 51, 51));
         jLabel3.setText("Producto:");
-        pnlInventario.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 110, 40));
+        pnlInventario.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 110, 40));
+
+        lbltitulo2.setFont(new java.awt.Font("Lucida Calligraphy", 3, 24)); // NOI18N
+        lbltitulo2.setForeground(new java.awt.Color(0, 51, 51));
+        lbltitulo2.setText("Inventario");
+        pnlInventario.add(lbltitulo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 0, 160, 40));
 
         rSPanelsSlider1.add(pnlInventario, "card2");
 
-        pnl2.setBackground(new java.awt.Color(255, 255, 255));
-        pnl2.setName("pnl2"); // NOI18N
+        pnlRVentas.setBackground(new java.awt.Color(255, 255, 255));
+        pnlRVentas.setName("pnlRVentas"); // NOI18N
+        pnlRVentas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 102, 204));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("PANEL #2");
+        btnVender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Realizar Venta.png"))); // NOI18N
+        btnVender.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Finalizar Venta</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
+        btnVender.setBorderPainted(false);
+        btnVender.setContentAreaFilled(false);
+        btnVender.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Realizar Venta Select.png"))); // NOI18N
+        pnlRVentas.add(btnVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 430, 70, 50));
 
-        javax.swing.GroupLayout pnl2Layout = new javax.swing.GroupLayout(pnl2);
-        pnl2.setLayout(pnl2Layout);
-        pnl2Layout.setHorizontalGroup(
-            pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 1088, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        pnl2Layout.setVerticalGroup(
-            pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl2Layout.createSequentialGroup()
-                .addGap(116, 116, 116)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(284, Short.MAX_VALUE))
-        );
+        btnNuevaVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nueva Venta_Compra.png"))); // NOI18N
+        btnNuevaVenta.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Cancelar Venta</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
+        btnNuevaVenta.setBorderPainted(false);
+        btnNuevaVenta.setContentAreaFilled(false);
+        btnNuevaVenta.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nueva Venta_Compra Select.png"))); // NOI18N
+        pnlRVentas.add(btnNuevaVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 430, 70, 50));
 
-        rSPanelsSlider1.add(pnl2, "card3");
+        TBVentas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 51)));
+        TBVentas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Presentación", "Proveedor", "Cantidad", "Precio", "Subtotal"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TBVentas.setColorBackgoundHead(new java.awt.Color(0, 51, 51));
+        TBVentas.setColorFilasBackgound2(new java.awt.Color(0, 51, 51));
+        TBVentas.setColorFilasForeground1(new java.awt.Color(0, 51, 51));
+        TBVentas.setColorFilasForeground2(new java.awt.Color(255, 255, 255));
+        TBVentas.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        TBVentas.setFuenteFilas(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        TBVentas.setFuenteFilasSelect(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        TBVentas.setFuenteHead(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        jScrollPane4.setViewportView(TBVentas);
+
+        pnlRVentas.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 1050, 280));
+
+        lbltitulo4.setFont(new java.awt.Font("Lucida Calligraphy", 3, 24)); // NOI18N
+        lbltitulo4.setForeground(new java.awt.Color(0, 51, 51));
+        lbltitulo4.setText("Realizar ventas");
+        pnlRVentas.add(lbltitulo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 240, 40));
+
+        jLabel5.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel5.setText("Fecha:");
+        pnlRVentas.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 80, 40));
+
+        jLabel10.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel10.setText("Monto:");
+        pnlRVentas.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 400, 80, -1));
+
+        txtTotalVenta.setEditable(false);
+        txtTotalVenta.setBackground(new java.awt.Color(0, 51, 51));
+        txtTotalVenta.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        txtTotalVenta.setForeground(new java.awt.Color(255, 255, 255));
+        pnlRVentas.add(txtTotalVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 390, 220, -1));
+
+        txtMontoVenta.setBackground(new java.awt.Color(0, 51, 51));
+        txtMontoVenta.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        txtMontoVenta.setForeground(new java.awt.Color(255, 255, 255));
+        pnlRVentas.add(txtMontoVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 390, 220, -1));
+
+        btnVueltoVenta.setEditable(false);
+        btnVueltoVenta.setBackground(new java.awt.Color(0, 51, 51));
+        btnVueltoVenta.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        btnVueltoVenta.setForeground(new java.awt.Color(255, 255, 255));
+        pnlRVentas.add(btnVueltoVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 390, 220, -1));
+
+        jLabel13.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel13.setText("Total a pagar:");
+        pnlRVentas.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 160, -1));
+
+        jLabel12.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel12.setText("Vuelto:");
+        pnlRVentas.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 400, 90, -1));
+
+        lblFecha.setForeground(new java.awt.Color(0, 51, 51));
+        lblFecha.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        pnlRVentas.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 120, 40));
+
+        rSPanelsSlider1.add(pnlRVentas, "card3");
 
         pnl3.setBackground(new java.awt.Color(255, 255, 255));
         pnl3.setName("pnl3"); // NOI18N
+        pnl3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 102, 204));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("PANEL #3");
-
-        javax.swing.GroupLayout pnl3Layout = new javax.swing.GroupLayout(pnl3);
-        pnl3.setLayout(pnl3Layout);
-        pnl3Layout.setHorizontalGroup(
-            pnl3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 1088, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        pnl3Layout.setVerticalGroup(
-            pnl3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl3Layout.createSequentialGroup()
-                .addGap(116, 116, 116)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(284, Short.MAX_VALUE))
-        );
+        pnl3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 116, 1088, 110));
 
         rSPanelsSlider1.add(pnl3, "card4");
 
         pnl4.setBackground(new java.awt.Color(255, 255, 255));
         pnl4.setName("pnl4"); // NOI18N
+        pnl4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 102, 204));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("PANEL #4");
-
-        javax.swing.GroupLayout pnl4Layout = new javax.swing.GroupLayout(pnl4);
-        pnl4.setLayout(pnl4Layout);
-        pnl4Layout.setHorizontalGroup(
-            pnl4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 1088, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        pnl4Layout.setVerticalGroup(
-            pnl4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl4Layout.createSequentialGroup()
-                .addGap(116, 116, 116)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(284, Short.MAX_VALUE))
-        );
+        pnl4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 0, 0));
 
         rSPanelsSlider1.add(pnl4, "card5");
 
         pnl5.setBackground(new java.awt.Color(255, 255, 255));
         pnl5.setName("pnl2"); // NOI18N
+        pnl5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 102, 204));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("PANEL #5");
-
-        javax.swing.GroupLayout pnl5Layout = new javax.swing.GroupLayout(pnl5);
-        pnl5.setLayout(pnl5Layout);
-        pnl5Layout.setHorizontalGroup(
-            pnl5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 1088, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        pnl5Layout.setVerticalGroup(
-            pnl5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl5Layout.createSequentialGroup()
-                .addGap(116, 116, 116)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(284, Short.MAX_VALUE))
-        );
+        pnl5.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 0, 0));
 
         rSPanelsSlider1.add(pnl5, "card3");
 
         pnl6.setBackground(new java.awt.Color(255, 255, 255));
         pnl6.setName("pnl2"); // NOI18N
+        pnl6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 102, 204));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("PANEL #6");
-
-        javax.swing.GroupLayout pnl6Layout = new javax.swing.GroupLayout(pnl6);
-        pnl6.setLayout(pnl6Layout);
-        pnl6Layout.setHorizontalGroup(
-            pnl6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 1088, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        pnl6Layout.setVerticalGroup(
-            pnl6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl6Layout.createSequentialGroup()
-                .addGap(116, 116, 116)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(284, Short.MAX_VALUE))
-        );
+        pnl6.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 0, 0));
 
         rSPanelsSlider1.add(pnl6, "card3");
 
         pnl7.setBackground(new java.awt.Color(255, 255, 255));
         pnl7.setName("pnl2"); // NOI18N
-
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 102, 204));
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("PANEL #7");
-
-        javax.swing.GroupLayout pnl7Layout = new javax.swing.GroupLayout(pnl7);
-        pnl7.setLayout(pnl7Layout);
-        pnl7Layout.setHorizontalGroup(
-            pnl7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 1088, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        pnl7Layout.setVerticalGroup(
-            pnl7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl7Layout.createSequentialGroup()
-                .addGap(116, 116, 116)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(284, Short.MAX_VALUE))
-        );
-
+        pnl7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         rSPanelsSlider1.add(pnl7, "card3");
 
         jPanel1.add(rSPanelsSlider1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 1100, 510));
@@ -426,8 +434,13 @@ public class Principal extends javax.swing.JInternalFrame {
         if (!this.btnRealizarVenta.isSelected()) {
             this.btnHome.setSelected(false);
             this.btnRealizarVenta.setSelected(true);
+            this.btnVerVentas.setSelected(false);
+            this.btnRealizarCompras.setSelected(false);
+            this.btnVerCompras.setSelected(false);
+            this.btnNProveedor.setSelected(false);
+            this.btnVerProveedor.setSelected(false);
             this.btnAddUser.setSelected(false);
-            rSPanelsSlider1.setPanelSlider(20, pnl2, RSPanelsSlider.DIRECT.LEFT);
+            rSPanelsSlider1.setPanelSlider(20, pnlRVentas, RSPanelsSlider.DIRECT.LEFT);
         }
     }//GEN-LAST:event_btnRealizarVentaActionPerformed
 
@@ -435,21 +448,48 @@ public class Principal extends javax.swing.JInternalFrame {
         if (!this.btnHome.isSelected()) {
             this.btnHome.setSelected(true);
             this.btnRealizarVenta.setSelected(false);
+            this.btnVerVentas.setSelected(false);
+            this.btnRealizarCompras.setSelected(false);
+            this.btnVerCompras.setSelected(false);
+            this.btnNProveedor.setSelected(false);
+            this.btnVerProveedor.setSelected(false);
             this.btnAddUser.setSelected(false);
             rSPanelsSlider1.setPanelSlider(20, pnlInventario, RSPanelsSlider.DIRECT.LEFT);
         }
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnVerVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerVentasActionPerformed
-        rSPanelsSlider1.setPanelSlider(20, pnl3, RSPanelsSlider.DIRECT.LEFT);
+        if (!this.btnVerVentas.isSelected()) {
+            this.btnHome.setSelected(false);
+            this.btnRealizarVenta.setSelected(false);
+            this.btnVerVentas.setSelected(true);
+            this.btnRealizarCompras.setSelected(false);
+            this.btnVerCompras.setSelected(false);
+            this.btnNProveedor.setSelected(false);
+            this.btnVerProveedor.setSelected(false);
+            this.btnAddUser.setSelected(false);
+            rSPanelsSlider1.setPanelSlider(20, pnl3, RSPanelsSlider.DIRECT.LEFT);
+        }
+
     }//GEN-LAST:event_btnVerVentasActionPerformed
 
-    private void btnVComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVComprasActionPerformed
+    private void btnVerComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerComprasActionPerformed
         rSPanelsSlider1.setPanelSlider(20, pnl4, RSPanelsSlider.DIRECT.LEFT);
-    }//GEN-LAST:event_btnVComprasActionPerformed
+    }//GEN-LAST:event_btnVerComprasActionPerformed
 
     private void btnRealizarComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarComprasActionPerformed
-        rSPanelsSlider1.setPanelSlider(20, pnl5, RSPanelsSlider.DIRECT.LEFT);
+        if (!this.btnVerVentas.isSelected()) {
+            this.btnHome.setSelected(false);
+            this.btnRealizarVenta.setSelected(false);
+            this.btnVerVentas.setSelected(false);
+            this.btnRealizarCompras.setSelected(true);
+            this.btnVerCompras.setSelected(false);
+            this.btnNProveedor.setSelected(false);
+            this.btnVerProveedor.setSelected(false);
+            this.btnAddUser.setSelected(false);
+            rSPanelsSlider1.setPanelSlider(20, pnl5, RSPanelsSlider.DIRECT.LEFT);
+        }
+
     }//GEN-LAST:event_btnRealizarComprasActionPerformed
 
     private void btnNProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNProveedorActionPerformed
@@ -458,23 +498,44 @@ public class Principal extends javax.swing.JInternalFrame {
 
     private void btnVerProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerProveedorActionPerformed
         rSPanelsSlider1.setPanelSlider(20, pnl7, RSPanelsSlider.DIRECT.LEFT);
+
     }//GEN-LAST:event_btnVerProveedorActionPerformed
+
+    private void btnAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUserActionPerformed
+        if (!this.btnAddUser.isSelected()) {
+            this.btnHome.setSelected(false);
+            this.btnRealizarVenta.setSelected(false);
+            this.btnVerVentas.setSelected(false);
+            this.btnRealizarCompras.setSelected(false);
+            this.btnVerCompras.setSelected(false);
+            this.btnNProveedor.setSelected(false);
+            this.btnVerProveedor.setSelected(false);
+            this.btnAddUser.setSelected(true);
+            new Registro().setVisible(true);
+        }
+    }//GEN-LAST:event_btnAddUserActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PnlControl;
     private rojerusan.RSTableMetro TBInventario;
+    private rojerusan.RSTableMetro TBVentas;
     private javax.swing.JButton btnAddUser;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnNProveedor;
+    private javax.swing.JButton btnNuevaVenta;
     private javax.swing.JButton btnRealizarCompras;
     private javax.swing.JButton btnRealizarVenta;
-    private javax.swing.JButton btnVCompras;
+    private javax.swing.JButton btnVender;
+    private javax.swing.JButton btnVerCompras;
     private javax.swing.JButton btnVerProveedor;
     private javax.swing.JButton btnVerVentas;
+    private javax.swing.JTextField btnVueltoVenta;
     private rojerusan.RSComboMetro cmbPresentacion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
@@ -485,16 +546,22 @@ public class Principal extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane4;
+    private rojeru_san.RSLabelFecha lblFecha;
     private javax.swing.JLabel lbltitulo;
-    private javax.swing.JPanel pnl2;
+    private javax.swing.JLabel lbltitulo2;
+    private javax.swing.JLabel lbltitulo4;
     private javax.swing.JPanel pnl3;
     private javax.swing.JPanel pnl4;
     private javax.swing.JPanel pnl5;
     private javax.swing.JPanel pnl6;
     private javax.swing.JPanel pnl7;
     private javax.swing.JPanel pnlInventario;
+    private javax.swing.JPanel pnlRVentas;
     private rojerusan.RSPanelsSlider rSPanelsSlider1;
     private javax.swing.JTextArea txaDescripcion;
+    private javax.swing.JTextField txtMontoVenta;
     private javax.swing.JTextField txtNomProd;
+    private javax.swing.JTextField txtTotalVenta;
     // End of variables declaration//GEN-END:variables
 }

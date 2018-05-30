@@ -10,7 +10,11 @@ import com.sun.awt.AWTUtilities;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.Shape;
+import java.awt.event.KeyEvent;
 import java.awt.geom.RoundRectangle2D;
+import javax.swing.JTextField;
+import org.apache.commons.codec.digest.DigestUtils;
+import rojerusan.RSNotifyAnimated;
 
 /**
  *
@@ -25,6 +29,7 @@ public class Registro extends javax.swing.JFrame {
         user = new Usuario();
         this.setUndecorated(true);
         initComponents();
+        cmbPuestos.setModel(user.puestos());
         this.setLocationRelativeTo(null);
         Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 27, 27);
         AWTUtilities.setWindowShape(this, forma);
@@ -56,9 +61,8 @@ public class Registro extends javax.swing.JFrame {
         PssContrasenia = new javax.swing.JPasswordField();
         RBSi = new javax.swing.JRadioButton();
         RBNo = new javax.swing.JRadioButton();
-        rSComboMetro1 = new rojerusan.RSComboMetro();
-        txtOtroPuesto = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        cmbPuestos = new rojerusan.RSComboMetro();
+        btnInsertar = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
@@ -68,6 +72,7 @@ public class Registro extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 51));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 jPanel1MouseDragged(evt);
@@ -123,35 +128,74 @@ public class Registro extends javax.swing.JFrame {
         txtUsuario.setBackground(new java.awt.Color(255, 255, 255));
         txtUsuario.setFont(new java.awt.Font("Lucida Calligraphy", 3, 14)); // NOI18N
         txtUsuario.setForeground(new java.awt.Color(0, 51, 51));
+        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUsuarioKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 330, -1));
 
         txtNombre.setBackground(new java.awt.Color(255, 255, 255));
         txtNombre.setFont(new java.awt.Font("Lucida Calligraphy", 3, 14)); // NOI18N
         txtNombre.setForeground(new java.awt.Color(0, 51, 51));
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
+            }
+        });
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 330, -1));
 
         txtApellido.setBackground(new java.awt.Color(255, 255, 255));
         txtApellido.setFont(new java.awt.Font("Lucida Calligraphy", 3, 14)); // NOI18N
         txtApellido.setForeground(new java.awt.Color(0, 51, 51));
+        txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidoKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 330, -1));
 
         PssConfirContrasenia.setBackground(new java.awt.Color(255, 255, 255));
         PssConfirContrasenia.setFont(new java.awt.Font("Lucida Calligraphy", 3, 14)); // NOI18N
         PssConfirContrasenia.setForeground(new java.awt.Color(0, 51, 51));
         PssConfirContrasenia.setText("jPasswordField1");
+        PssConfirContrasenia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                PssConfirContraseniaKeyTyped(evt);
+            }
+        });
         jPanel1.add(PssConfirContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, 300, -1));
 
         PssContrasenia.setBackground(new java.awt.Color(255, 255, 255));
         PssContrasenia.setFont(new java.awt.Font("Lucida Calligraphy", 3, 14)); // NOI18N
         PssContrasenia.setForeground(new java.awt.Color(0, 51, 51));
         PssContrasenia.setText("jPasswordField1");
+        PssContrasenia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                PssContraseniaKeyTyped(evt);
+            }
+        });
         jPanel1.add(PssContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 300, -1));
 
         RBSi.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(RBSi);
         RBSi.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         RBSi.setForeground(new java.awt.Color(255, 255, 255));
+        RBSi.setSelected(true);
         RBSi.setText("Si");
+        RBSi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                RBSiKeyTyped(evt);
+            }
+        });
         jPanel1.add(RBSi, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, 60, -1));
 
         RBNo.setBackground(new java.awt.Color(255, 255, 255));
@@ -159,41 +203,39 @@ public class Registro extends javax.swing.JFrame {
         RBNo.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         RBNo.setForeground(new java.awt.Color(255, 255, 255));
         RBNo.setText("No");
-        jPanel1.add(RBNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 300, 60, -1));
-
-        rSComboMetro1.setBackground(new java.awt.Color(255, 255, 255));
-        rSComboMetro1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        rSComboMetro1.setMaximumRowCount(4);
-        rSComboMetro1.setColorArrow(new java.awt.Color(0, 51, 51));
-        rSComboMetro1.setColorBorde(new java.awt.Color(255, 255, 255));
-        rSComboMetro1.setColorFondo(new java.awt.Color(0, 51, 51));
-        rSComboMetro1.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
-        jPanel1.add(rSComboMetro1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, 320, -1));
-
-        txtOtroPuesto.setEditable(false);
-        txtOtroPuesto.setBackground(new java.awt.Color(255, 255, 255));
-        txtOtroPuesto.setFont(new java.awt.Font("Lucida Calligraphy", 3, 14)); // NOI18N
-        txtOtroPuesto.setForeground(new java.awt.Color(0, 51, 51));
-        jPanel1.add(txtOtroPuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 380, 320, -1));
-
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/checkmark.png"))); // NOI18N
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Checkmark Select.png"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        RBNo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                RBNoKeyTyped(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 420, 50, 40));
+        jPanel1.add(RBNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 300, 60, -1));
+
+        cmbPuestos.setBackground(new java.awt.Color(255, 255, 255));
+        cmbPuestos.setMaximumRowCount(4);
+        cmbPuestos.setColorArrow(new java.awt.Color(0, 51, 51));
+        cmbPuestos.setColorBorde(new java.awt.Color(255, 255, 255));
+        cmbPuestos.setColorFondo(new java.awt.Color(0, 51, 51));
+        cmbPuestos.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        jPanel1.add(cmbPuestos, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, 320, -1));
+
+        btnInsertar.setBackground(new java.awt.Color(255, 255, 255));
+        btnInsertar.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        btnInsertar.setForeground(new java.awt.Color(255, 255, 255));
+        btnInsertar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/checkmark.png"))); // NOI18N
+        btnInsertar.setBorderPainted(false);
+        btnInsertar.setContentAreaFilled(false);
+        btnInsertar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Checkmark Select.png"))); // NOI18N
+        btnInsertar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInsertarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnInsertar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 390, 50, 40));
 
         jLabel12.setFont(new java.awt.Font("Lucida Calligraphy", 3, 24)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Cabcelar");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 460, 150, 40));
+        jLabel12.setText("Cancelar");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 390, 150, 40));
 
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Cerrar.png"))); // NOI18N
         btnCancelar.setBorderPainted(false);
@@ -204,12 +246,12 @@ public class Registro extends javax.swing.JFrame {
                 btnCancelarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 460, 50, -1));
+        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 390, 50, 40));
 
         jLabel13.setFont(new java.awt.Font("Lucida Calligraphy", 3, 24)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Registrar");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 150, 40));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 150, 40));
 
         btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Cerrar.png"))); // NOI18N
         btnCerrar.setBorderPainted(false);
@@ -220,16 +262,36 @@ public class Registro extends javax.swing.JFrame {
                 btnCerrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 60, -1));
+        jPanel1.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 60, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 510));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 440));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
+        if (verificar()) {
+            String contrasenia = DigestUtils.md5Hex(PssContrasenia.getText());
+
+            boolean activo = RBSi.isSelected();
+            int id = cmbPuestos.getSelectedIndex() + 1;
+            if (user.insertarUsuario(txtNombre.getText(), txtApellido.getText(), txtUsuario.getText(),
+                    contrasenia, activo, id)) {
+                new rojerusan.RSNotifyAnimated("¡Correcto!", "Usuario ingresado correctamente",
+                        5, RSNotifyAnimated.PositionNotify.BottomLeft, RSNotifyAnimated.AnimationNotify.BottomUp,
+                        RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
+                this.dispose();
+            } else {
+                new rojerusan.RSNotifyAnimated("¡ERROR!", "Usuario no ingresado correctamente.",
+                        5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
+                        RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
+            }
+        } else {
+            new rojerusan.RSNotifyAnimated("¡ERROR!", "Usuario no ingresado correctamente.\nVerifique los campos",
+                    5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
+                    RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
+        }
+    }//GEN-LAST:event_btnInsertarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.dispose();
@@ -249,6 +311,82 @@ public class Registro extends javax.swing.JFrame {
         this.setLocation(p.x - x, p.y - y);
     }//GEN-LAST:event_jPanel1MouseDragged
 
+    private void txtNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyPressed
+
+    }//GEN-LAST:event_txtNombreKeyPressed
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        Letras(evt, txtApellido);
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreActionPerformed
+
+    private void txtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyTyped
+        Letras(evt, txtUsuario);
+    }//GEN-LAST:event_txtApellidoKeyTyped
+
+    private void txtUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyTyped
+        if (evt.getKeyChar() == 10) {
+            PssContrasenia.setText("");
+            PssContrasenia.requestFocus();
+        }
+    }//GEN-LAST:event_txtUsuarioKeyTyped
+
+    private void PssContraseniaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PssContraseniaKeyTyped
+        if (evt.getKeyChar() == 10) {
+            PssConfirContrasenia.setText("");
+            PssConfirContrasenia.requestFocus();
+        }
+    }//GEN-LAST:event_PssContraseniaKeyTyped
+
+    private void PssConfirContraseniaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PssConfirContraseniaKeyTyped
+        if (evt.getKeyChar() == 10) {
+            RBSi.requestFocus();
+        }
+    }//GEN-LAST:event_PssConfirContraseniaKeyTyped
+
+    private void RBSiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_RBSiKeyTyped
+        if (evt.getKeyChar() == 10) {
+            RBSi.setSelected(true);
+            RBNo.requestFocus();
+        }
+    }//GEN-LAST:event_RBSiKeyTyped
+
+    private void RBNoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_RBNoKeyTyped
+        if (evt.getKeyChar() == 10) {
+            RBNo.setSelected(true);
+            cmbPuestos.requestFocus();
+        }
+    }//GEN-LAST:event_RBNoKeyTyped
+
+    private void Letras(KeyEvent e, JTextField txt) {
+        if ((e.getKeyChar() < 'a' || e.getKeyChar() > 'z') && (e.getKeyChar() < 'A' || e.getKeyChar() > 'Z')) {
+            if (e.getKeyChar() == 10) {
+                txt.requestFocus();
+            } else {
+                e.consume();
+            }
+        }
+    }
+
+    private boolean verificar() {
+        if (txtNombre.getText().length() == 0) {
+            return false;
+        } else if (txtApellido.getText().length() == 0) {
+            return false;
+        } else if (txtUsuario.getText().length() == 0) {
+            return false;
+        } else if (PssContrasenia.getText().length() == 0) {
+            return false;
+        } else if (PssConfirContrasenia.getText().length() == 0) {
+            return false;
+        } else {
+            return PssConfirContrasenia.getText().equals(PssContrasenia.getText());
+        }
+    }
+
     private final Usuario user;
     private int x, y;
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -258,8 +396,9 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JRadioButton RBSi;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnCerrar;
+    private javax.swing.JButton btnInsertar;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
+    private rojerusan.RSComboMetro cmbPuestos;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -271,10 +410,8 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private rojerusan.RSComboMetro rSComboMetro1;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtOtroPuesto;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

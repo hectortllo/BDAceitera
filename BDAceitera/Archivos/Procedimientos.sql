@@ -2,15 +2,12 @@ delimiter //
 DROP PROCEDURE IF EXISTS InsertarUsuario //
 DROP PROCEDURE IF EXISTS InsertarProveedor //
 DROP PROCEDURE IF EXISTS InsertarProducto //
-CREATE PROCEDURE InsertarUsuario(vNombre VARCHAR(25), vApellido VARCHAR(25), vUsuario VARCHAR(12), vPassword VARCHAR(15), 
-	vActivo BOOLEAN, vIdTipoUsuario VARCHAR(45))
+CREATE PROCEDURE InsertarUsuario(vNombre VARCHAR(25), vApellido VARCHAR(25), vUsuario VARCHAR(12), vPassword VARCHAR(150), 
+	vActivo BOOLEAN, vIdTipoUsuario INT)
     
 BEGIN
-	DECLARE vTipoUsuario INT UNSIGNED DEFAULT 0;
-    SELECT id  INTO vTipoUsuario FROM tipousuario WHERE tipoUsuario = vTipoProducto;
-    
 	INSERT INTO usuario(nombre, apellido, usuario, contrasenia, activo, TipoUsuario_id)
-    VALUES(vNombre, vApellido, vUsuario, vPassword, vActivo, vTipoUsuario);
+    VALUES(vNombre, vApellido, vUsuario, vPassword, vActivo, vIdTipoUsuario);
 END; //
 
 CREATE PROCEDURE InsertarProveedor(vNombreProveedor VARCHAR(35), vNit VARCHAR(10))

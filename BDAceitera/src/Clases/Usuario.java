@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -50,7 +51,7 @@ public class Usuario {
     }
     
     public boolean insertarUsuario(String nombre, String apellido, String usuario, String password,
-            boolean activo, String TipoUsuario)
+            boolean activo, int TipoUsuario)
     {
         try {
             CallableStatement procedimiento = con.prepareCall("{call InsertarUsuario(?,?,?,?,?,?)}");
@@ -59,11 +60,26 @@ public class Usuario {
             procedimiento.setString(3, usuario);
             procedimiento.setString(4, password);
             procedimiento.setBoolean(5, activo);
-            procedimiento.setString(5, TipoUsuario);
-            procedimiento.execute();
+            procedimiento.setInt(6, TipoUsuario);
+            return procedimiento.executeUpdate() != 0;
         } catch (SQLException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
-        return true;
+    }
+    public DefaultComboBoxModel puestos(){
+        try {
+            DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+            String sql = "SELECT tipoUsuario FROM tipousuario;";
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {                
+                modelo.addElement(rs.getObject("tipoUsuario"));
+            }
+            return modelo;
+        } catch (SQLException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
     }
 }
