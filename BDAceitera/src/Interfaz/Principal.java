@@ -58,10 +58,7 @@ public class Principal extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TBInventario = new rojerusan.RSTableMetro();
-        jLabel2 = new javax.swing.JLabel();
         cmbPresentacion = new rojerusan.RSComboMetro();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txaDescripcion = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
         lbltitulo2 = new javax.swing.JLabel();
         pnlRVentas = new javax.swing.JPanel();
@@ -96,22 +93,64 @@ public class Principal extends javax.swing.JInternalFrame {
         pnlRCompras = new javax.swing.JPanel();
         lbltitulo5 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        TBVentasRealizas2 = new rojerusan.RSTableMetro();
-        jLabel17 = new javax.swing.JLabel();
+        TBComprar = new rojerusan.RSTableMetro();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        txaDescripcionCompra = new javax.swing.JTextArea();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
-        pnl5 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        pnl6 = new javax.swing.JPanel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        txCódigo = new javax.swing.JTextField();
+        txtCantidad = new javax.swing.JTextField();
+        txtPrecio = new javax.swing.JTextField();
+        txtDetallePres = new javax.swing.JTextField();
+        txtCosto = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        txtTotalCompra = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        txtMontoCompra = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        btnVueltoCompra = new javax.swing.JTextField();
+        btnAgregar = new javax.swing.JButton();
+        btnNuevaCompra1 = new javax.swing.JButton();
+        btnComprar = new javax.swing.JButton();
+        cmbPresentacionCompra = new rojerusan.RSComboMetro();
+        cmbMarca = new rojerusan.RSComboMetro();
+        cmbTProducto = new rojerusan.RSComboMetro();
+        cmbProveedor = new rojerusan.RSComboMetro();
+        pnlCRealizadas = new javax.swing.JPanel();
+        lbltitulo6 = new javax.swing.JLabel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        TBComprasRealizas = new rojerusan.RSTableMetro();
+        txtNoCompra = new javax.swing.JTextField();
+        jLabel29 = new javax.swing.JLabel();
+        DCFechaCompras = new rojeru_san.componentes.RSDateChooser();
+        jLabel30 = new javax.swing.JLabel();
+        pnlDCompra = new javax.swing.JPanel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        TBDetComprasRealizas = new rojerusan.RSTableMetro();
+        lbltitulo7 = new javax.swing.JLabel();
+        txtNoCompras = new javax.swing.JTextField();
+        jLabel32 = new javax.swing.JLabel();
+        pnlAddProveedor = new javax.swing.JPanel();
+        lbltitulo8 = new javax.swing.JLabel();
+        lblInfoProv = new javax.swing.JLabel();
+        btnInsertarProveedor = new javax.swing.JButton();
+        jLabel34 = new javax.swing.JLabel();
+        btnCancelar = new javax.swing.JButton();
+        jLabel35 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        txtNoTelefonoD = new javax.swing.JTextField();
+        txtNombreEmpresa = new javax.swing.JTextField();
+        txtNombreDistri = new javax.swing.JTextField();
+        txtNotelefonoE = new javax.swing.JTextField();
+        pnlVerProveedor = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        pnl7 = new javax.swing.JPanel();
 
         MnVentas.setBackground(new java.awt.Color(0, 51, 51));
         MnVentas.setForeground(new java.awt.Color(255, 255, 255));
@@ -305,12 +344,7 @@ public class Principal extends javax.swing.JInternalFrame {
         TBInventario.setFuenteHead(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         jScrollPane1.setViewportView(TBInventario);
 
-        pnlInventario.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 1060, 300));
-
-        jLabel2.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 51, 51));
-        jLabel2.setText("Descripción del producto");
-        pnlInventario.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 280, 40));
+        pnlInventario.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 1060, 360));
 
         cmbPresentacion.setMaximumRowCount(4);
         cmbPresentacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "a", "b", "c" }));
@@ -319,15 +353,6 @@ public class Principal extends javax.swing.JInternalFrame {
         cmbPresentacion.setColorFondo(new java.awt.Color(0, 51, 51));
         cmbPresentacion.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         pnlInventario.add(cmbPresentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 60, 330, -1));
-
-        txaDescripcion.setBackground(new java.awt.Color(0, 51, 51));
-        txaDescripcion.setColumns(20);
-        txaDescripcion.setFont(new java.awt.Font("Lucida Calligraphy", 3, 24)); // NOI18N
-        txaDescripcion.setForeground(new java.awt.Color(255, 255, 255));
-        txaDescripcion.setRows(5);
-        jScrollPane2.setViewportView(txaDescripcion);
-
-        pnlInventario.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 430, 560, 70));
 
         jLabel3.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 51, 51));
@@ -476,6 +501,14 @@ public class Principal extends javax.swing.JInternalFrame {
         TBVentasRealizas.setFuenteFilasSelect(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         TBVentasRealizas.setFuenteHead(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         jScrollPane3.setViewportView(TBVentasRealizas);
+        if (TBVentasRealizas.getColumnModel().getColumnCount() > 0) {
+            TBVentasRealizas.getColumnModel().getColumn(0).setResizable(false);
+            TBVentasRealizas.getColumnModel().getColumn(0).setPreferredWidth(30);
+            TBVentasRealizas.getColumnModel().getColumn(2).setResizable(false);
+            TBVentasRealizas.getColumnModel().getColumn(2).setPreferredWidth(50);
+            TBVentasRealizas.getColumnModel().getColumn(3).setResizable(false);
+            TBVentasRealizas.getColumnModel().getColumn(3).setPreferredWidth(50);
+        }
 
         pnlVRealizadas.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 1060, 390));
 
@@ -576,14 +609,14 @@ public class Principal extends javax.swing.JInternalFrame {
         lbltitulo5.setText("Realizar Compras");
         pnlRCompras.add(lbltitulo5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 50));
 
-        TBVentasRealizas2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 51)));
-        TBVentasRealizas2.setModel(new javax.swing.table.DefaultTableModel(
+        TBComprar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 51)));
+        TBComprar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
-                "No", "Nombre Usuario", "Fecha", "Total"
+                "Código", "Cantidad", "Precio", "Subtotal"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -594,98 +627,411 @@ public class Principal extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        TBVentasRealizas2.setColorBackgoundHead(new java.awt.Color(0, 51, 51));
-        TBVentasRealizas2.setColorFilasBackgound2(new java.awt.Color(0, 51, 51));
-        TBVentasRealizas2.setColorFilasForeground1(new java.awt.Color(0, 51, 51));
-        TBVentasRealizas2.setColorFilasForeground2(new java.awt.Color(255, 255, 255));
-        TBVentasRealizas2.setComponentPopupMenu(jPopupMenu1);
-        TBVentasRealizas2.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
-        TBVentasRealizas2.setFuenteFilas(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
-        TBVentasRealizas2.setFuenteFilasSelect(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
-        TBVentasRealizas2.setFuenteHead(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
-        jScrollPane6.setViewportView(TBVentasRealizas2);
+        TBComprar.setColorBackgoundHead(new java.awt.Color(0, 51, 51));
+        TBComprar.setColorFilasBackgound2(new java.awt.Color(0, 51, 51));
+        TBComprar.setColorFilasForeground1(new java.awt.Color(0, 51, 51));
+        TBComprar.setColorFilasForeground2(new java.awt.Color(255, 255, 255));
+        TBComprar.setComponentPopupMenu(jPopupMenu1);
+        TBComprar.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        TBComprar.setFuenteFilas(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        TBComprar.setFuenteFilasSelect(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        TBComprar.setFuenteHead(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        jScrollPane6.setViewportView(TBComprar);
 
-        pnlRCompras.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, 700, 300));
-
-        jLabel17.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(0, 51, 51));
-        jLabel17.setText("Descripción:");
-        pnlRCompras.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 150, -1));
+        pnlRCompras.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 60, 620, 340));
 
         jLabel18.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(0, 51, 51));
         jLabel18.setText("Detalle de la presentación: ");
-        pnlRCompras.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 300, -1));
+        pnlRCompras.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 300, -1));
 
         jLabel19.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(0, 51, 51));
         jLabel19.setText("Cantidad:");
-        pnlRCompras.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 120, -1));
-
-        jLabel20.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(0, 51, 51));
-        jLabel20.setText("Costo:");
-        pnlRCompras.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 120, -1));
+        pnlRCompras.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 110, -1));
 
         jLabel21.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(0, 51, 51));
         jLabel21.setText("Precio:");
-        pnlRCompras.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 110, -1));
-
-        txaDescripcionCompra.setBackground(new java.awt.Color(0, 51, 51));
-        txaDescripcionCompra.setColumns(20);
-        txaDescripcionCompra.setFont(new java.awt.Font("Lucida Calligraphy", 3, 24)); // NOI18N
-        txaDescripcionCompra.setForeground(new java.awt.Color(255, 255, 255));
-        txaDescripcionCompra.setRows(5);
-        jScrollPane7.setViewportView(txaDescripcionCompra);
-
-        pnlRCompras.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 310, 70));
+        pnlRCompras.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 110, -1));
 
         jLabel23.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(0, 51, 51));
         jLabel23.setText("Código:");
-        pnlRCompras.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 120, -1));
+        pnlRCompras.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 110, -1));
 
         jLabel24.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(0, 51, 51));
         jLabel24.setText("Presentación:");
-        pnlRCompras.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 150, -1));
+        pnlRCompras.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 150, -1));
 
         jLabel25.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(0, 51, 51));
-        jLabel25.setText("Proveedor:");
-        pnlRCompras.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 120, -1));
+        jLabel25.setText("Marca:");
+        pnlRCompras.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 120, -1));
+
+        jLabel26.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel26.setText("Tipo Producto:");
+        pnlRCompras.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 170, -1));
+
+        jLabel27.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel27.setText("Proveedor:");
+        pnlRCompras.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 120, -1));
+
+        jLabel28.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel28.setText("Costo:");
+        pnlRCompras.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 110, -1));
+
+        txCódigo.setBackground(new java.awt.Color(0, 51, 51));
+        txCódigo.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        txCódigo.setForeground(new java.awt.Color(255, 255, 255));
+        pnlRCompras.add(txCódigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 330, -1));
+
+        txtCantidad.setBackground(new java.awt.Color(0, 51, 51));
+        txtCantidad.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        txtCantidad.setForeground(new java.awt.Color(255, 255, 255));
+        pnlRCompras.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 330, -1));
+
+        txtPrecio.setBackground(new java.awt.Color(0, 51, 51));
+        txtPrecio.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        txtPrecio.setForeground(new java.awt.Color(255, 255, 255));
+        pnlRCompras.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 330, -1));
+
+        txtDetallePres.setBackground(new java.awt.Color(0, 51, 51));
+        txtDetallePres.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        txtDetallePres.setForeground(new java.awt.Color(255, 255, 255));
+        pnlRCompras.add(txtDetallePres, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 330, -1));
+
+        txtCosto.setBackground(new java.awt.Color(0, 51, 51));
+        txtCosto.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        txtCosto.setForeground(new java.awt.Color(255, 255, 255));
+        pnlRCompras.add(txtCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 330, -1));
+
+        jLabel17.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel17.setText("Total a pagar:");
+        pnlRCompras.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 420, 160, -1));
+
+        txtTotalCompra.setEditable(false);
+        txtTotalCompra.setBackground(new java.awt.Color(0, 51, 51));
+        txtTotalCompra.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        txtTotalCompra.setForeground(new java.awt.Color(255, 255, 255));
+        pnlRCompras.add(txtTotalCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 410, 110, -1));
+
+        jLabel20.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel20.setText("Monto:");
+        pnlRCompras.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 420, 80, -1));
+
+        txtMontoCompra.setBackground(new java.awt.Color(0, 51, 51));
+        txtMontoCompra.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        txtMontoCompra.setForeground(new java.awt.Color(255, 255, 255));
+        pnlRCompras.add(txtMontoCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 410, 110, -1));
+
+        jLabel22.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel22.setText("Vuelto:");
+        pnlRCompras.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 420, 90, -1));
+
+        btnVueltoCompra.setEditable(false);
+        btnVueltoCompra.setBackground(new java.awt.Color(0, 51, 51));
+        btnVueltoCompra.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        btnVueltoCompra.setForeground(new java.awt.Color(255, 255, 255));
+        pnlRCompras.add(btnVueltoCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 410, 110, -1));
+
+        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/carrito-de-compras.png"))); // NOI18N
+        btnAgregar.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Cancelar Venta</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
+        btnAgregar.setBorderPainted(false);
+        btnAgregar.setContentAreaFilled(false);
+        btnAgregar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/carrito-de-compras Select.png"))); // NOI18N
+        pnlRCompras.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 450, 70, 50));
+
+        btnNuevaCompra1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nueva Venta_Compra.png"))); // NOI18N
+        btnNuevaCompra1.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Cancelar Venta</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
+        btnNuevaCompra1.setBorderPainted(false);
+        btnNuevaCompra1.setContentAreaFilled(false);
+        btnNuevaCompra1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nueva Venta_Compra Select.png"))); // NOI18N
+        pnlRCompras.add(btnNuevaCompra1, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 450, 70, 50));
+
+        btnComprar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Realizar Venta.png"))); // NOI18N
+        btnComprar.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Finalizar Venta</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
+        btnComprar.setBorderPainted(false);
+        btnComprar.setContentAreaFilled(false);
+        btnComprar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Realizar Venta Select.png"))); // NOI18N
+        pnlRCompras.add(btnComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 450, 70, 50));
+
+        cmbPresentacionCompra.setMaximumRowCount(4);
+        cmbPresentacionCompra.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "a", "b", "c" }));
+        cmbPresentacionCompra.setColorArrow(new java.awt.Color(0, 51, 51));
+        cmbPresentacionCompra.setColorBorde(new java.awt.Color(0, 51, 51));
+        cmbPresentacionCompra.setColorFondo(new java.awt.Color(0, 51, 51));
+        cmbPresentacionCompra.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        pnlRCompras.add(cmbPresentacionCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, 280, -1));
+
+        cmbMarca.setMaximumRowCount(4);
+        cmbMarca.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "a", "b", "c" }));
+        cmbMarca.setColorArrow(new java.awt.Color(0, 51, 51));
+        cmbMarca.setColorBorde(new java.awt.Color(0, 51, 51));
+        cmbMarca.setColorFondo(new java.awt.Color(0, 51, 51));
+        cmbMarca.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        pnlRCompras.add(cmbMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 330, -1));
+
+        cmbTProducto.setMaximumRowCount(4);
+        cmbTProducto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "a", "b", "c" }));
+        cmbTProducto.setColorArrow(new java.awt.Color(0, 51, 51));
+        cmbTProducto.setColorBorde(new java.awt.Color(0, 51, 51));
+        cmbTProducto.setColorFondo(new java.awt.Color(0, 51, 51));
+        cmbTProducto.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        pnlRCompras.add(cmbTProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 280, -1));
+
+        cmbProveedor.setMaximumRowCount(4);
+        cmbProveedor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "a", "b", "c" }));
+        cmbProveedor.setColorArrow(new java.awt.Color(0, 51, 51));
+        cmbProveedor.setColorBorde(new java.awt.Color(0, 51, 51));
+        cmbProveedor.setColorFondo(new java.awt.Color(0, 51, 51));
+        cmbProveedor.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        pnlRCompras.add(cmbProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, 280, -1));
 
         rSPanelsSlider1.add(pnlRCompras, "card5");
 
-        pnl5.setBackground(new java.awt.Color(255, 255, 255));
-        pnl5.setName("pnl2"); // NOI18N
-        pnl5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlCRealizadas.setBackground(new java.awt.Color(255, 255, 255));
+        pnlCRealizadas.setName("pnlVRealizadas"); // NOI18N
+        pnlCRealizadas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 102, 204));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("PANEL #5");
-        pnl5.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 0, 0));
+        lbltitulo6.setFont(new java.awt.Font("Lucida Calligraphy", 3, 24)); // NOI18N
+        lbltitulo6.setForeground(new java.awt.Color(0, 51, 51));
+        lbltitulo6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbltitulo6.setText("Ventas Realizadas");
+        pnlCRealizadas.add(lbltitulo6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 50));
 
-        rSPanelsSlider1.add(pnl5, "card3");
+        TBComprasRealizas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 51)));
+        TBComprasRealizas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "No", "Nombre Empresa", "Nombre distribuidor", "Fecha", "Total"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
 
-        pnl6.setBackground(new java.awt.Color(255, 255, 255));
-        pnl6.setName("pnl2"); // NOI18N
-        pnl6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TBComprasRealizas.setColorBackgoundHead(new java.awt.Color(0, 51, 51));
+        TBComprasRealizas.setColorFilasBackgound2(new java.awt.Color(0, 51, 51));
+        TBComprasRealizas.setColorFilasForeground1(new java.awt.Color(0, 51, 51));
+        TBComprasRealizas.setColorFilasForeground2(new java.awt.Color(255, 255, 255));
+        TBComprasRealizas.setComponentPopupMenu(jPopupMenu1);
+        TBComprasRealizas.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        TBComprasRealizas.setFuenteFilas(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        TBComprasRealizas.setFuenteFilasSelect(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        TBComprasRealizas.setFuenteHead(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        jScrollPane7.setViewportView(TBComprasRealizas);
+        if (TBComprasRealizas.getColumnModel().getColumnCount() > 0) {
+            TBComprasRealizas.getColumnModel().getColumn(0).setResizable(false);
+            TBComprasRealizas.getColumnModel().getColumn(0).setPreferredWidth(30);
+            TBComprasRealizas.getColumnModel().getColumn(3).setResizable(false);
+            TBComprasRealizas.getColumnModel().getColumn(3).setPreferredWidth(50);
+            TBComprasRealizas.getColumnModel().getColumn(4).setResizable(false);
+            TBComprasRealizas.getColumnModel().getColumn(4).setPreferredWidth(50);
+        }
+
+        pnlCRealizadas.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 1060, 390));
+
+        txtNoCompra.setBackground(new java.awt.Color(0, 51, 51));
+        txtNoCompra.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        txtNoCompra.setForeground(new java.awt.Color(255, 255, 255));
+        pnlCRealizadas.add(txtNoCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 290, -1));
+
+        jLabel29.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel29.setText("Fecha:");
+        pnlCRealizadas.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 60, 80, -1));
+
+        DCFechaCompras.setBackground(new java.awt.Color(0, 51, 51));
+        DCFechaCompras.setForeground(new java.awt.Color(255, 255, 255));
+        DCFechaCompras.setColorBackground(new java.awt.Color(0, 51, 51));
+        DCFechaCompras.setColorButtonHover(new java.awt.Color(0, 51, 51));
+        DCFechaCompras.setColorDiaActual(new java.awt.Color(67, 150, 209));
+        DCFechaCompras.setColorForeground(new java.awt.Color(0, 51, 51));
+        DCFechaCompras.setColorSelForeground(new java.awt.Color(0, 51, 51));
+        DCFechaCompras.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        DCFechaCompras.setFuente(new java.awt.Font("Lucida Calligraphy", 3, 14)); // NOI18N
+        pnlCRealizadas.add(DCFechaCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 50, 320, -1));
+
+        jLabel30.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        jLabel30.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel30.setText("No Compra:");
+        pnlCRealizadas.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 130, -1));
+
+        rSPanelsSlider1.add(pnlCRealizadas, "card4");
+
+        pnlDCompra.setBackground(new java.awt.Color(255, 255, 255));
+        pnlDCompra.setName("pnl4"); // NOI18N
+        pnlDCompra.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        TBDetComprasRealizas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 51)));
+        TBDetComprasRealizas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "No Venta", "Código producto", "Cantidad", "Precio"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TBDetComprasRealizas.setColorBackgoundHead(new java.awt.Color(0, 51, 51));
+        TBDetComprasRealizas.setColorFilasBackgound2(new java.awt.Color(0, 51, 51));
+        TBDetComprasRealizas.setColorFilasForeground1(new java.awt.Color(0, 51, 51));
+        TBDetComprasRealizas.setColorFilasForeground2(new java.awt.Color(255, 255, 255));
+        TBDetComprasRealizas.setComponentPopupMenu(jPopupMenu1);
+        TBDetComprasRealizas.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        TBDetComprasRealizas.setFuenteFilas(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        TBDetComprasRealizas.setFuenteFilasSelect(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        TBDetComprasRealizas.setFuenteHead(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        jScrollPane8.setViewportView(TBDetComprasRealizas);
+
+        pnlDCompra.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 1060, 390));
+
+        lbltitulo7.setFont(new java.awt.Font("Lucida Calligraphy", 3, 24)); // NOI18N
+        lbltitulo7.setForeground(new java.awt.Color(0, 51, 51));
+        lbltitulo7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbltitulo7.setText("Detalle de las ventas");
+        pnlDCompra.add(lbltitulo7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 50));
+
+        txtNoCompras.setBackground(new java.awt.Color(0, 51, 51));
+        txtNoCompras.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        txtNoCompras.setForeground(new java.awt.Color(255, 255, 255));
+        pnlDCompra.add(txtNoCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 50, 180, -1));
+
+        jLabel32.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        jLabel32.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel32.setText("No Venta: ");
+        pnlDCompra.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 60, 120, -1));
+
+        rSPanelsSlider1.add(pnlDCompra, "card5");
+
+        pnlAddProveedor.setBackground(new java.awt.Color(255, 255, 255));
+        pnlAddProveedor.setName("pnl2"); // NOI18N
+        pnlAddProveedor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lbltitulo8.setFont(new java.awt.Font("Lucida Calligraphy", 3, 24)); // NOI18N
+        lbltitulo8.setForeground(new java.awt.Color(0, 51, 51));
+        lbltitulo8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbltitulo8.setText("Agregar Proveedor");
+        pnlAddProveedor.add(lbltitulo8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 50));
+
+        lblInfoProv.setBackground(new java.awt.Color(0, 51, 51));
+        lblInfoProv.setFont(new java.awt.Font("Lucida Calligraphy", 3, 24)); // NOI18N
+        lblInfoProv.setForeground(new java.awt.Color(255, 255, 255));
+        lblInfoProv.setText("Registrar");
+        lblInfoProv.setOpaque(true);
+        pnlAddProveedor.add(lblInfoProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 450, 150, 40));
+
+        btnInsertarProveedor.setBackground(new java.awt.Color(0, 51, 51));
+        btnInsertarProveedor.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        btnInsertarProveedor.setForeground(new java.awt.Color(255, 255, 255));
+        btnInsertarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/checkmark.png"))); // NOI18N
+        btnInsertarProveedor.setBorderPainted(false);
+        btnInsertarProveedor.setContentAreaFilled(false);
+        btnInsertarProveedor.setOpaque(true);
+        btnInsertarProveedor.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Checkmark Select.png"))); // NOI18N
+        btnInsertarProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInsertarProveedorActionPerformed(evt);
+            }
+        });
+        pnlAddProveedor.add(btnInsertarProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 450, 50, 40));
+
+        jLabel34.setBackground(new java.awt.Color(0, 51, 51));
+        jLabel34.setFont(new java.awt.Font("Lucida Calligraphy", 3, 24)); // NOI18N
+        jLabel34.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel34.setText("Cancelar");
+        jLabel34.setOpaque(true);
+        pnlAddProveedor.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 450, 150, 40));
+
+        btnCancelar.setBackground(new java.awt.Color(0, 51, 51));
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Cerrar.png"))); // NOI18N
+        btnCancelar.setBorderPainted(false);
+        btnCancelar.setContentAreaFilled(false);
+        btnCancelar.setOpaque(true);
+        btnCancelar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Cerrar Select.png"))); // NOI18N
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+        pnlAddProveedor.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 450, 50, 40));
+
+        jLabel35.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        jLabel35.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel35.setText("No telefono distribuidor: ");
+        pnlAddProveedor.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, 270, -1));
+
+        jLabel36.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        jLabel36.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel36.setText("Nombre Empresa: ");
+        pnlAddProveedor.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 270, -1));
+
+        jLabel37.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        jLabel37.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel37.setText("Nombre Distribuidor: ");
+        pnlAddProveedor.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 270, -1));
+
+        jLabel38.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        jLabel38.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel38.setText("No telefono empresa: ");
+        pnlAddProveedor.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 280, 270, -1));
+
+        txtNoTelefonoD.setBackground(new java.awt.Color(0, 51, 51));
+        txtNoTelefonoD.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        txtNoTelefonoD.setForeground(new java.awt.Color(255, 255, 255));
+        pnlAddProveedor.add(txtNoTelefonoD, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 340, 340, -1));
+
+        txtNombreEmpresa.setBackground(new java.awt.Color(0, 51, 51));
+        txtNombreEmpresa.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        txtNombreEmpresa.setForeground(new java.awt.Color(255, 255, 255));
+        pnlAddProveedor.add(txtNombreEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 340, -1));
+
+        txtNombreDistri.setBackground(new java.awt.Color(0, 51, 51));
+        txtNombreDistri.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        txtNombreDistri.setForeground(new java.awt.Color(255, 255, 255));
+        pnlAddProveedor.add(txtNombreDistri, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 190, 340, -1));
+
+        txtNotelefonoE.setBackground(new java.awt.Color(0, 51, 51));
+        txtNotelefonoE.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        txtNotelefonoE.setForeground(new java.awt.Color(255, 255, 255));
+        pnlAddProveedor.add(txtNotelefonoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 270, 340, -1));
+
+        rSPanelsSlider1.add(pnlAddProveedor, "card3");
+
+        pnlVerProveedor.setBackground(new java.awt.Color(255, 255, 255));
+        pnlVerProveedor.setName("pnl2"); // NOI18N
+        pnlVerProveedor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 102, 204));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("PANEL #6");
-        pnl6.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 0, 0));
+        pnlVerProveedor.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 0, 0));
 
-        rSPanelsSlider1.add(pnl6, "card3");
-
-        pnl7.setBackground(new java.awt.Color(255, 255, 255));
-        pnl7.setName("pnl2"); // NOI18N
-        pnl7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        rSPanelsSlider1.add(pnl7, "card3");
+        rSPanelsSlider1.add(pnlVerProveedor, "card3");
 
         jPanel1.add(rSPanelsSlider1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 1100, 510));
 
@@ -734,15 +1080,24 @@ public class Principal extends javax.swing.JInternalFrame {
             this.btnAddUser.setSelected(false);
             rSPanelsSlider1.setPanelSlider(20, pnlVRealizadas, RSPanelsSlider.DIRECT.LEFT);
         }
-
     }//GEN-LAST:event_btnVerVentasActionPerformed
 
     private void btnVerComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerComprasActionPerformed
-        rSPanelsSlider1.setPanelSlider(20, pnlRCompras, RSPanelsSlider.DIRECT.LEFT);
+        if (!this.btnVerCompras.isSelected()) {
+            this.btnHome.setSelected(false);
+            this.btnRealizarVenta.setSelected(false);
+            this.btnVerVentas.setSelected(false);
+            this.btnRealizarCompras.setSelected(false);
+            this.btnVerCompras.setSelected(true);
+            this.btnNProveedor.setSelected(false);
+            this.btnVerProveedor.setSelected(false);
+            this.btnAddUser.setSelected(false);
+            rSPanelsSlider1.setPanelSlider(20, pnlCRealizadas, RSPanelsSlider.DIRECT.LEFT);
+        }
     }//GEN-LAST:event_btnVerComprasActionPerformed
 
     private void btnRealizarComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarComprasActionPerformed
-        if (!this.btnVerVentas.isSelected()) {
+        if (!this.btnRealizarCompras.isSelected()) {
             this.btnHome.setSelected(false);
             this.btnRealizarVenta.setSelected(false);
             this.btnVerVentas.setSelected(false);
@@ -757,11 +1112,11 @@ public class Principal extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnRealizarComprasActionPerformed
 
     private void btnNProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNProveedorActionPerformed
-        rSPanelsSlider1.setPanelSlider(20, pnl6, RSPanelsSlider.DIRECT.LEFT);
+        rSPanelsSlider1.setPanelSlider(20, pnlAddProveedor, RSPanelsSlider.DIRECT.LEFT);
     }//GEN-LAST:event_btnNProveedorActionPerformed
 
     private void btnVerProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerProveedorActionPerformed
-        rSPanelsSlider1.setPanelSlider(20, pnl7, RSPanelsSlider.DIRECT.LEFT);
+        rSPanelsSlider1.setPanelSlider(20, pnlVerProveedor, RSPanelsSlider.DIRECT.LEFT);
 
     }//GEN-LAST:event_btnVerProveedorActionPerformed
 
@@ -783,22 +1138,40 @@ public class Principal extends javax.swing.JInternalFrame {
         rSPanelsSlider1.setPanelSlider(20, pnlDVenta, RSPanelsSlider.DIRECT.UP);
     }//GEN-LAST:event_MIDetVentaActionPerformed
 
+    private void btnInsertarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarProveedorActionPerformed
+        
+    }//GEN-LAST:event_btnInsertarProveedorActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private rojeru_san.componentes.RSDateChooser DCFechaCompras;
     private rojeru_san.componentes.RSDateChooser DCFechaVenta;
     private javax.swing.JMenuItem MIDetVenta;
     private javax.swing.JMenuItem MILimpiarVentas;
     private javax.swing.JMenu MnDVentas;
     private javax.swing.JMenu MnVentas;
     private javax.swing.JPanel PnlControl;
+    private rojerusan.RSTableMetro TBComprar;
+    private rojerusan.RSTableMetro TBComprasRealizas;
+    private rojerusan.RSTableMetro TBDetComprasRealizas;
     private rojerusan.RSTableMetro TBInventario;
     private rojerusan.RSTableMetro TBVentas;
     private rojerusan.RSTableMetro TBVentasRealizas;
     private rojerusan.RSTableMetro TBVentasRealizas1;
-    private rojerusan.RSTableMetro TBVentasRealizas2;
     private javax.swing.JButton btnAddUser;
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnComprar;
     private javax.swing.JButton btnHome;
+    private javax.swing.JButton btnInsertar;
+    private javax.swing.JButton btnInsertar1;
+    private javax.swing.JButton btnInsertarProveedor;
     private javax.swing.JButton btnNProveedor;
+    private javax.swing.JButton btnNuevaCompra1;
     private javax.swing.JButton btnNuevaVenta;
     private javax.swing.JButton btnRealizarCompras;
     private javax.swing.JButton btnRealizarVenta;
@@ -806,8 +1179,13 @@ public class Principal extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnVerCompras;
     private javax.swing.JButton btnVerProveedor;
     private javax.swing.JButton btnVerVentas;
+    private javax.swing.JTextField btnVueltoCompra;
     private javax.swing.JTextField btnVueltoVenta;
+    private rojerusan.RSComboMetro cmbMarca;
     private rojerusan.RSComboMetro cmbPresentacion;
+    private rojerusan.RSComboMetro cmbPresentacionCompra;
+    private rojerusan.RSComboMetro cmbProveedor;
+    private rojerusan.RSComboMetro cmbTProducto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -819,48 +1197,74 @@ public class Principal extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private rojeru_san.RSLabelFecha lblFecha;
+    private javax.swing.JLabel lblInfoProv;
     private javax.swing.JLabel lbltitulo;
     private javax.swing.JLabel lbltitulo1;
     private javax.swing.JLabel lbltitulo2;
     private javax.swing.JLabel lbltitulo3;
     private javax.swing.JLabel lbltitulo4;
     private javax.swing.JLabel lbltitulo5;
-    private javax.swing.JPanel pnl5;
-    private javax.swing.JPanel pnl6;
-    private javax.swing.JPanel pnl7;
+    private javax.swing.JLabel lbltitulo6;
+    private javax.swing.JLabel lbltitulo7;
+    private javax.swing.JLabel lbltitulo8;
+    private javax.swing.JPanel pnlAddProveedor;
+    private javax.swing.JPanel pnlCRealizadas;
+    private javax.swing.JPanel pnlDCompra;
     private javax.swing.JPanel pnlDVenta;
     private javax.swing.JPanel pnlInventario;
     private javax.swing.JPanel pnlRCompras;
     private javax.swing.JPanel pnlRVentas;
     private javax.swing.JPanel pnlVRealizadas;
+    private javax.swing.JPanel pnlVerProveedor;
     private rojerusan.RSPanelsSlider rSPanelsSlider1;
-    private javax.swing.JTextArea txaDescripcion;
-    private javax.swing.JTextArea txaDescripcionCompra;
+    private javax.swing.JTextField txCódigo;
+    private javax.swing.JTextField txtCantidad;
+    private javax.swing.JTextField txtCosto;
+    private javax.swing.JTextField txtDetallePres;
+    private javax.swing.JTextField txtMontoCompra;
     private javax.swing.JTextField txtMontoVenta;
+    private javax.swing.JTextField txtNoCompra;
+    private javax.swing.JTextField txtNoCompras;
+    private javax.swing.JTextField txtNoTelefonoD;
     private javax.swing.JTextField txtNoVenta;
     private javax.swing.JTextField txtNoVenta1;
     private javax.swing.JTextField txtNomProd;
+    private javax.swing.JTextField txtNombreDistri;
+    private javax.swing.JTextField txtNombreEmpresa;
+    private javax.swing.JTextField txtNotelefonoE;
+    private javax.swing.JTextField txtPrecio;
+    private javax.swing.JTextField txtTotalCompra;
     private javax.swing.JTextField txtTotalVenta;
     // End of variables declaration//GEN-END:variables
 }
