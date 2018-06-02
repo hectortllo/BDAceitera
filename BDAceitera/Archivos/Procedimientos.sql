@@ -1,4 +1,4 @@
-delimiter //
+﻿delimiter //
 DROP PROCEDURE IF EXISTS InsertarUsuario //
 DROP PROCEDURE IF EXISTS InsertarProveedor //
 DROP PROCEDURE IF EXISTS InsertarProducto //
@@ -33,5 +33,3 @@ BEGIN
 END; //
 	
 delimiter ;
-CALL InsertarProducto("1ABC", 3, 25.50, "Galón", "UNESIA", "Michelin");
-SELECT * FROM producto;
