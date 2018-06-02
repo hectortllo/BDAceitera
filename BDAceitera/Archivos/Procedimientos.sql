@@ -1,4 +1,4 @@
-delimiter //
+﻿delimiter //
 DROP PROCEDURE IF EXISTS InsertarUsuario //
 DROP PROCEDURE IF EXISTS InsertarProveedor //
 DROP PROCEDURE IF EXISTS InsertarProducto //
@@ -10,21 +10,26 @@ BEGIN
     VALUES(vNombre, vApellido, vtelefono, vPassword, vActivo, vIdTipoUsuario);
 END; //
 
-CREATE PROCEDURE InsertarProveedor(vNombreProveedor VARCHAR(35), vNit VARCHAR(10))
+CREATE PROCEDURE InsertarProveedor(vNombreEmpresa VARCHAR(50), vNombreDistribuidor VARCHAR(50), vTelefonoEmpresa VARCHAR(15),
+	vTelefonoDistribuidor VARCHAR(15))
 BEGIN
-	INSERT INTO proveedor(nombreProveedor, nit) VALUES(vNombreProveedor, vNit);
+	INSERT INTO proveedor(nombreEmpresa, nombreDistribuidor, noTelEmpresa, noTelDistribuidor)
+    VALUES(vNombreEmpresa, vNombreDistribuidor, vTelefonoEmpresa, vTelefonoDistribuidor);
 END; //
 
-CREATE PROCEDURE InsertarProducto(vNombreProducto VARCHAR(45), vCantidad INT, vCosto FLOAT, vPrecio FLOAT, 
-	vDescripcion VARCHAR(150), vTipoProducto_id VARCHAR(45), vProveedor VARCHAR(35))
+CREATE PROCEDURE InsertarProducto(vCodigo VARCHAR(15), vCantidad INT, vPrecio FLOAT, vTipoProducto VARCHAR(45), 
+	vProveedor VARCHAR(50), vMarca VARCHAR(75))
 BEGIN
-	DECLARE vTipoProducto INT UNSIGNED DEFAULT 0;
+	DECLARE vIdTipoProducto INT UNSIGNED DEFAULT 0;
     DECLARE vIdProveedor INT UNSIGNED DEFAULT 0;
+    DECLARE vIdMarca INT UNSIGNED DEFAULT 0;
     
-    SELECT id  INTO vTipoProducto FROM tipoproducto WHERE tipoProducto = vTipoProducto_id;
-    SELECT id INTO vIdProveedor FROM proveedor WHERE nombreProveedor = vProveedor;
-	INSERT INTO producto(nombreProducto, cantidad, costo, precio, Descripcion, TipoProducto_id, Proveedor_id)
-    VALUES(vNombreProducto, vCantidad, vCosto, vPrecio, vDescripcion, vTipoProducto, vProveedor_id);
+    SELECT id  INTO vIdTipoProducto FROM tipoproducto WHERE tipoProducto = vTipoProducto;
+    SELECT id INTO vIdProveedor FROM proveedor WHERE nombreEmpresa = vProveedor;
+    SELECT id INTO vIdMarca FROM marca WHERE marca = vMarca;
+    
+	INSERT INTO producto(codigo, cantidad, precio, TipoProducto_id, Proveedor_id, Marca_id)
+    VALUES(vCodigo, vCantidad, vPrecio, vIdTipoProducto, vIdProveedor, vIdMarca);
 END; //
 	
 delimiter ;
