@@ -104,6 +104,9 @@ public class Principal extends javax.swing.JInternalFrame {
         jLabel21 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
         txaDescripcionCompra = new javax.swing.JTextArea();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
         pnl5 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         pnl6 = new javax.swing.JPanel();
@@ -611,23 +614,23 @@ public class Principal extends javax.swing.JInternalFrame {
 
         jLabel18.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(0, 51, 51));
-        jLabel18.setText("Nombre:");
-        pnlRCompras.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 120, -1));
+        jLabel18.setText("Detalle de la presentación: ");
+        pnlRCompras.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 300, -1));
 
         jLabel19.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(0, 51, 51));
         jLabel19.setText("Cantidad:");
-        pnlRCompras.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 120, -1));
+        pnlRCompras.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 120, -1));
 
         jLabel20.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(0, 51, 51));
         jLabel20.setText("Costo:");
-        pnlRCompras.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 120, -1));
+        pnlRCompras.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 120, -1));
 
         jLabel21.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(0, 51, 51));
         jLabel21.setText("Precio:");
-        pnlRCompras.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 110, -1));
+        pnlRCompras.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 110, -1));
 
         txaDescripcionCompra.setBackground(new java.awt.Color(0, 51, 51));
         txaDescripcionCompra.setColumns(20);
@@ -637,6 +640,21 @@ public class Principal extends javax.swing.JInternalFrame {
         jScrollPane7.setViewportView(txaDescripcionCompra);
 
         pnlRCompras.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 310, 70));
+
+        jLabel23.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel23.setText("Código:");
+        pnlRCompras.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 120, -1));
+
+        jLabel24.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel24.setText("Presentación:");
+        pnlRCompras.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 150, -1));
+
+        jLabel25.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel25.setText("Proveedor:");
+        pnlRCompras.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 120, -1));
 
         rSPanelsSlider1.add(pnlRCompras, "card5");
 
@@ -804,6 +822,9 @@ public class Principal extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;

@@ -35,29 +35,33 @@ public class Usuario {
 
     public boolean IncioSesion(String Contrasenia, String Usuario) {
         try {
-            String sql = "SELECT contrasenia, nombre FROM usuario where usuario = '" + Usuario + "';";
+            String sql = "SELECT contrasenia, nombre FROM usuario where nombre = '" + Usuario + "' and activo = true;";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
             String pass = "";
+            boolean encontrado = false;
             while (rs.next()) {
                 pass = rs.getString("contrasenia");
-                usuario=rs.getString("nombre");
+                if (pass.equals(Contrasenia)) {
+                    usuario = rs.getString("nombre");
+                    encontrado = true;
+                    break;
+                }
             }
-            return pass.equals(Contrasenia);
+            return encontrado;
         } catch (SQLException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
     }
-    
-    public boolean insertarUsuario(String nombre, String apellido, String usuario, String password,
-            boolean activo, int TipoUsuario)
-    {
+
+    public boolean insertarUsuario(String nombre, String apellido, String noTelefono, String password,
+            boolean activo, int TipoUsuario) {
         try {
             CallableStatement procedimiento = con.prepareCall("{call InsertarUsuario(?,?,?,?,?,?)}");
             procedimiento.setString(1, nombre);
             procedimiento.setString(2, apellido);
-            procedimiento.setString(3, usuario);
+            procedimiento.setString(3, noTelefono);
             procedimiento.setString(4, password);
             procedimiento.setBoolean(5, activo);
             procedimiento.setInt(6, TipoUsuario);
@@ -67,13 +71,14 @@ public class Usuario {
             return false;
         }
     }
-    public DefaultComboBoxModel puestos(){
+
+    public DefaultComboBoxModel puestos() {
         try {
             DefaultComboBoxModel modelo = new DefaultComboBoxModel();
             String sql = "SELECT tipoUsuario FROM tipousuario;";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {                
+            while (rs.next()) {
                 modelo.addElement(rs.getObject("tipoUsuario"));
             }
             return modelo;

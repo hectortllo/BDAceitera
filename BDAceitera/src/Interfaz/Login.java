@@ -97,7 +97,7 @@ public class Login extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Lucida Calligraphy", 3, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Usuario:");
+        jLabel5.setText("Nombres:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 140, 30));
 
         txtUs.setBackground(new java.awt.Color(255, 255, 255));
