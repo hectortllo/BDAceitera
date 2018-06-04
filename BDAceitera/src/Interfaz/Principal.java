@@ -5,8 +5,10 @@
  */
 package Interfaz;
 
+import Clases.Inventario;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.DefaultTableModel;
 import rojerusan.RSPanelsSlider;
 
 /**
@@ -19,11 +21,15 @@ public class Principal extends javax.swing.JInternalFrame {
      * Creates new form Principal
      */
     public Principal() {
+        inventario = new Inventario();
         BasicInternalFrameUI bi = (BasicInternalFrameUI) this.getUI();
         bi.setNorthPane(null);
         this.setBorder(new EmptyBorder(0, 0, 0, 0));
         initComponents();
-
+        cmbInventarioMarca.setModel(inventario.getMarca());
+        cmbPresentacion.setModel(inventario.getPresentacion());
+        cmbInventarioTProd.setModel(inventario.getTProd());
+        TBInventario.setModel(inventario.getInventario("", "", "", "", TBInventario));
     }
 
     /**
@@ -57,13 +63,17 @@ public class Principal extends javax.swing.JInternalFrame {
         btnVerProveedor = new javax.swing.JButton();
         rSPanelsSlider1 = new rojerusan.RSPanelsSlider();
         pnlInventario = new javax.swing.JPanel();
-        txtNomProd = new javax.swing.JTextField();
+        txtCodigo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TBInventario = new rojerusan.RSTableMetro();
         cmbPresentacion = new rojerusan.RSComboMetro();
         jLabel3 = new javax.swing.JLabel();
         lbltitulo2 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        cmbInventarioMarca = new rojerusan.RSComboMetro();
+        cmbInventarioTProd = new rojerusan.RSComboMetro();
+        jLabel4 = new javax.swing.JLabel();
         pnlRealizarVentas = new javax.swing.JPanel();
         btnVender = new javax.swing.JButton();
         btnNuevaVenta = new javax.swing.JButton();
@@ -349,15 +359,20 @@ public class Principal extends javax.swing.JInternalFrame {
         pnlInventario.setName("pnlInventario"); // NOI18N
         pnlInventario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtNomProd.setBackground(new java.awt.Color(0, 51, 51));
-        txtNomProd.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
-        txtNomProd.setForeground(new java.awt.Color(255, 255, 255));
-        pnlInventario.add(txtNomProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 430, -1));
+        txtCodigo.setBackground(new java.awt.Color(0, 51, 51));
+        txtCodigo.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        txtCodigo.setForeground(new java.awt.Color(255, 255, 255));
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyPressed(evt);
+            }
+        });
+        pnlInventario.add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 390, -1));
 
         jLabel1.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 51, 51));
-        jLabel1.setText("Presentación:");
-        pnlInventario.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 60, 150, 40));
+        jLabel1.setText("Marca:");
+        pnlInventario.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 90, 40));
 
         TBInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 51)));
         TBInventario.setModel(new javax.swing.table.DefaultTableModel(
@@ -365,11 +380,11 @@ public class Principal extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "No", "Nombre", "Cantidad", "Precio", "Presentación", "Proveedor"
+                "No", "Código", "Cantidad", "Precio", "Detalle", "Proveedor", "Marca"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -387,25 +402,64 @@ public class Principal extends javax.swing.JInternalFrame {
         TBInventario.setFuenteHead(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         jScrollPane1.setViewportView(TBInventario);
 
-        pnlInventario.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 1060, 360));
+        pnlInventario.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 1100, 330));
 
         cmbPresentacion.setMaximumRowCount(4);
         cmbPresentacion.setColorArrow(new java.awt.Color(0, 51, 51));
         cmbPresentacion.setColorBorde(new java.awt.Color(0, 51, 51));
         cmbPresentacion.setColorFondo(new java.awt.Color(0, 51, 51));
         cmbPresentacion.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
-        pnlInventario.add(cmbPresentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 60, 330, -1));
+        cmbPresentacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbPresentacionActionPerformed(evt);
+            }
+        });
+        pnlInventario.add(cmbPresentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 60, 390, -1));
 
         jLabel3.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 51, 51));
-        jLabel3.setText("Producto:");
-        pnlInventario.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 110, 40));
+        jLabel3.setText("Código:");
+        pnlInventario.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 90, 40));
 
         lbltitulo2.setFont(new java.awt.Font("Lucida Calligraphy", 3, 24)); // NOI18N
         lbltitulo2.setForeground(new java.awt.Color(0, 51, 51));
         lbltitulo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbltitulo2.setText("Inventario");
         pnlInventario.add(lbltitulo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 40));
+
+        jLabel2.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel2.setText("Presentación:");
+        pnlInventario.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 60, 160, 40));
+
+        cmbInventarioMarca.setMaximumRowCount(4);
+        cmbInventarioMarca.setColorArrow(new java.awt.Color(0, 51, 51));
+        cmbInventarioMarca.setColorBorde(new java.awt.Color(0, 51, 51));
+        cmbInventarioMarca.setColorFondo(new java.awt.Color(0, 51, 51));
+        cmbInventarioMarca.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        cmbInventarioMarca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbInventarioMarcaActionPerformed(evt);
+            }
+        });
+        pnlInventario.add(cmbInventarioMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 390, -1));
+
+        cmbInventarioTProd.setMaximumRowCount(4);
+        cmbInventarioTProd.setColorArrow(new java.awt.Color(0, 51, 51));
+        cmbInventarioTProd.setColorBorde(new java.awt.Color(0, 51, 51));
+        cmbInventarioTProd.setColorFondo(new java.awt.Color(0, 51, 51));
+        cmbInventarioTProd.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        cmbInventarioTProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbInventarioTProdActionPerformed(evt);
+            }
+        });
+        pnlInventario.add(cmbInventarioTProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 100, 390, -1));
+
+        jLabel4.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel4.setText("Producto:");
+        pnlInventario.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 100, 130, 40));
 
         rSPanelsSlider1.add(pnlInventario, "card1");
 
@@ -1272,7 +1326,37 @@ public class Principal extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_MIAddVentaActionPerformed
 
+    private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
+        BInventario();
+    }//GEN-LAST:event_txtCodigoKeyPressed
 
+    private void cmbInventarioMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbInventarioMarcaActionPerformed
+        BInventario();
+    }//GEN-LAST:event_cmbInventarioMarcaActionPerformed
+
+    private void cmbPresentacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPresentacionActionPerformed
+        BInventario();
+    }//GEN-LAST:event_cmbPresentacionActionPerformed
+
+    private void cmbInventarioTProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbInventarioTProdActionPerformed
+        BInventario();
+    }//GEN-LAST:event_cmbInventarioTProdActionPerformed
+    private void BInventario() {
+        String marca, presentacion, producto;
+        marca = presentacion = producto = "";
+        if (!cmbInventarioMarca.getSelectedItem().equals("Ver todo")) {
+            marca = (String) cmbInventarioMarca.getSelectedItem();
+        }
+        if (!cmbInventarioTProd.getSelectedItem().equals("Ver todo")) {
+            producto = (String) cmbInventarioTProd.getSelectedItem();
+        }
+        if (!cmbPresentacion.getSelectedItem().equals("Ver todo")) {
+            presentacion = (String) cmbPresentacion.getSelectedItem();
+        }
+        TBInventario.setModel(inventario.getInventario(txtCodigo.getText(), presentacion, marca, producto, TBInventario));
+    }
+
+    private final Inventario inventario;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rojeru_san.componentes.RSDateChooser DCFechaCompras;
     private rojeru_san.componentes.RSDateChooser DCFechaVenta;
@@ -1311,6 +1395,8 @@ public class Principal extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnVerVentas;
     private javax.swing.JTextField btnVueltoCompra;
     private javax.swing.JTextField btnVueltoVenta;
+    private rojerusan.RSComboMetro cmbInventarioMarca;
+    private rojerusan.RSComboMetro cmbInventarioTProd;
     private rojerusan.RSComboMetro cmbMarca;
     private rojerusan.RSComboMetro cmbPresentacion;
     private rojerusan.RSComboMetro cmbPresentacionCompra;
@@ -1327,6 +1413,7 @@ public class Principal extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -1347,6 +1434,7 @@ public class Principal extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -1381,6 +1469,7 @@ public class Principal extends javax.swing.JInternalFrame {
     private rojerusan.RSPanelsSlider rSPanelsSlider1;
     private javax.swing.JTextField txCódigo;
     private javax.swing.JTextField txtCantidad;
+    private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtCosto;
     private javax.swing.JTextField txtDetallePres;
     private javax.swing.JTextField txtMontoCompra;
@@ -1392,7 +1481,6 @@ public class Principal extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtNoTelefonoD;
     private javax.swing.JTextField txtNoVenta;
     private javax.swing.JTextField txtNoVenta1;
-    private javax.swing.JTextField txtNomProd;
     private javax.swing.JTextField txtNombreDistri;
     private javax.swing.JTextField txtNombreEmpresa;
     private javax.swing.JTextField txtNotelefonoE;
