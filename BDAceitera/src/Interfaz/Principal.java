@@ -6,9 +6,12 @@
 package Interfaz;
 
 import Clases.Inventario;
+import Clases.Compras;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
+import rojerusan.RSNotifyAnimated;
 import rojerusan.RSPanelsSlider;
 
 /**
@@ -20,16 +23,22 @@ public class Principal extends javax.swing.JInternalFrame {
     /**
      * Creates new form Principal
      */
+    int fila = 0, columna = 0;
     public Principal() {
         inventario = new Inventario();
+        compras = new Compras();
         BasicInternalFrameUI bi = (BasicInternalFrameUI) this.getUI();
         bi.setNorthPane(null);
         this.setBorder(new EmptyBorder(0, 0, 0, 0));
         initComponents();
-        cmbInventarioMarca.setModel(inventario.getMarca());
-        cmbPresentacion.setModel(inventario.getPresentacion());
-        cmbInventarioTProd.setModel(inventario.getTProd());
+        cmbInventarioMarca.setModel(inventario.getMarca((DefaultComboBoxModel) cmbInventarioMarca.getModel()));
+        cmbPresentacion.setModel(inventario.getPresentacion((DefaultComboBoxModel) cmbPresentacion.getModel()));
+        cmbInventarioTProd.setModel(inventario.getTProd((DefaultComboBoxModel)cmbInventarioTProd.getModel()));
         TBInventario.setModel(inventario.getInventario("", "", "", "", TBInventario));
+        cmbMarca.setModel(inventario.getMarca((DefaultComboBoxModel) cmbMarca.getModel()));
+        cmbPresentacionCompra.setModel(inventario.getPresentacion((DefaultComboBoxModel)cmbPresentacionCompra.getModel()));
+        cmbProveedor.setModel(compras.getProveedor());
+        cmbTProducto.setModel(inventario.getTProd((DefaultComboBoxModel)cmbTProducto.getModel()));
     }
 
     /**
@@ -405,6 +414,7 @@ public class Principal extends javax.swing.JInternalFrame {
         pnlInventario.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 1100, 330));
 
         cmbPresentacion.setMaximumRowCount(4);
+        cmbPresentacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ver Todo" }));
         cmbPresentacion.setColorArrow(new java.awt.Color(0, 51, 51));
         cmbPresentacion.setColorBorde(new java.awt.Color(0, 51, 51));
         cmbPresentacion.setColorFondo(new java.awt.Color(0, 51, 51));
@@ -433,6 +443,7 @@ public class Principal extends javax.swing.JInternalFrame {
         pnlInventario.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 60, 160, 40));
 
         cmbInventarioMarca.setMaximumRowCount(4);
+        cmbInventarioMarca.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ver Todo" }));
         cmbInventarioMarca.setColorArrow(new java.awt.Color(0, 51, 51));
         cmbInventarioMarca.setColorBorde(new java.awt.Color(0, 51, 51));
         cmbInventarioMarca.setColorFondo(new java.awt.Color(0, 51, 51));
@@ -445,6 +456,7 @@ public class Principal extends javax.swing.JInternalFrame {
         pnlInventario.add(cmbInventarioMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 390, -1));
 
         cmbInventarioTProd.setMaximumRowCount(4);
+        cmbInventarioTProd.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ver Todo" }));
         cmbInventarioTProd.setColorArrow(new java.awt.Color(0, 51, 51));
         cmbInventarioTProd.setColorBorde(new java.awt.Color(0, 51, 51));
         cmbInventarioTProd.setColorFondo(new java.awt.Color(0, 51, 51));
@@ -537,6 +549,14 @@ public class Principal extends javax.swing.JInternalFrame {
         txtMontoVenta.setBackground(new java.awt.Color(0, 51, 51));
         txtMontoVenta.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         txtMontoVenta.setForeground(new java.awt.Color(255, 255, 255));
+        txtMontoVenta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtMontoVentaKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMontoVentaKeyTyped(evt);
+            }
+        });
         pnlRealizarVentas.add(txtMontoVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 390, 220, -1));
 
         btnVueltoVenta.setEditable(false);
@@ -710,8 +730,7 @@ public class Principal extends javax.swing.JInternalFrame {
         TBComprar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 51)));
         TBComprar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Código", "Cantidad", "Precio", "Subtotal"
@@ -841,12 +860,18 @@ public class Principal extends javax.swing.JInternalFrame {
         pnlRealizarCompras.add(btnVueltoCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 410, 110, -1));
 
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/carrito-de-compras.png"))); // NOI18N
-        btnAgregar.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Cancelar Venta</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
+        btnAgregar.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Agregar a la compra</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
         btnAgregar.setBorderPainted(false);
         btnAgregar.setContentAreaFilled(false);
         btnAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAgregar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/carrito-de-compras Select.png"))); // NOI18N
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
         pnlRealizarCompras.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 450, 70, 50));
+        btnAgregar.getAccessibleContext().setAccessibleDescription("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Cancelar compra</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
 
         btnNuevaCompra1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nueva Venta_Compra.png"))); // NOI18N
         btnNuevaCompra1.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Cancelar Venta</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
@@ -865,7 +890,7 @@ public class Principal extends javax.swing.JInternalFrame {
         pnlRealizarCompras.add(btnComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 450, 70, 50));
 
         cmbPresentacionCompra.setMaximumRowCount(4);
-        cmbPresentacionCompra.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "a", "b", "c" }));
+        cmbPresentacionCompra.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Agregar" }));
         cmbPresentacionCompra.setColorArrow(new java.awt.Color(0, 51, 51));
         cmbPresentacionCompra.setColorBorde(new java.awt.Color(0, 51, 51));
         cmbPresentacionCompra.setColorFondo(new java.awt.Color(0, 51, 51));
@@ -873,7 +898,7 @@ public class Principal extends javax.swing.JInternalFrame {
         pnlRealizarCompras.add(cmbPresentacionCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, 280, -1));
 
         cmbMarca.setMaximumRowCount(4);
-        cmbMarca.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "a", "b", "c" }));
+        cmbMarca.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Agregar" }));
         cmbMarca.setColorArrow(new java.awt.Color(0, 51, 51));
         cmbMarca.setColorBorde(new java.awt.Color(0, 51, 51));
         cmbMarca.setColorFondo(new java.awt.Color(0, 51, 51));
@@ -881,7 +906,7 @@ public class Principal extends javax.swing.JInternalFrame {
         pnlRealizarCompras.add(cmbMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 330, -1));
 
         cmbTProducto.setMaximumRowCount(4);
-        cmbTProducto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "a", "b", "c" }));
+        cmbTProducto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Agregar" }));
         cmbTProducto.setColorArrow(new java.awt.Color(0, 51, 51));
         cmbTProducto.setColorBorde(new java.awt.Color(0, 51, 51));
         cmbTProducto.setColorFondo(new java.awt.Color(0, 51, 51));
@@ -889,7 +914,6 @@ public class Principal extends javax.swing.JInternalFrame {
         pnlRealizarCompras.add(cmbTProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 280, -1));
 
         cmbProveedor.setMaximumRowCount(4);
-        cmbProveedor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "a", "b", "c" }));
         cmbProveedor.setColorArrow(new java.awt.Color(0, 51, 51));
         cmbProveedor.setColorBorde(new java.awt.Color(0, 51, 51));
         cmbProveedor.setColorFondo(new java.awt.Color(0, 51, 51));
@@ -1341,6 +1365,85 @@ public class Principal extends javax.swing.JInternalFrame {
     private void cmbInventarioTProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbInventarioTProdActionPerformed
         BInventario();
     }//GEN-LAST:event_cmbInventarioTProdActionPerformed
+
+    private void txtMontoVentaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMontoVentaKeyPressed
+
+    }//GEN-LAST:event_txtMontoVentaKeyPressed
+
+    private void txtMontoVentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMontoVentaKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMontoVentaKeyTyped
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        if(VerificarRealizarCompras())
+        {
+            DefaultTableModel modelo = (DefaultTableModel)TBComprar.getModel();
+            columna = 0;
+            String codigo = txCódigo.getText();
+            int cantidad = Integer.parseInt(txtCantidad.getText());
+            float precio = Float.parseFloat(txtPrecio.getText());
+            float costo = Float.parseFloat(txtCosto.getText());
+            String detalle = txtDetallePres.getText();
+            float subTotal = cantidad*precio;
+            String [] datos = new String[4];
+            datos[0] = codigo;
+            datos[1] = String.valueOf(cantidad);
+            datos[2] = String.valueOf(precio);
+            datos[3] = String.valueOf(subTotal);
+            
+            modelo.addRow(datos);
+            for(int i=0; i<datos.length; i++)
+            {
+                datos[i] = null;
+            }
+        }
+    }//GEN-LAST:event_btnAgregarActionPerformed
+    
+    private boolean VerificarRealizarCompras()
+    {
+        if(txCódigo.getText().length() == 0)
+        {
+            txCódigo.requestFocus();
+            new rojerusan.RSNotifyAnimated("¡ERROR!", "Campo Código vacío, por favor llénelo",
+                    5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
+                    RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
+            return false;
+        }
+        else if(txtCantidad.getText().length() == 0)
+        {
+            new rojerusan.RSNotifyAnimated("¡ERROR!", "Campo Cantidad vacío, por favor llénelo",
+                    5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
+                    RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
+            txtCantidad.requestFocus();
+            return false;
+        }
+        else if(txtPrecio.getText().length() == 0)
+        {
+            new rojerusan.RSNotifyAnimated("¡ERROR!", "Campo Precio vacío, por favor llénelo",
+                    5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
+                    RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
+            txtPrecio.requestFocus();
+            return false;
+        }
+        else if(txtCosto.getText().length() == 0)
+        {
+            new rojerusan.RSNotifyAnimated("¡ERROR!", "Campo Costo vacío, por favor llénelo",
+                    5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
+                    RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
+            txtCosto.requestFocus();
+            return false;
+        }
+        else if(txtDetallePres.getText().length() == 0)
+        {
+            new rojerusan.RSNotifyAnimated("¡ERROR!", "Campo Detalle de la presentación vacío, por favor llénelo",
+                    5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
+                    RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
+            txtDetallePres.requestFocus();
+            return false;
+        }
+        else
+            return true;
+    }
     private void BInventario() {
         String marca, presentacion, producto;
         marca = presentacion = producto = "";
@@ -1357,6 +1460,7 @@ public class Principal extends javax.swing.JInternalFrame {
     }
 
     private final Inventario inventario;
+    private final Compras compras;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rojeru_san.componentes.RSDateChooser DCFechaCompras;
     private rojeru_san.componentes.RSDateChooser DCFechaVenta;

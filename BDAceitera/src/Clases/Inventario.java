@@ -29,9 +29,7 @@ public class Inventario {
         con = conexion.getConnection();
     }
 
-    public DefaultComboBoxModel getMarca() {
-        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
-        modelo.addElement("Ver todo");
+    public DefaultComboBoxModel getMarca(DefaultComboBoxModel modelo) {
         try {
             String sql = "SELECT marca FROM marca;";
             Statement st = con.createStatement();
@@ -46,9 +44,7 @@ public class Inventario {
         }
     }
 
-    public DefaultComboBoxModel getPresentacion() {
-        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
-        modelo.addElement("Ver todo");
+    public DefaultComboBoxModel getPresentacion(DefaultComboBoxModel modelo) {
         try {
             String sql = "SELECT presentacion FROM presentacion;";
             Statement st = con.createStatement();
@@ -63,9 +59,7 @@ public class Inventario {
         }
     }
 
-    public DefaultComboBoxModel getTProd() {
-        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
-        modelo.addElement("Ver todo");
+    public DefaultComboBoxModel getTProd(DefaultComboBoxModel modelo) {
         try {
             String sql = "SELECT tipoProducto FROM tipoproducto;";
             Statement st = con.createStatement();
