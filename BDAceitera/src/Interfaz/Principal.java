@@ -7,7 +7,10 @@ package Interfaz;
 
 import Clases.Inventario;
 import Clases.Compras;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
@@ -37,8 +40,10 @@ public class Principal extends javax.swing.JInternalFrame {
         TBInventario.setModel(inventario.getInventario("", "", "", "", TBInventario));
         cmbMarca.setModel(inventario.getMarca((DefaultComboBoxModel) cmbMarca.getModel()));
         cmbPresentacionCompra.setModel(inventario.getPresentacion((DefaultComboBoxModel)cmbPresentacionCompra.getModel()));
-        cmbProveedor.setModel(compras.getProveedor());
+        cmbProveedor.setModel(compras.getProveedor((DefaultComboBoxModel)cmbProveedor.getModel()));
         cmbTProducto.setModel(inventario.getTProd((DefaultComboBoxModel)cmbTProducto.getModel()));
+        btnNuevaCompra1.setEnabled(false);
+        btnComprar.setEnabled(false);
     }
 
     /**
@@ -874,23 +879,33 @@ public class Principal extends javax.swing.JInternalFrame {
         btnAgregar.getAccessibleContext().setAccessibleDescription("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Cancelar compra</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
 
         btnNuevaCompra1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nueva Venta_Compra.png"))); // NOI18N
-        btnNuevaCompra1.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Cancelar Venta</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
+        btnNuevaCompra1.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Cancelar Compra</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
         btnNuevaCompra1.setBorderPainted(false);
         btnNuevaCompra1.setContentAreaFilled(false);
         btnNuevaCompra1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNuevaCompra1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nueva Venta_Compra Select.png"))); // NOI18N
+        btnNuevaCompra1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevaCompra1ActionPerformed(evt);
+            }
+        });
         pnlRealizarCompras.add(btnNuevaCompra1, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 450, 70, 50));
 
         btnComprar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Realizar Venta.png"))); // NOI18N
-        btnComprar.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Finalizar Venta</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
+        btnComprar.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Finalizar Compra</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
         btnComprar.setBorderPainted(false);
         btnComprar.setContentAreaFilled(false);
         btnComprar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnComprar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Realizar Venta Select.png"))); // NOI18N
+        btnComprar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComprarActionPerformed(evt);
+            }
+        });
         pnlRealizarCompras.add(btnComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 450, 70, 50));
 
         cmbPresentacionCompra.setMaximumRowCount(4);
-        cmbPresentacionCompra.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Agregar" }));
+        cmbPresentacionCompra.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Escoja una opción", "Agregar" }));
         cmbPresentacionCompra.setColorArrow(new java.awt.Color(0, 51, 51));
         cmbPresentacionCompra.setColorBorde(new java.awt.Color(0, 51, 51));
         cmbPresentacionCompra.setColorFondo(new java.awt.Color(0, 51, 51));
@@ -898,7 +913,7 @@ public class Principal extends javax.swing.JInternalFrame {
         pnlRealizarCompras.add(cmbPresentacionCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, 280, -1));
 
         cmbMarca.setMaximumRowCount(4);
-        cmbMarca.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Agregar" }));
+        cmbMarca.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Escoja una opción", "Agregar" }));
         cmbMarca.setColorArrow(new java.awt.Color(0, 51, 51));
         cmbMarca.setColorBorde(new java.awt.Color(0, 51, 51));
         cmbMarca.setColorFondo(new java.awt.Color(0, 51, 51));
@@ -906,7 +921,7 @@ public class Principal extends javax.swing.JInternalFrame {
         pnlRealizarCompras.add(cmbMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 330, -1));
 
         cmbTProducto.setMaximumRowCount(4);
-        cmbTProducto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Agregar" }));
+        cmbTProducto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Escoja una opción", "Agregar" }));
         cmbTProducto.setColorArrow(new java.awt.Color(0, 51, 51));
         cmbTProducto.setColorBorde(new java.awt.Color(0, 51, 51));
         cmbTProducto.setColorFondo(new java.awt.Color(0, 51, 51));
@@ -914,6 +929,7 @@ public class Principal extends javax.swing.JInternalFrame {
         pnlRealizarCompras.add(cmbTProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 280, -1));
 
         cmbProveedor.setMaximumRowCount(4);
+        cmbProveedor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Escoja una opción", "Agregar" }));
         cmbProveedor.setColorArrow(new java.awt.Color(0, 51, 51));
         cmbProveedor.setColorBorde(new java.awt.Color(0, 51, 51));
         cmbProveedor.setColorFondo(new java.awt.Color(0, 51, 51));
@@ -1378,13 +1394,17 @@ public class Principal extends javax.swing.JInternalFrame {
         if(VerificarRealizarCompras())
         {
             DefaultTableModel modelo = (DefaultTableModel)TBComprar.getModel();
-            columna = 0;
             String codigo = txCódigo.getText();
             int cantidad = Integer.parseInt(txtCantidad.getText());
             float precio = Float.parseFloat(txtPrecio.getText());
             float costo = Float.parseFloat(txtCosto.getText());
             String detalle = txtDetallePres.getText();
             float subTotal = cantidad*precio;
+            float totalCompra = 0;
+            if(txtTotalCompra.getText().length() == 0)
+                totalCompra = subTotal;
+            else
+                totalCompra = Float.parseFloat(txtTotalCompra.getText()) + subTotal;
             String [] datos = new String[4];
             datos[0] = codigo;
             datos[1] = String.valueOf(cantidad);
@@ -1396,9 +1416,82 @@ public class Principal extends javax.swing.JInternalFrame {
             {
                 datos[i] = null;
             }
+            txtTotalCompra.setText(String.valueOf(totalCompra));
+            btnNuevaCompra1.setEnabled(true);
+            btnComprar.setEnabled(true);
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnNuevaCompra1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaCompra1ActionPerformed
+        CancelarCompra();
+    }//GEN-LAST:event_btnNuevaCompra1ActionPerformed
+
+    private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
+        int n = JOptionPane.showConfirmDialog(null, "¿Finalizar Compra?", "FINALIZAR", JOptionPane.YES_NO_OPTION);
+        if(n == JOptionPane.YES_OPTION)
+        {
+            if(txtMontoCompra.getText().length() == 0)
+            {
+                new rojerusan.RSNotifyAnimated("¡ERROR!", "El campo monto no puede estar vacío",
+                    5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
+                    RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
+                txtMontoCompra.requestFocus();
+            }
+            else
+            {
+                float totalPagar = Float.parseFloat(txtTotalCompra.getText());
+                float monto = Float.parseFloat(txtMontoCompra.getText());
+                if(monto < totalPagar)
+                {
+                    new rojerusan.RSNotifyAnimated("¡ERROR!", "El campo monto no puede ser menor al campo Total a Pagar",
+                        5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
+                        RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
+                }
+                else
+                {
+                    new rojerusan.RSNotifyAnimated("¡ÉXITO!", "Venta Realizada correctamente",
+                        5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
+                        RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
+                    float vuelto = monto - totalPagar;
+                    BigDecimal redondeo = new BigDecimal(vuelto).setScale(2, RoundingMode.HALF_EVEN);
+                    btnVueltoCompra.setText(String.valueOf(redondeo));
+                    limpiarCajas();
+                }
+            }
+        }
+    }//GEN-LAST:event_btnComprarActionPerformed
     
+    private void CancelarCompra()
+    {
+        int n = JOptionPane.showConfirmDialog(null, "¿Cancelar Compra?", "CANCELAR", JOptionPane.YES_NO_OPTION);
+        if(n == JOptionPane.YES_OPTION)
+        {
+            limpiarCajas();
+            txtTotalCompra.setText("");
+            txtMontoCompra.setText("");
+        }
+    }
+    private void limpiarCajas()
+    {
+        txCódigo.setText("");
+            txtCantidad.setText("");
+            txtPrecio.setText("");
+            txtCosto.setText("");
+            txtDetallePres.setText("");
+            cmbMarca.setSelectedItem("Escoja una opción");
+            cmbTProducto.setSelectedItem("Escoja una opción");
+            cmbProveedor.setSelectedItem("Escoja una opción");
+            cmbPresentacionCompra.setSelectedItem("Escoja una opción");
+
+            DefaultTableModel modelo = (DefaultTableModel)TBComprar.getModel();
+            for(int i = 0; i<TBComprar.getRowCount(); i++)
+            {
+                modelo.removeRow(i);
+                i-=1;
+            }
+            btnNuevaCompra1.setEnabled(false);
+            btnComprar.setEnabled(false);
+    }
     private boolean VerificarRealizarCompras()
     {
         if(txCódigo.getText().length() == 0)

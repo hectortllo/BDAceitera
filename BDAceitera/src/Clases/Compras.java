@@ -21,8 +21,7 @@ public class Compras {
         con = conexion.getConnection();
     }
     
-    public DefaultComboBoxModel getProveedor() {
-        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+    public DefaultComboBoxModel getProveedor(DefaultComboBoxModel modelo) {
         try {
             String sql = "SELECT nombreEmpresa FROM proveedor;";
             Statement st = con.createStatement();
