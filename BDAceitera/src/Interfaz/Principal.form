@@ -1924,7 +1924,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/Imagenes/Nueva Venta_Compra.png"/>
                     </Property>
-                    <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&#xa;&lt;head&gt;&#xa;&#x9;&lt;style&gt;&#xa;&#x9;&#x9; #contenido{ &#xa;&#x9;&#x9;background: #003333;  /*Se le da un color de fondo*/&#xa;&#x9;&#x9;color: white;&#x9;&#x9;  /*Color a la letra*/&#xa;&#x9;&#x9;}&#xa;&#x9;&lt;/style&gt;&#xa;&lt;/head&gt;&#xa;&lt;body&gt;&#xa;&#x9;&lt;div id=contenido&gt;&#xa;&#x9;&#x9;&lt;h2&gt;Cancelar Compra&lt;/h2&gt;&#xa;&#x9;&#x9;&lt;!-- &lt;img src=&quot;Path img&quot;&gt; --&gt;&#xa;&#x9;&lt;/div&gt;&#xa;&lt;/body&gt;&#xa;&lt;/html&gt;"/>
+                    <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&#xa;&lt;head&gt;&#xa;&#x9;&lt;style&gt;&#xa;&#x9;&#x9; #contenido{ &#xa;&#x9;&#x9;background: #003333;  /*Se le da un color de fondo*/&#xa;&#x9;&#x9;color: white;&#x9;&#x9;  /*Color a la letra*/&#xa;&#x9;&#x9;}&#xa;&#x9;&lt;/style&gt;&#xa;&lt;/head&gt;&#xa;&lt;body&gt;&#xa;&#x9;&lt;div id=contenido&gt;&#xa;&#x9;&#x9;&lt;h2&gt;Cancelar Compra/Limpiar&lt;/h2&gt;&#xa;&#x9;&#x9;&lt;!-- &lt;img src=&quot;Path img&quot;&gt; --&gt;&#xa;&#x9;&lt;/div&gt;&#xa;&lt;/body&gt;&#xa;&lt;/html&gt;"/>
                     <Property name="borderPainted" type="boolean" value="false"/>
                     <Property name="contentAreaFilled" type="boolean" value="false"/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -1989,6 +1989,9 @@
                       <Font name="Lucida Calligraphy" size="18" style="3"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbPresentacionCompraActionPerformed"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="180" y="340" width="280" height="-1"/>
@@ -2017,6 +2020,9 @@
                       <Font name="Lucida Calligraphy" size="18" style="3"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbMarcaActionPerformed"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="130" y="220" width="330" height="-1"/>
@@ -2045,6 +2051,9 @@
                       <Font name="Lucida Calligraphy" size="18" style="3"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbTProductoActionPerformed"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="180" y="260" width="280" height="-1"/>
@@ -2073,6 +2082,9 @@
                       <Font name="Lucida Calligraphy" size="18" style="3"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbProveedorActionPerformed"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="180" y="300" width="280" height="-1"/>

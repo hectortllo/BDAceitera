@@ -20,12 +20,15 @@ public class Proveedor {
         con = conexion.getConnection();
     }
     
-    public boolean insertarProveedor(String nombreProveedor, String nit)
+    public boolean insertarProveedor(String nombreEmpresa, String nombreDistribuidor,
+            String telefonoEmpresa, String telefonoDistribuidor)
     {
         try {
-            CallableStatement procedimiento = con.prepareCall("{call InsertarProveedor(?,?)}");
-            procedimiento.setString(1, nombreProveedor);
-            procedimiento.setString(2, nit);
+            CallableStatement procedimiento = con.prepareCall("{call InsertarProveedor(?,?,?,?)}");
+            procedimiento.setString(1, nombreEmpresa);
+            procedimiento.setString(2, nombreDistribuidor);
+            procedimiento.setString(3, telefonoEmpresa);
+            procedimiento.setString(4, telefonoDistribuidor);
             procedimiento.execute();
         } catch (SQLException ex) {
             Logger.getLogger(Proveedor.class.getName()).log(Level.SEVERE, null, ex);

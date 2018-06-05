@@ -7,6 +7,7 @@ package Interfaz;
 
 import Clases.Inventario;
 import Clases.Compras;
+import Clases.Proveedor;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import javax.swing.DefaultComboBoxModel;
@@ -26,10 +27,10 @@ public class Principal extends javax.swing.JInternalFrame {
     /**
      * Creates new form Principal
      */
-    int fila = 0, columna = 0;
     public Principal() {
         inventario = new Inventario();
         compras = new Compras();
+        proveedor = new Proveedor();
         BasicInternalFrameUI bi = (BasicInternalFrameUI) this.getUI();
         bi.setNorthPane(null);
         this.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -42,7 +43,6 @@ public class Principal extends javax.swing.JInternalFrame {
         cmbPresentacionCompra.setModel(inventario.getPresentacion((DefaultComboBoxModel)cmbPresentacionCompra.getModel()));
         cmbProveedor.setModel(compras.getProveedor((DefaultComboBoxModel)cmbProveedor.getModel()));
         cmbTProducto.setModel(inventario.getTProd((DefaultComboBoxModel)cmbTProducto.getModel()));
-        btnNuevaCompra1.setEnabled(false);
         btnComprar.setEnabled(false);
     }
 
@@ -879,7 +879,7 @@ public class Principal extends javax.swing.JInternalFrame {
         btnAgregar.getAccessibleContext().setAccessibleDescription("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Cancelar compra</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
 
         btnNuevaCompra1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nueva Venta_Compra.png"))); // NOI18N
-        btnNuevaCompra1.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Cancelar Compra</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
+        btnNuevaCompra1.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Cancelar Compra/Limpiar</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
         btnNuevaCompra1.setBorderPainted(false);
         btnNuevaCompra1.setContentAreaFilled(false);
         btnNuevaCompra1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -910,6 +910,11 @@ public class Principal extends javax.swing.JInternalFrame {
         cmbPresentacionCompra.setColorBorde(new java.awt.Color(0, 51, 51));
         cmbPresentacionCompra.setColorFondo(new java.awt.Color(0, 51, 51));
         cmbPresentacionCompra.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        cmbPresentacionCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbPresentacionCompraActionPerformed(evt);
+            }
+        });
         pnlRealizarCompras.add(cmbPresentacionCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, 280, -1));
 
         cmbMarca.setMaximumRowCount(4);
@@ -918,6 +923,11 @@ public class Principal extends javax.swing.JInternalFrame {
         cmbMarca.setColorBorde(new java.awt.Color(0, 51, 51));
         cmbMarca.setColorFondo(new java.awt.Color(0, 51, 51));
         cmbMarca.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        cmbMarca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbMarcaActionPerformed(evt);
+            }
+        });
         pnlRealizarCompras.add(cmbMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 330, -1));
 
         cmbTProducto.setMaximumRowCount(4);
@@ -926,6 +936,11 @@ public class Principal extends javax.swing.JInternalFrame {
         cmbTProducto.setColorBorde(new java.awt.Color(0, 51, 51));
         cmbTProducto.setColorFondo(new java.awt.Color(0, 51, 51));
         cmbTProducto.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        cmbTProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbTProductoActionPerformed(evt);
+            }
+        });
         pnlRealizarCompras.add(cmbTProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 280, -1));
 
         cmbProveedor.setMaximumRowCount(4);
@@ -934,6 +949,11 @@ public class Principal extends javax.swing.JInternalFrame {
         cmbProveedor.setColorBorde(new java.awt.Color(0, 51, 51));
         cmbProveedor.setColorFondo(new java.awt.Color(0, 51, 51));
         cmbProveedor.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        cmbProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbProveedorActionPerformed(evt);
+            }
+        });
         pnlRealizarCompras.add(cmbProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, 280, -1));
 
         rSPanelsSlider1.add(pnlRealizarCompras, "card5");
@@ -1351,7 +1371,18 @@ public class Principal extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_MIDetVentaActionPerformed
 
     private void btnInsertarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarProveedorActionPerformed
-
+        if(verificarProveedor())
+        {
+            if(proveedor.insertarProveedor(txtNombreEmpresa.getText(), txtNombreDistri.getText(), 
+                    txtNotelefonoE.getText(), txtNoTelefonoD.getText()))
+            {
+                new rojerusan.RSNotifyAnimated("¡ÉXITO!", "Proveedor ingresado correctamente",
+                    5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
+                    RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
+                cmbProveedor.addItem(txtNombreEmpresa.getText());
+                rSPanelsSlider1.setPanelSlider(10, pnlRealizarCompras, RSPanelsSlider.DIRECT.LEFT);
+            }
+        }
     }//GEN-LAST:event_btnInsertarProveedorActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -1455,20 +1486,103 @@ public class Principal extends javax.swing.JInternalFrame {
                     float vuelto = monto - totalPagar;
                     BigDecimal redondeo = new BigDecimal(vuelto).setScale(2, RoundingMode.HALF_EVEN);
                     btnVueltoCompra.setText(String.valueOf(redondeo));
-                    limpiarCajas();
+                    btnComprar.setEnabled(false);
+                    btnAgregar.setEnabled(false);
+                    //limpiarCajas();
                 }
             }
         }
     }//GEN-LAST:event_btnComprarActionPerformed
+
+    private void cmbMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbMarcaActionPerformed
+        if(cmbMarca.getSelectedItem().equals("Agregar"))
+        {
+            String marca = JOptionPane.showInputDialog("Ingresar nueva marca: ");
+            if(marca != null && marca.length() != 0)
+            {
+                compras.insertarMarca(marca);
+                cmbMarca.addItem(marca);
+            }
+        }
+    }//GEN-LAST:event_cmbMarcaActionPerformed
+
+    private void cmbTProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTProductoActionPerformed
+        if(cmbTProducto.getSelectedItem().equals("Agregar"))
+        {
+            String tipoProducto = JOptionPane.showInputDialog("Ingresar nuevo Tipo de Producto: ");
+            if(tipoProducto != null && tipoProducto.length() != 0)
+            {
+                compras.insertarTipoProducto(tipoProducto);
+                cmbTProducto.addItem(tipoProducto);
+            }
+        }
+    }//GEN-LAST:event_cmbTProductoActionPerformed
+
+    private void cmbPresentacionCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPresentacionCompraActionPerformed
+        if(cmbPresentacionCompra.getSelectedItem().equals("Agregar"))
+        {
+            String presentacion = JOptionPane.showInputDialog("Ingresar nueva Presentación: ");
+            if(presentacion != null && presentacion.length() != 0)
+            {
+                compras.insertarTipoProducto(presentacion);
+                cmbPresentacionCompra.addItem(presentacion);
+            }
+        }
+    }//GEN-LAST:event_cmbPresentacionCompraActionPerformed
+
+    private void cmbProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProveedorActionPerformed
+        if(cmbProveedor.getSelectedItem().equals("Agregar"))
+        {    
+            rSPanelsSlider1.setPanelSlider(10, pnlNuevoProveedor, RSPanelsSlider.DIRECT.LEFT);
+        }
+    }//GEN-LAST:event_cmbProveedorActionPerformed
     
+    private boolean verificarProveedor()
+    {
+        if(txtNombreEmpresa.getText().length() == 0)
+        {
+            new rojerusan.RSNotifyAnimated("¡ERROR!", "Campo Nombre Empresa vacío, por favor llénelo",
+                    5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
+                    RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
+            txtNombreEmpresa.requestFocus();
+            return false;
+        }
+        else if(txtNombreDistri.getText().length() == 0)
+        {
+            new rojerusan.RSNotifyAnimated("¡ERROR!", "Campo Nombre Distribuidor vacío, por favor llénelo",
+                    5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
+                    RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
+            txtNombreDistri.requestFocus();
+            return false;
+        }
+        else if(txtNotelefonoE.getText().length() == 0)
+        {
+            new rojerusan.RSNotifyAnimated("¡ERROR!", "Campo Teléfono Empresa vacío, por favor llénelo",
+                    5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
+                    RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
+            txtNotelefonoE.requestFocus();
+            return false;
+        }
+        else if(txtNoTelefonoD.getText().length() == 0)
+        {
+            new rojerusan.RSNotifyAnimated("¡ERROR!", "Campo Teléfono Distribuidor vacío, por favor llénelo",
+                    5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
+                    RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
+            txtNoTelefonoD.requestFocus();
+            return false;
+        }
+        else
+            return true;
+    }
     private void CancelarCompra()
     {
-        int n = JOptionPane.showConfirmDialog(null, "¿Cancelar Compra?", "CANCELAR", JOptionPane.YES_NO_OPTION);
+        int n = JOptionPane.showConfirmDialog(null, "¿Cancelar Compra o Limpiar?", "CANCELAR", JOptionPane.YES_NO_OPTION);
         if(n == JOptionPane.YES_OPTION)
         {
             limpiarCajas();
             txtTotalCompra.setText("");
             txtMontoCompra.setText("");
+            btnVueltoCompra.setText("");
         }
     }
     private void limpiarCajas()
@@ -1489,7 +1603,6 @@ public class Principal extends javax.swing.JInternalFrame {
                 modelo.removeRow(i);
                 i-=1;
             }
-            btnNuevaCompra1.setEnabled(false);
             btnComprar.setEnabled(false);
     }
     private boolean VerificarRealizarCompras()
@@ -1554,6 +1667,7 @@ public class Principal extends javax.swing.JInternalFrame {
 
     private final Inventario inventario;
     private final Compras compras;
+    private final Proveedor proveedor;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rojeru_san.componentes.RSDateChooser DCFechaCompras;
     private rojeru_san.componentes.RSDateChooser DCFechaVenta;
