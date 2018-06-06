@@ -88,7 +88,7 @@ public class Inventario {
                     + "i.precio, "
                     + "m.marca, "
                     + "dp.detalle_presentacion AS detalle, "
-                    + "p.nombreempresa AS prov\n"
+                    + "p.nombreempresa AS prov "
                     + "FROM producto i "
                     + "INNER JOIN marca m ON m.id = i.marca_id  "
                     + "INNER JOIN detallepresentacion dp ON dp.producto_id = i.id "
