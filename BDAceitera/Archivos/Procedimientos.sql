@@ -1,4 +1,4 @@
-﻿delimiter //
+delimiter //
 DROP PROCEDURE IF EXISTS InsertarUsuario //
 DROP PROCEDURE IF EXISTS InsertarProveedor //
 DROP PROCEDURE IF EXISTS InsertarProducto //
@@ -17,19 +17,22 @@ BEGIN
     VALUES(vNombreEmpresa, vNombreDistribuidor, vTelefonoEmpresa, vTelefonoDistribuidor);
 END; //
 
-CREATE PROCEDURE InsertarProducto(vCodigo VARCHAR(15), vCantidad INT, vPrecio FLOAT, vTipoProducto VARCHAR(45), 
-	vProveedor VARCHAR(50), vMarca VARCHAR(75))
+CREATE PROCEDURE InsertarProducto(vCodigo VARCHAR(15), vCantidad INT, vPrecio FLOAT, vTipoProductoId INT, vProveedorId INT,
+		vMarcaId INT, vPresentacionId INT, vDetallePresent VARCHAR(45), vCosto FLOAT)
 BEGIN
-	DECLARE vIdTipoProducto INT UNSIGNED DEFAULT 0;
-    DECLARE vIdProveedor INT UNSIGNED DEFAULT 0;
-    DECLARE vIdMarca INT UNSIGNED DEFAULT 0;
+	DECLARE vIdProducto INT UNSIGNED DEFAULT 0;
+	DECLARE vIdCompra INT UNSIGNED DEFAULT 0;
     
-    SELECT id  INTO vIdTipoProducto FROM tipoproducto WHERE tipoProducto = vTipoProducto;
-    SELECT id INTO vIdProveedor FROM proveedor WHERE nombreEmpresa = vProveedor;
-    SELECT id INTO vIdMarca FROM marca WHERE marca = vMarca;
+    INSERT INTO producto(codigo, cantidad, precio, TipoProducto_id, Proveedor_id, Marca_id)
+    VALUES(vCodigo, vCantidad, vPrecio, vTipoProductoId, vProveedorId, vMarcaId);
     
-	INSERT INTO producto(codigo, cantidad, precio, TipoProducto_id, Proveedor_id, Marca_id)
-    VALUES(vCodigo, vCantidad, vPrecio, vIdTipoProducto, vIdProveedor, vIdMarca);
+    SELECT MAX(id) INTO vIdProducto FROM producto;
+    INSERT INTO detallepresentacion(Presentacion_id, Producto_id, detalle_presentacion)
+    VALUES(vPresentacionId, vIdProducto, vDetallePresent);
+    
+    SELECT MAX(id) INTO vIdCompra FROM compras;
+    INSERT INTO detallecompra(Producto_id, compras_id, cantidad, costo) 
+    VALUES(vIdProducto, vIdCompra, vCantidad, vCosto);
 END; //
 	
 delimiter ;
