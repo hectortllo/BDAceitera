@@ -6,20 +6,17 @@ package Clases;
  */
 public class datosProducto 
 {
-    public datosProducto(String vCodigo, int vCantidad, float vPrecio, int vTipoProductoId, int vProveedorId,
-            int vMarcaId, int vPresentacion_id, String vDetallePresent, float vTotal, String vFecha, float vCosto)
+    public datosProducto()
     {
-        this.codigo = vCodigo;
-        this.cantidad = vCantidad;
-        this.precio = vPrecio;
-        this.TipoProducto_id = vTipoProductoId;
-        this.Proveedor_id = vProveedorId;
-        this.marca_id = vMarcaId;
-        this.presentacion_id = vPresentacion_id;
-        this.detalle_presentacion = vDetallePresent;
-        this.total = vTotal;
-        this.fecha = vFecha;
-        this.costo = vCosto;
+        this.codigo = "";
+        this.cantidad = 0;
+        this.precio = 0;
+        this.TipoProducto_id = 0;
+        this.Proveedor_id = 0;
+        this.marca_id = 0;
+        this.presentacion_id = 0;
+        this.detalle_presentacion = "";
+        this.costo = 0;
     }
 
     public String getCodigo() {
@@ -86,22 +83,6 @@ public class datosProducto
         this.detalle_presentacion = detalle_presentacion;
     }
 
-    public float getTotal() {
-        return total;
-    }
-
-    public void setTotal(float total) {
-        this.total = total;
-    }
-
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
     public float getCosto() {
         return costo;
     }
@@ -119,8 +100,5 @@ public class datosProducto
     private int marca_id;
     private int presentacion_id;
     private String detalle_presentacion;
-    private float total;
-    private String fecha;
-    private float costo;
-    
+    private float costo;    
 }

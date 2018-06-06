@@ -8,8 +8,10 @@ package Interfaz;
 import Clases.Inventario;
 import Clases.Compras;
 import Clases.Proveedor;
+import Clases.datosProducto;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.border.EmptyBorder;
@@ -27,6 +29,8 @@ public class Principal extends javax.swing.JInternalFrame {
     /**
      * Creates new form Principal
      */
+    ArrayList <datosProducto> Datos = new ArrayList<>();
+    int posicion = 0;
     public Principal() {
         inventario = new Inventario();
         compras = new Compras();
@@ -1441,12 +1445,21 @@ public class Principal extends javax.swing.JInternalFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         if (VerificarRealizarCompras()) {
+            Datos.add(new datosProducto());
             DefaultTableModel modelo = (DefaultTableModel) TBComprar.getModel();
             String codigo = txCódigo.getText();
             int cantidad = Integer.parseInt(txtCantidad.getText());
             float precio = Float.parseFloat(txtPrecio.getText());
             float costo = Float.parseFloat(txtCosto.getText());
             String detalle = txtDetallePres.getText();
+            int marcaId = cmbMarca.getSelectedIndex()-1;
+            int tipoProductoId = cmbTProducto.getSelectedIndex()-1;
+            int proveedorId = cmbProveedor.getSelectedIndex()-1;
+            int presentacionId = cmbPresentacionCompra.getSelectedIndex()-1;
+            System.out.println("Marca: " + marcaId);
+            System.out.println("tipoProductoId: " + tipoProductoId);
+            System.out.println("proveedorId: " + proveedorId);
+            System.out.println("presentacionId: " + presentacionId);
             float subTotal = cantidad * precio;
             float totalCompra = 0;
             if (txtTotalCompra.getText().length() == 0) {
@@ -1467,6 +1480,16 @@ public class Principal extends javax.swing.JInternalFrame {
             txtTotalCompra.setText(String.valueOf(totalCompra));
             btnNuevaCompra1.setEnabled(true);
             btnComprar.setEnabled(true);
+            Datos.get(posicion).setCantidad(cantidad);
+            Datos.get(posicion).setCodigo(codigo);
+            Datos.get(posicion).setCosto(costo);
+            Datos.get(posicion).setDetalle_presentacion(detalle);
+            Datos.get(posicion).setMarca_id(marcaId);
+            Datos.get(posicion).setPrecio(precio);
+            Datos.get(posicion).setPresentacion_id(presentacionId);
+            Datos.get(posicion).setProveedor_id(proveedorId);
+            Datos.get(posicion).setTipoProducto_id(tipoProductoId);
+            posicion++;
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -1499,6 +1522,12 @@ public class Principal extends javax.swing.JInternalFrame {
                     btnComprar.setEnabled(false);
                     btnAgregar.setEnabled(false);
                     //limpiarCajas();
+                    for(int i=0; i<Datos.size(); i++)
+                    {
+                        System.out.println(Datos.get(i).getCodigo());
+                    }
+                    posicion = 0;
+                    Datos.clear();
                 }
             }
         }

@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -36,6 +37,28 @@ public class Compras {
             Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
             return modelo;
         }
+    }
+    
+    public boolean insertarCompra(float total, int Proveedor_id)
+    {
+        try {            
+            Calendar c = Calendar.getInstance();
+            String dia = Integer.toString(c.get(Calendar.DATE));
+            String mes = Integer.toString(c.get(Calendar.MONTH));
+            String anio = Integer.toString(c.get(Calendar.YEAR));
+            String fecha = anio + mes + dia;
+            String query = "INSERT INTO compras(total, fecha, Proveedor_id) VALUES(?,?,?);";
+            
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setFloat(1, total);
+            pst.setString(2, fecha);
+            pst.setInt(3, Proveedor_id);
+            int n = pst.executeUpdate();
+            return n != 0;    
+        } catch (SQLException ex) {
+            Logger.getLogger(Compras.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
        
     public boolean insertarMarca(String marca)
