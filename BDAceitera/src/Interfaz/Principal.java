@@ -7,6 +7,7 @@ package Interfaz;
 
 import Clases.Inventario;
 import Clases.Compras;
+import Clases.Producto;
 import Clases.Proveedor;
 import Clases.datosProducto;
 import java.math.BigDecimal;
@@ -35,6 +36,7 @@ public class Principal extends javax.swing.JInternalFrame {
         inventario = new Inventario();
         compras = new Compras();
         proveedor = new Proveedor();
+        producto = new Producto();
         BasicInternalFrameUI bi = (BasicInternalFrameUI) this.getUI();
         bi.setNorthPane(null);
         this.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -1474,12 +1476,15 @@ public class Principal extends javax.swing.JInternalFrame {
             datos[3] = String.valueOf(subTotal);
 
             modelo.addRow(datos);
+            //Este for sirve para borrar el array que almacena los datos que se pondrán en la tabla
             for (int i = 0; i < datos.length; i++) {
                 datos[i] = null;
             }
+            
             txtTotalCompra.setText(String.valueOf(totalCompra));
             btnNuevaCompra1.setEnabled(true);
             btnComprar.setEnabled(true);
+            //Se agrega la información necesaria al ArrayList
             Datos.get(posicion).setCantidad(cantidad);
             Datos.get(posicion).setCodigo(codigo);
             Datos.get(posicion).setCosto(costo);
@@ -1495,6 +1500,8 @@ public class Principal extends javax.swing.JInternalFrame {
 
     private void btnNuevaCompra1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaCompra1ActionPerformed
         CancelarCompra();
+        posicion = 0;
+        Datos.clear();
     }//GEN-LAST:event_btnNuevaCompra1ActionPerformed
 
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
@@ -1513,21 +1520,36 @@ public class Principal extends javax.swing.JInternalFrame {
                             5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
                             RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
                 } else {
-                    new rojerusan.RSNotifyAnimated("¡ÉXITO!", "Venta Realizada correctamente",
+                    //Si toda ha sigo ingresado correctamente, se ingresa el producto 
+                    
+                    if(compras.insertarCompra(totalPagar))
+                    {
+                        for(int i=0; i<Datos.size(); i++)
+                        {
+                            producto.insertarProducto(Datos.get(i).getCodigo(), Datos.get(i).getCantidad(), 
+                                Datos.get(i).getPrecio(), Datos.get(i).getTipoProducto_id(), Datos.get(i).getProveedor_id(),
+                                Datos.get(i).getMarca_id(), Datos.get(i).getPresentacion_id(),
+                                Datos.get(i).getDetalle_presentacion(), Datos.get(i).getCosto());
+                        }
+                        
+                        new rojerusan.RSNotifyAnimated("¡ÉXITO!", "Venta Realizada correctamente",
                             5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
                             RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
-                    float vuelto = monto - totalPagar;
-                    BigDecimal redondeo = new BigDecimal(vuelto).setScale(2, RoundingMode.HALF_EVEN);
-                    btnVueltoCompra.setText(String.valueOf(redondeo));
-                    btnComprar.setEnabled(false);
-                    btnAgregar.setEnabled(false);
-                    //limpiarCajas();
-                    for(int i=0; i<Datos.size(); i++)
-                    {
-                        System.out.println(Datos.get(i).getCodigo());
+                        float vuelto = monto - totalPagar;
+                        BigDecimal redondeo = new BigDecimal(vuelto).setScale(2, RoundingMode.HALF_EVEN);
+                        btnVueltoCompra.setText(String.valueOf(redondeo));
+                        btnComprar.setEnabled(false);
+                        btnAgregar.setEnabled(false);
+                        //limpiarCajas();
+                        for(int i=0; i<Datos.size(); i++)
+                        {
+                            System.out.println(Datos.get(i).getCodigo());
+                        }
+                        posicion = 0;
+                        Datos.clear();    
                     }
-                    posicion = 0;
-                    Datos.clear();
+                    else
+                        JOptionPane.showMessageDialog(null, "Error", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         }
@@ -1663,7 +1685,36 @@ public class Principal extends javax.swing.JInternalFrame {
                     RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
             txtDetallePres.requestFocus();
             return false;
-        } else {
+        } else if(cmbMarca.equals("Escoja una opción ") || cmbMarca.equals("Agregar"))
+        {
+            new rojerusan.RSNotifyAnimated("¡ERROR!", "Selecciona una marca correcta",
+                    5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
+                    RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
+            cmbMarca.requestFocus();
+            return false;
+        } else if(cmbTProducto.equals("Escoja una opción ") || cmbTProducto.equals("Agregar"))
+        {
+            new rojerusan.RSNotifyAnimated("¡ERROR!", "Selecciona una marca correcta",
+                    5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
+                    RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
+            cmbTProducto.requestFocus();
+            return false;
+        } else if(cmbProveedor.equals("Escoja una opción ") || cmbProveedor.equals("Agregar"))
+        {
+            new rojerusan.RSNotifyAnimated("¡ERROR!", "Selecciona una marca correcta",
+                    5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
+                    RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
+            cmbProveedor.requestFocus();
+            return false;
+        } else if(cmbPresentacionCompra.equals("Escoja una opción ") || cmbPresentacionCompra.equals("Agregar"))
+        {
+            new rojerusan.RSNotifyAnimated("¡ERROR!", "Selecciona una marca correcta",
+                    5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
+                    RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
+            cmbPresentacionCompra.requestFocus();
+            return false;
+        }
+        else {
             return true;
         }
     }
@@ -1686,6 +1737,7 @@ public class Principal extends javax.swing.JInternalFrame {
     private final Inventario inventario;
     private final Compras compras;
     private final Proveedor proveedor;
+    private final Producto producto;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rojeru_san.componentes.RSDateChooser DCFechaCompras;
     private rojeru_san.componentes.RSDateChooser DCFechaVenta;

@@ -39,20 +39,19 @@ public class Compras {
         }
     }
     
-    public boolean insertarCompra(float total, int Proveedor_id)
+    public boolean insertarCompra(float total)
     {
         try {            
             Calendar c = Calendar.getInstance();
-            String dia = Integer.toString(c.get(Calendar.DATE));
+            String dia = Integer.toString(c.get(Calendar.DATE)+1);
             String mes = Integer.toString(c.get(Calendar.MONTH));
             String anio = Integer.toString(c.get(Calendar.YEAR));
-            String fecha = anio + mes + dia;
-            String query = "INSERT INTO compras(total, fecha, Proveedor_id) VALUES(?,?,?);";
+            String fecha = anio + "/" + mes + "/" + dia;
+            String query = "INSERT INTO compras(total, fecha) VALUES(?,?);";
             
             PreparedStatement pst = con.prepareStatement(query);
             pst.setFloat(1, total);
             pst.setString(2, fecha);
-            pst.setInt(3, Proveedor_id);
             int n = pst.executeUpdate();
             return n != 0;    
         } catch (SQLException ex) {

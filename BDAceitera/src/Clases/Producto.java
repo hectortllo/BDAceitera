@@ -25,18 +25,21 @@ public class Producto {
         con = conexion.getConnection();
     }
     
-    public boolean insertarProducto(String nombreProducto, int cantidad, float costo, float precio,
-            String descripcion, String TipoProducto, int idProveedor)
+    public boolean insertarProducto(String codigo, int cantidad, float precio,
+            int idTipoProducto, int proveedorId, int idMarca, int idPresentacion, String detallePresent, float costo)
     {
         try {
-            CallableStatement procedimiento = con.prepareCall("{call InsertarProducto(?,?,?,?,?,?,?)}");
-            procedimiento.setString(1, nombreProducto);
+            CallableStatement procedimiento = con.prepareCall("{call InsertarProducto(?,?,?,?,?,?,?,?,?)}");
+            procedimiento.setString(1, codigo);
             procedimiento.setInt(2, cantidad);
-            procedimiento.setFloat(3, costo);
-            procedimiento.setFloat(4, precio);
-            procedimiento.setString(5, descripcion);
-            procedimiento.setString(6, TipoProducto);
-            procedimiento.setInt(7, idProveedor);
+            procedimiento.setFloat(3, precio);
+            procedimiento.setInt(4, idTipoProducto);
+            procedimiento.setInt(5, proveedorId);
+            procedimiento.setInt(6, idMarca);
+            procedimiento.setInt(7, idPresentacion);
+            procedimiento.setString(8, detallePresent);
+            procedimiento.setFloat(9, costo);
+            procedimiento.execute();            
         } catch (SQLException ex) {
             Logger.getLogger(Producto.class.getName()).log(Level.SEVERE, null, ex);
         }
