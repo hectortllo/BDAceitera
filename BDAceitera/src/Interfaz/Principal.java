@@ -1396,7 +1396,10 @@ public class Principal extends javax.swing.JInternalFrame {
                 new rojerusan.RSNotifyAnimated("¡ÉXITO!", "Proveedor ingresado correctamente",
                         5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
                         RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
-                cmbProveedor.addItem(txtNombreEmpresa.getText());
+                cmbProveedor.removeAllItems();
+                cmbProveedor.addItem("Escoja una opción");
+                cmbProveedor.addItem("Agregar");
+                cmbProveedor.setModel(compras.getProveedor((DefaultComboBoxModel) cmbProveedor.getModel()));
                 rSPanelsSlider1.setPanelSlider(10, pnlRealizarCompras, RSPanelsSlider.DIRECT.LEFT);
             }
         }
@@ -1546,7 +1549,8 @@ public class Principal extends javax.swing.JInternalFrame {
                             System.out.println(Datos.get(i).getCodigo());
                         }
                         posicion = 0;
-                        Datos.clear();    
+                        Datos.clear();
+                        TBInventario.setModel(inventario.getInventario("", "", "", "", TBInventario));
                     }
                     else
                         JOptionPane.showMessageDialog(null, "Error", "Error", JOptionPane.ERROR_MESSAGE);
@@ -1560,7 +1564,10 @@ public class Principal extends javax.swing.JInternalFrame {
             String marca = JOptionPane.showInputDialog("Ingresar nueva marca: ");
             if (marca != null && marca.length() != 0) {
                 compras.insertarMarca(marca);
-                cmbMarca.addItem(marca);
+                cmbMarca.removeAllItems();
+                cmbMarca.addItem("Escoja una opción");
+                cmbMarca.addItem("Agregar");
+                cmbMarca.setModel(inventario.getMarca((DefaultComboBoxModel) cmbMarca.getModel()));
             }
         }
     }//GEN-LAST:event_cmbMarcaActionPerformed
@@ -1570,7 +1577,10 @@ public class Principal extends javax.swing.JInternalFrame {
             String tipoProducto = JOptionPane.showInputDialog("Ingresar nuevo Tipo de Producto: ");
             if (tipoProducto != null && tipoProducto.length() != 0) {
                 compras.insertarTipoProducto(tipoProducto);
-                cmbTProducto.addItem(tipoProducto);
+                cmbTProducto.removeAllItems();
+                cmbTProducto.addItem("Escoja una opción");
+                cmbTProducto.addItem("Agregar ");
+                cmbTProducto.setModel(inventario.getTProd((DefaultComboBoxModel) cmbTProducto.getModel()));
             }
         }
     }//GEN-LAST:event_cmbTProductoActionPerformed
@@ -1579,8 +1589,11 @@ public class Principal extends javax.swing.JInternalFrame {
         if (cmbPresentacionCompra.getSelectedItem().equals("Agregar")) {
             String presentacion = JOptionPane.showInputDialog("Ingresar nueva Presentación: ");
             if (presentacion != null && presentacion.length() != 0) {
-                compras.insertarTipoProducto(presentacion);
-                cmbPresentacionCompra.addItem(presentacion);
+                compras.insertarPresentacion(presentacion);
+                cmbPresentacionCompra.removeAllItems();
+                cmbPresentacionCompra.addItem("Escoja una opción");
+                cmbPresentacionCompra.addItem("Agregar");
+                cmbPresentacionCompra.setModel(inventario.getPresentacion((DefaultComboBoxModel) cmbPresentacionCompra.getModel()));
             }
         }
     }//GEN-LAST:event_cmbPresentacionCompraActionPerformed

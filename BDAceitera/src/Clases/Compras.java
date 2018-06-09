@@ -64,11 +64,10 @@ public class Compras {
     {
         try {            
             String query = "INSERT INTO marca(marca) VALUE(?)";
-            
             PreparedStatement pst = con.prepareStatement(query);
             pst.setString(1, marca);
             int n = pst.executeUpdate();
-            return n != 0;    
+            return n != 0;
         } catch (SQLException ex) {
             Logger.getLogger(Compras.class.getName()).log(Level.SEVERE, null, ex);
         }

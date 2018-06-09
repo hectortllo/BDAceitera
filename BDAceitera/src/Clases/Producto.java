@@ -39,7 +39,7 @@ public class Producto {
             procedimiento.setInt(7, idPresentacion);
             procedimiento.setString(8, detallePresent);
             procedimiento.setFloat(9, costo);
-            procedimiento.execute();            
+            procedimiento.execute();
         } catch (SQLException ex) {
             Logger.getLogger(Producto.class.getName()).log(Level.SEVERE, null, ex);
         }
