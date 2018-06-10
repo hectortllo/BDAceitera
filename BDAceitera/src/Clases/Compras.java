@@ -16,6 +16,7 @@ import javax.swing.DefaultComboBoxModel;
  * @author hectortllo
  */
 public class Compras {
+
     private final Connection con;
     private final Conexion conexion;
 
@@ -23,7 +24,7 @@ public class Compras {
         conexion = new Conexion();
         con = conexion.getConnection();
     }
-    
+
     public DefaultComboBoxModel getProveedor(DefaultComboBoxModel modelo) {
         try {
             String sql = "SELECT nombreEmpresa FROM proveedor;";
@@ -38,31 +39,28 @@ public class Compras {
             return modelo;
         }
     }
-    
-    public boolean insertarCompra(float total)
-    {
-        try {            
+
+    public boolean insertarCompra(float total) {
+        try {
             Calendar c = Calendar.getInstance();
-            String dia = Integer.toString(c.get(Calendar.DATE)+1);
+            String dia = Integer.toString(c.get(Calendar.DATE) + 1);
             String mes = Integer.toString(c.get(Calendar.MONTH));
             String anio = Integer.toString(c.get(Calendar.YEAR));
             String fecha = anio + "/" + mes + "/" + dia;
             String query = "INSERT INTO compras(total, fecha) VALUES(?,?);";
-            
             PreparedStatement pst = con.prepareStatement(query);
             pst.setFloat(1, total);
             pst.setString(2, fecha);
             int n = pst.executeUpdate();
-            return n != 0;    
+            return n != 0;
         } catch (SQLException ex) {
             Logger.getLogger(Compras.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
-       
-    public boolean insertarMarca(String marca)
-    {
-        try {            
+
+    public boolean insertarMarca(String marca) {
+        try {
             String query = "INSERT INTO marca(marca) VALUE(?)";
             PreparedStatement pst = con.prepareStatement(query);
             pst.setString(1, marca);
@@ -73,39 +71,36 @@ public class Compras {
         }
         return false;
     }
-    
-    public boolean insertarTipoProducto(String tipo)
-    {
-        try {            
+
+    public boolean insertarTipoProducto(String tipo) {
+        try {
             String query = "INSERT INTO tipoproducto(tipoProducto) VALUE(?)";
-            
+
             PreparedStatement pst = con.prepareStatement(query);
             pst.setString(1, tipo);
             int n = pst.executeUpdate();
-            return n != 0;    
+            return n != 0;
         } catch (SQLException ex) {
             Logger.getLogger(Compras.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
-    
-    public boolean insertarPresentacion(String presentacion)
-    {
-        try {            
-            String query = "INSERT INTO presentacion(presentacion) VALUE(?)";            
+
+    public boolean insertarPresentacion(String presentacion) {
+        try {
+            String query = "INSERT INTO presentacion(presentacion) VALUE(?)";
             PreparedStatement pst = con.prepareStatement(query);
             pst.setString(1, presentacion);
             int n = pst.executeUpdate();
-            return n != 0;    
+            return n != 0;
         } catch (SQLException ex) {
             Logger.getLogger(Compras.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
-    
+
     public boolean insertarProducto(String nombreEmpresa, String nombreDistribuidor,
-            String telefonoEmpresa, String telefonoDistribuidor)
-    {
+            String telefonoEmpresa, String telefonoDistribuidor) {
         try {
             CallableStatement procedimiento = con.prepareCall("{call InsertarProveedor(?,?,?,?)}");
             procedimiento.setString(1, nombreEmpresa);

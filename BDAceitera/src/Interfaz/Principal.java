@@ -5,11 +5,8 @@
  */
 package Interfaz;
 
-import Clases.Inventario;
-import Clases.Compras;
-import Clases.Producto;
-import Clases.Proveedor;
-import Clases.datosProducto;
+import Clases.*;
+import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
@@ -30,13 +27,12 @@ public class Principal extends javax.swing.JInternalFrame {
     /**
      * Creates new form Principal
      */
-    ArrayList <datosProducto> Datos = new ArrayList<>();
-    int posicion = 0;
     public Principal() {
         inventario = new Inventario();
         compras = new Compras();
         proveedor = new Proveedor();
         producto = new Producto();
+        venta = new Ventas();
         BasicInternalFrameUI bi = (BasicInternalFrameUI) this.getUI();
         bi.setNorthPane(null);
         this.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -71,12 +67,12 @@ public class Principal extends javax.swing.JInternalFrame {
         MnOpcionesInventario = new javax.swing.JMenu();
         MIAddVenta = new javax.swing.JMenuItem();
         MIAddCompra = new javax.swing.JMenuItem();
+        txtCantidadVenta = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         PnlControl = new javax.swing.JPanel();
         lbltitulo = new javax.swing.JLabel();
         btnHome = new javax.swing.JButton();
         btnAddUser = new javax.swing.JButton();
-        btnRealizarVenta = new javax.swing.JButton();
         btnVerVentas = new javax.swing.JButton();
         btnVerCompras = new javax.swing.JButton();
         btnRealizarCompras = new javax.swing.JButton();
@@ -109,6 +105,7 @@ public class Principal extends javax.swing.JInternalFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         lblFecha = new rojeru_san.RSLabelFecha();
+        btnRegresarInventarioVentas = new javax.swing.JButton();
         pnlVerVentas = new javax.swing.JPanel();
         lbltitulo1 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -264,6 +261,15 @@ public class Principal extends javax.swing.JInternalFrame {
 
         PMInventario.add(MnOpcionesInventario);
 
+        txtCantidadVenta.setBackground(new java.awt.Color(0, 51, 51));
+        txtCantidadVenta.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        txtCantidadVenta.setForeground(new java.awt.Color(255, 255, 255));
+        txtCantidadVenta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCantidadVentaKeyTyped(evt);
+            }
+        });
+
         setPreferredSize(new java.awt.Dimension(1100, 640));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -306,19 +312,6 @@ public class Principal extends javax.swing.JInternalFrame {
         });
         PnlControl.add(btnAddUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 0, 70, 50));
 
-        btnRealizarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/venta.png"))); // NOI18N
-        btnRealizarVenta.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Realizar Ventas</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
-        btnRealizarVenta.setBorderPainted(false);
-        btnRealizarVenta.setContentAreaFilled(false);
-        btnRealizarVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnRealizarVenta.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Venta Select.png"))); // NOI18N
-        btnRealizarVenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRealizarVentaActionPerformed(evt);
-            }
-        });
-        PnlControl.add(btnRealizarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 70, 50));
-
         btnVerVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/VerVentas.png"))); // NOI18N
         btnVerVentas.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Ver Ventas Realizadas</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
         btnVerVentas.setBorderPainted(false);
@@ -330,7 +323,7 @@ public class Principal extends javax.swing.JInternalFrame {
                 btnVerVentasActionPerformed(evt);
             }
         });
-        PnlControl.add(btnVerVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 0, 70, 50));
+        PnlControl.add(btnVerVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 70, 50));
 
         btnVerCompras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/VerVentas.png"))); // NOI18N
         btnVerCompras.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Ver Compras Realizadas</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
@@ -343,7 +336,7 @@ public class Principal extends javax.swing.JInternalFrame {
                 btnVerComprasActionPerformed(evt);
             }
         });
-        PnlControl.add(btnVerCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 70, 50));
+        PnlControl.add(btnVerCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 70, 50));
 
         btnRealizarCompras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/venta.png"))); // NOI18N
         btnRealizarCompras.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Realizar Compras</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
@@ -356,7 +349,7 @@ public class Principal extends javax.swing.JInternalFrame {
                 btnRealizarComprasActionPerformed(evt);
             }
         });
-        PnlControl.add(btnRealizarCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 70, 50));
+        PnlControl.add(btnRealizarCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 0, 70, 50));
 
         btnNuevoProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/add user.png"))); // NOI18N
         btnNuevoProveedor.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Agregar Nuevo Proveedor</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
@@ -369,7 +362,7 @@ public class Principal extends javax.swing.JInternalFrame {
                 btnNuevoProveedorActionPerformed(evt);
             }
         });
-        PnlControl.add(btnNuevoProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 70, 50));
+        PnlControl.add(btnNuevoProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 70, 50));
 
         btnVerProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Proveedores.png"))); // NOI18N
         btnVerProveedor.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Ver Proveedores</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
@@ -382,7 +375,7 @@ public class Principal extends javax.swing.JInternalFrame {
                 btnVerProveedorActionPerformed(evt);
             }
         });
-        PnlControl.add(btnVerProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 70, 50));
+        PnlControl.add(btnVerProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 70, 50));
 
         jPanel1.add(PnlControl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 50));
 
@@ -424,6 +417,7 @@ public class Principal extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        TBInventario.setAltoHead(40);
         TBInventario.setColorBackgoundHead(new java.awt.Color(0, 51, 51));
         TBInventario.setColorFilasBackgound2(new java.awt.Color(0, 51, 51));
         TBInventario.setColorFilasForeground1(new java.awt.Color(0, 51, 51));
@@ -433,6 +427,7 @@ public class Principal extends javax.swing.JInternalFrame {
         TBInventario.setFuenteFilas(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         TBInventario.setFuenteFilasSelect(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         TBInventario.setFuenteHead(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        TBInventario.setRowHeight(25);
         jScrollPane1.setViewportView(TBInventario);
 
         pnlInventario.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 1190, 430));
@@ -509,6 +504,11 @@ public class Principal extends javax.swing.JInternalFrame {
         btnVender.setContentAreaFilled(false);
         btnVender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVender.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Realizar Venta Select.png"))); // NOI18N
+        btnVender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVenderActionPerformed(evt);
+            }
+        });
         pnlRealizarVentas.add(btnVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 530, 70, 50));
 
         btnNuevaVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nueva Venta_Compra.png"))); // NOI18N
@@ -525,17 +525,25 @@ public class Principal extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Producto", "Código", "Presentacion", "Marca", "Proveedor", "Cantidad", "Precio", "Subtotal"
+                "No", "Código", "Cantidad", "Precio", "Subtotal"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, true, false, false, false, false
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        TBVentas.setAltoHead(40);
         TBVentas.setColorBackgoundHead(new java.awt.Color(0, 51, 51));
         TBVentas.setColorFilasBackgound2(new java.awt.Color(0, 51, 51));
         TBVentas.setColorFilasForeground1(new java.awt.Color(0, 51, 51));
@@ -544,6 +552,7 @@ public class Principal extends javax.swing.JInternalFrame {
         TBVentas.setFuenteFilas(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         TBVentas.setFuenteFilasSelect(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         TBVentas.setFuenteHead(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        TBVentas.setRowHeight(25);
         jScrollPane4.setViewportView(TBVentas);
 
         pnlRealizarVentas.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1190, 380));
@@ -602,6 +611,18 @@ public class Principal extends javax.swing.JInternalFrame {
         lblFecha.setForeground(new java.awt.Color(0, 51, 51));
         lblFecha.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         pnlRealizarVentas.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 130, 40));
+
+        btnRegresarInventarioVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Atras.png"))); // NOI18N
+        btnRegresarInventarioVentas.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Agregar más</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
+        btnRegresarInventarioVentas.setBorderPainted(false);
+        btnRegresarInventarioVentas.setContentAreaFilled(false);
+        btnRegresarInventarioVentas.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Atras select.png"))); // NOI18N
+        btnRegresarInventarioVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarInventarioVentasActionPerformed(evt);
+            }
+        });
+        pnlRealizarVentas.add(btnRegresarInventarioVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 40, -1, -1));
 
         rSPanelsSlider1.add(pnlRealizarVentas, "card2");
 
@@ -1272,24 +1293,9 @@ public class Principal extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRealizarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarVentaActionPerformed
-        if (!this.btnRealizarVenta.isSelected()) {
-            this.btnHome.setSelected(false);
-            this.btnRealizarVenta.setSelected(true);
-            this.btnVerVentas.setSelected(false);
-            this.btnRealizarCompras.setSelected(false);
-            this.btnVerCompras.setSelected(false);
-            this.btnNuevoProveedor.setSelected(false);
-            this.btnVerProveedor.setSelected(false);
-            this.btnAddUser.setSelected(false);
-            rSPanelsSlider1.setPanelSlider(10, pnlRealizarVentas, RSPanelsSlider.DIRECT.LEFT);
-        }
-    }//GEN-LAST:event_btnRealizarVentaActionPerformed
-
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         if (!this.btnHome.isSelected()) {
             this.btnHome.setSelected(true);
-            this.btnRealizarVenta.setSelected(false);
             this.btnVerVentas.setSelected(false);
             this.btnRealizarCompras.setSelected(false);
             this.btnVerCompras.setSelected(false);
@@ -1303,7 +1309,6 @@ public class Principal extends javax.swing.JInternalFrame {
     private void btnVerVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerVentasActionPerformed
         if (!this.btnVerVentas.isSelected()) {
             this.btnHome.setSelected(false);
-            this.btnRealizarVenta.setSelected(false);
             this.btnVerVentas.setSelected(true);
             this.btnRealizarCompras.setSelected(false);
             this.btnVerCompras.setSelected(false);
@@ -1317,7 +1322,6 @@ public class Principal extends javax.swing.JInternalFrame {
     private void btnVerComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerComprasActionPerformed
         if (!this.btnVerCompras.isSelected()) {
             this.btnHome.setSelected(false);
-            this.btnRealizarVenta.setSelected(false);
             this.btnVerVentas.setSelected(false);
             this.btnRealizarCompras.setSelected(false);
             this.btnVerCompras.setSelected(true);
@@ -1331,7 +1335,6 @@ public class Principal extends javax.swing.JInternalFrame {
     private void btnRealizarComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarComprasActionPerformed
         if (!this.btnRealizarCompras.isSelected()) {
             this.btnHome.setSelected(false);
-            this.btnRealizarVenta.setSelected(false);
             this.btnVerVentas.setSelected(false);
             this.btnRealizarCompras.setSelected(true);
             this.btnVerCompras.setSelected(false);
@@ -1346,7 +1349,6 @@ public class Principal extends javax.swing.JInternalFrame {
     private void btnNuevoProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoProveedorActionPerformed
         if (!this.btnNuevoProveedor.isSelected()) {
             this.btnHome.setSelected(false);
-            this.btnRealizarVenta.setSelected(false);
             this.btnVerVentas.setSelected(false);
             this.btnRealizarCompras.setSelected(false);
             this.btnVerCompras.setSelected(false);
@@ -1360,7 +1362,6 @@ public class Principal extends javax.swing.JInternalFrame {
     private void btnVerProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerProveedorActionPerformed
         if (!this.btnVerProveedor.isSelected()) {
             this.btnHome.setSelected(false);
-            this.btnRealizarVenta.setSelected(false);
             this.btnVerVentas.setSelected(false);
             this.btnRealizarCompras.setSelected(false);
             this.btnVerCompras.setSelected(false);
@@ -1374,7 +1375,6 @@ public class Principal extends javax.swing.JInternalFrame {
     private void btnAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUserActionPerformed
         if (!this.btnAddUser.isSelected()) {
             this.btnHome.setSelected(false);
-            this.btnRealizarVenta.setSelected(false);
             this.btnVerVentas.setSelected(false);
             this.btnRealizarCompras.setSelected(false);
             this.btnVerCompras.setSelected(false);
@@ -1416,9 +1416,27 @@ public class Principal extends javax.swing.JInternalFrame {
     private void MIAddVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIAddVentaActionPerformed
         int seleccionados[] = TBInventario.getSelectedRows();
         if (seleccionados.length > 0) {
+            String datos[] = new String[5];
+            int respuesta = 1;
+            float subtotal, total = 0;
+            DefaultTableModel ModVentas = (DefaultTableModel) TBVentas.getModel();
             for (int i = 0; i < seleccionados.length; i++) {
-                System.out.println();
+                datos[0] = (String) TBInventario.getValueAt(seleccionados[i], 0);
+                datos[1] = (String) TBInventario.getValueAt(seleccionados[i], 1);
+                while (respuesta != 0 || datos[2].equals("")) {
+                    respuesta = JOptionPane.showConfirmDialog(null, txtCantidadVenta, "Ingrese la cantidad del producto: " + datos[1], JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE);
+                    datos[2] = txtCantidadVenta.getText();
+                }
+                datos[3] = (String) TBInventario.getValueAt(seleccionados[i], 3);
+                subtotal = Float.parseFloat(datos[3]) * Integer.parseInt(datos[2]);
+                datos[4] = "" + subtotal;
+                ModVentas.addRow(datos);
             }
+            for (int i = 0; i < ModVentas.getRowCount(); i++) {
+                total += Float.parseFloat((String) ModVentas.getValueAt(i, 4));
+            }
+            txtTotalVenta.setText("" + total);
+            rSPanelsSlider1.setPanelSlider(10, pnlRealizarVentas, RSPanelsSlider.DIRECT.LEFT);
         }
 
 
@@ -1457,10 +1475,10 @@ public class Principal extends javax.swing.JInternalFrame {
             float precio = Float.parseFloat(txtPrecio.getText());
             float costo = Float.parseFloat(txtCosto.getText());
             String detalle = txtDetallePres.getText();
-            int marcaId = cmbMarca.getSelectedIndex()-1;
-            int tipoProductoId = cmbTProducto.getSelectedIndex()-1;
-            int proveedorId = cmbProveedor.getSelectedIndex()-1;
-            int presentacionId = cmbPresentacionCompra.getSelectedIndex()-1;
+            int marcaId = cmbMarca.getSelectedIndex() - 1;
+            int tipoProductoId = cmbTProducto.getSelectedIndex() - 1;
+            int proveedorId = cmbProveedor.getSelectedIndex() - 1;
+            int presentacionId = cmbPresentacionCompra.getSelectedIndex() - 1;
             System.out.println("Marca: " + marcaId);
             System.out.println("tipoProductoId: " + tipoProductoId);
             System.out.println("proveedorId: " + proveedorId);
@@ -1483,7 +1501,7 @@ public class Principal extends javax.swing.JInternalFrame {
             for (int i = 0; i < datos.length; i++) {
                 datos[i] = null;
             }
-            
+
             txtTotalCompra.setText(String.valueOf(totalCompra));
             btnNuevaCompra1.setEnabled(true);
             btnComprar.setEnabled(true);
@@ -1524,36 +1542,33 @@ public class Principal extends javax.swing.JInternalFrame {
                             RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
                 } else {
                     //Si toda ha sigo ingresado correctamente, se ingresa el producto 
-                    
-                    if(compras.insertarCompra(totalPagar))
-                    {
-                        for(int i=0; i<Datos.size(); i++)
-                        {
-                            producto.insertarProducto(Datos.get(i).getCodigo(), Datos.get(i).getCantidad(), 
-                                Datos.get(i).getPrecio(), Datos.get(i).getTipoProducto_id(), Datos.get(i).getProveedor_id(),
-                                Datos.get(i).getMarca_id(), Datos.get(i).getPresentacion_id(),
-                                Datos.get(i).getDetalle_presentacion(), Datos.get(i).getCosto());
+
+                    if (compras.insertarCompra(totalPagar)) {
+                        for (int i = 0; i < Datos.size(); i++) {
+                            producto.insertarProducto(Datos.get(i).getCodigo(), Datos.get(i).getCantidad(),
+                                    Datos.get(i).getPrecio(), Datos.get(i).getTipoProducto_id(), Datos.get(i).getProveedor_id(),
+                                    Datos.get(i).getMarca_id(), Datos.get(i).getPresentacion_id(),
+                                    Datos.get(i).getDetalle_presentacion(), Datos.get(i).getCosto());
                         }
-                        
+
                         new rojerusan.RSNotifyAnimated("¡ÉXITO!", "Venta Realizada correctamente",
-                            5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
-                            RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
+                                5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
+                                RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
                         float vuelto = monto - totalPagar;
                         BigDecimal redondeo = new BigDecimal(vuelto).setScale(2, RoundingMode.HALF_EVEN);
                         btnVueltoCompra.setText(String.valueOf(redondeo));
                         btnComprar.setEnabled(false);
                         btnAgregar.setEnabled(false);
                         //limpiarCajas();
-                        for(int i=0; i<Datos.size(); i++)
-                        {
+                        for (int i = 0; i < Datos.size(); i++) {
                             System.out.println(Datos.get(i).getCodigo());
                         }
                         posicion = 0;
                         Datos.clear();
                         TBInventario.setModel(inventario.getInventario("", "", "", "", TBInventario));
-                    }
-                    else
+                    } else {
                         JOptionPane.showMessageDialog(null, "Error", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
         }
@@ -1607,6 +1622,39 @@ public class Principal extends javax.swing.JInternalFrame {
     private void MIAddCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIAddCompraActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_MIAddCompraActionPerformed
+
+    private void txtCantidadVentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadVentaKeyTyped
+        Numeros(evt);
+    }//GEN-LAST:event_txtCantidadVentaKeyTyped
+
+    private void btnRegresarInventarioVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarInventarioVentasActionPerformed
+        rSPanelsSlider1.setPanelSlider(10, pnlInventario, RSPanelsSlider.DIRECT.RIGHT);
+    }//GEN-LAST:event_btnRegresarInventarioVentasActionPerformed
+
+    private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
+        if (venta.insertarVenta(idUs)) {
+            int id, cantidad;
+            boolean insertados = true;
+            for (int i = 0; i < TBVentas.getRowCount(); i++) {
+                if (insertados) {
+                    id = Integer.parseInt((String) TBVentas.getValueAt(i, 0));
+                    cantidad = Integer.parseInt((String) TBVentas.getValueAt(i, 2));
+                    insertados = venta.insertarDVentas(id, cantidad, idUs);
+                } else {
+                    break;
+                }
+            }
+            if (insertados) {
+                new rojerusan.RSNotifyAnimated("¡ÉXITO!", "Ventas realizada correctamente",
+                        5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
+                        RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
+            } else {
+                new rojerusan.RSNotifyAnimated("¡ERROR!", "Hubo un error al realizar las ventas",
+                        5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
+                        RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_btnVenderActionPerformed
 
     private boolean verificarProveedor() {
         if (txtNombreEmpresa.getText().length() == 0) {
@@ -1698,36 +1746,31 @@ public class Principal extends javax.swing.JInternalFrame {
                     RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
             txtDetallePres.requestFocus();
             return false;
-        } else if(cmbMarca.equals("Escoja una opción ") || cmbMarca.equals("Agregar"))
-        {
+        } else if (cmbMarca.equals("Escoja una opción ") || cmbMarca.equals("Agregar")) {
             new rojerusan.RSNotifyAnimated("¡ERROR!", "Selecciona una marca correcta",
                     5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
                     RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
             cmbMarca.requestFocus();
             return false;
-        } else if(cmbTProducto.equals("Escoja una opción ") || cmbTProducto.equals("Agregar"))
-        {
+        } else if (cmbTProducto.equals("Escoja una opción ") || cmbTProducto.equals("Agregar")) {
             new rojerusan.RSNotifyAnimated("¡ERROR!", "Selecciona una marca correcta",
                     5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
                     RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
             cmbTProducto.requestFocus();
             return false;
-        } else if(cmbProveedor.equals("Escoja una opción ") || cmbProveedor.equals("Agregar"))
-        {
+        } else if (cmbProveedor.equals("Escoja una opción ") || cmbProveedor.equals("Agregar")) {
             new rojerusan.RSNotifyAnimated("¡ERROR!", "Selecciona una marca correcta",
                     5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
                     RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
             cmbProveedor.requestFocus();
             return false;
-        } else if(cmbPresentacionCompra.equals("Escoja una opción ") || cmbPresentacionCompra.equals("Agregar"))
-        {
+        } else if (cmbPresentacionCompra.equals("Escoja una opción ") || cmbPresentacionCompra.equals("Agregar")) {
             new rojerusan.RSNotifyAnimated("¡ERROR!", "Selecciona una marca correcta",
                     5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
                     RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
             cmbPresentacionCompra.requestFocus();
             return false;
-        }
-        else {
+        } else {
             return true;
         }
     }
@@ -1747,6 +1790,20 @@ public class Principal extends javax.swing.JInternalFrame {
         TBInventario.setModel(inventario.getInventario(txtCodigo.getText(), presentacion, marca, producto, TBInventario));
     }
 
+    private void Numeros(KeyEvent e) {
+        if ((e.getKeyChar() < '0' || e.getKeyChar() > '9')) {
+            e.consume();
+        }
+    }
+
+    public void setIdUs(int idUs) {
+        this.idUs = idUs;
+    }
+
+    private int idUs;
+    private ArrayList<datosProducto> Datos = new ArrayList<>();
+    private int posicion = 0;
+    private final Ventas venta;
     private final Inventario inventario;
     private final Compras compras;
     private final Proveedor proveedor;
@@ -1783,7 +1840,7 @@ public class Principal extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnNuevaVenta;
     private javax.swing.JButton btnNuevoProveedor;
     private javax.swing.JButton btnRealizarCompras;
-    private javax.swing.JButton btnRealizarVenta;
+    private javax.swing.JButton btnRegresarInventarioVentas;
     private javax.swing.JButton btnVender;
     private javax.swing.JButton btnVerCompras;
     private javax.swing.JButton btnVerProveedor;
@@ -1864,6 +1921,7 @@ public class Principal extends javax.swing.JInternalFrame {
     private rojerusan.RSPanelsSlider rSPanelsSlider1;
     private javax.swing.JTextField txCódigo;
     private javax.swing.JTextField txtCantidad;
+    private javax.swing.JTextField txtCantidadVenta;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtCosto;
     private javax.swing.JTextField txtDetallePres;

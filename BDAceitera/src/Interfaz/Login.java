@@ -197,7 +197,7 @@ public class Login extends javax.swing.JFrame {
             this.dispose();
             Menus m = new Menus();
             m.setVisible(true);
-            m.setUs(user.getUsuario());
+            m.setUs(user.getUsuario(),user.getId());
         } else {
             new rojerusan.RSNotifyAnimated("¡ERROR!", "Usuario y/o contraseña incorrecta",
                     5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,

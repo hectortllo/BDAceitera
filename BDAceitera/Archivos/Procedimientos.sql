@@ -2,6 +2,7 @@ delimiter //
 DROP PROCEDURE IF EXISTS InsertarUsuario //
 DROP PROCEDURE IF EXISTS InsertarProveedor //
 DROP PROCEDURE IF EXISTS InsertarProducto //
+DROP PROCEDURE IF EXISTS InsertarVenta //
 CREATE PROCEDURE InsertarUsuario(vNombre VARCHAR(25), vApellido VARCHAR(25), vtelefono VARCHAR(12), vPassword VARCHAR(150), 
 	vActivo BOOLEAN, vIdTipoUsuario INT)
     
@@ -34,5 +35,17 @@ BEGIN
     INSERT INTO detallecompra(Producto_id, compras_id, cantidad, costo) 
     VALUES(vIdProducto, vIdCompra, vCantidad, vCosto);
 END; //
-	
+
+CREATE PROCEDURE InsertarVenta(vIdProducto INT, vCantidad INT,vIdUs INT)
+BEGIN
+	DECLARE vIdVenta INT UNSIGNED DEFAULT 0;
+    
+    select max(id) into vIdVenta from ventas;
+    
+    insert into detalleventas(ventas_id,Producto_id,cantidad,precio)
+    values(vIdVenta,vIdProducto,vCantidad,0);
+    
+    update producto set cantidad=cantidad-vCantidad where id=vIdProducto;
+END; //
+
 delimiter ;
