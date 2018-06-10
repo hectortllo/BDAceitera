@@ -32,6 +32,7 @@ public class Proveedor {
             procedimiento.execute();
         } catch (SQLException ex) {
             Logger.getLogger(Proveedor.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
         return true;
     }

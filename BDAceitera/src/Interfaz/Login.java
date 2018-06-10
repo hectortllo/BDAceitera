@@ -27,6 +27,7 @@ public class Login extends javax.swing.JFrame {
         user = new Usuario();
         this.setUndecorated(true);
         initComponents();
+        txtUs.requestFocus();
         this.setLocationRelativeTo(null);
         Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 27, 27);
         AWTUtilities.setWindowShape(this, forma);

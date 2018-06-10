@@ -99,7 +99,8 @@ public class Inventario {
                     + "i.codigo LIKE '%" + codigo + "%' "
                     + "AND m.marca LIKE '%" + marca + "%' "
                     + "AND pres.presentacion LIKE '%" + presentacion + "%' "
-                    + "AND tp.tipoProducto LIKE '%" + TProd + "%';";
+                    + "AND tp.tipoProducto LIKE '%" + TProd + "%'"
+                    + "ORDER BY num;";
             DefaultTableModel modelo = new DefaultTableModel(null, titulos);
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
