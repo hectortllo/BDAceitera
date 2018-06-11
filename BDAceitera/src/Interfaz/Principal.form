@@ -2197,6 +2197,25 @@
                 <Property name="useNullLayout" type="boolean" value="false"/>
               </Layout>
               <SubComponents>
+                <Component class="javax.swing.JButton" name="btnBuscarCompras">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/Imagenes/search.png"/>
+                    </Property>
+                    <Property name="contentAreaFilled" type="boolean" value="false"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Cursor de Mano"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarComprasActionPerformed"/>
+                  </Events>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="1030" y="40" width="-1" height="-1"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
                 <Component class="javax.swing.JLabel" name="lbltitulo6">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -2236,7 +2255,7 @@
                           </Border>
                         </Property>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="5" rowCount="2">
+                          <Table columnCount="5" rowCount="0">
                             <Column editable="false" title="No" type="java.lang.Object"/>
                             <Column editable="false" title="Nombre Empresa" type="java.lang.Object"/>
                             <Column editable="false" title="Nombre distribuidor" type="java.lang.Object"/>
@@ -2244,6 +2263,7 @@
                             <Column editable="false" title="Total" type="java.lang.Object"/>
                           </Table>
                         </Property>
+                        <Property name="altoHead" type="int" value="40"/>
                         <Property name="colorBackgoundHead" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="33" green="33" red="0" type="rgb"/>
                         </Property>
@@ -2300,6 +2320,7 @@
                         <Property name="fuenteHead" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Lucida Calligraphy" size="18" style="3"/>
                         </Property>
+                        <Property name="rowHeight" type="int" value="25"/>
                         <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>
@@ -2319,6 +2340,9 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNoCompraKeyPressed"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="310" y="50" width="290" height="-1"/>
@@ -2434,13 +2458,14 @@
                           </Border>
                         </Property>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="4" rowCount="2">
-                            <Column editable="false" title="No Venta" type="java.lang.Object"/>
+                          <Table columnCount="4" rowCount="0">
+                            <Column editable="false" title="No Compra" type="java.lang.Object"/>
                             <Column editable="false" title="C&#xf3;digo producto" type="java.lang.Object"/>
                             <Column editable="false" title="Cantidad" type="java.lang.Object"/>
                             <Column editable="false" title="Precio" type="java.lang.Object"/>
                           </Table>
                         </Property>
+                        <Property name="altoHead" type="int" value="40"/>
                         <Property name="colorBackgoundHead" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="33" green="33" red="0" type="rgb"/>
                         </Property>
@@ -2492,6 +2517,7 @@
                         <Property name="fuenteHead" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Lucida Calligraphy" size="18" style="3"/>
                         </Property>
+                        <Property name="rowHeight" type="int" value="25"/>
                         <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>
@@ -2547,6 +2573,25 @@
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="470" y="60" width="130" height="-1"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JButton" name="jButton1">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/Imagenes/Atras.png"/>
+                    </Property>
+                    <Property name="contentAreaFilled" type="boolean" value="false"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Cursor de Mano"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                  </Events>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="1110" y="40" width="-1" height="-1"/>
                     </Constraint>
                   </Constraints>
                 </Component>

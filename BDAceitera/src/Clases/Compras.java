@@ -10,6 +10,8 @@ import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -43,8 +45,8 @@ public class Compras {
     public boolean insertarCompra(float total) {
         try {
             Calendar c = Calendar.getInstance();
-            String dia = Integer.toString(c.get(Calendar.DATE) + 1);
-            String mes = Integer.toString(c.get(Calendar.MONTH));
+            String dia = Integer.toString(c.get(Calendar.DATE));
+            String mes = Integer.toString(c.get(Calendar.MONTH)+1);
             String anio = Integer.toString(c.get(Calendar.YEAR));
             String fecha = anio + "/" + mes + "/" + dia;
             String query = "INSERT INTO compras(total, fecha) VALUES(?,?);";
@@ -112,5 +114,65 @@ public class Compras {
             Logger.getLogger(Proveedor.class.getName()).log(Level.SEVERE, null, ex);
         }
         return true;
+    }
+    
+    public DefaultTableModel getCompras(String id, String Fecha, JTable tabla) {
+        try {
+            String titulos[] = new String[5];
+            for (byte i = 0; i < titulos.length; i++) {
+                titulos[i] = tabla.getColumnName(i);
+            }
+            String sql = "SELECT compras.id AS id, compras.fecha AS fecha, compras.total AS total,"
+                    + "proveedor.nombreDistribuidor AS Distribuidor, "
+                    + "proveedor.nombreEmpresa AS Empresa FROM compras INNER JOIN detallecompra ON "
+                    + "compras.id = detallecompra.compras_id INNER JOIN producto ON "
+                    + "detallecompra.Producto_id = producto.id INNER JOIN proveedor ON "
+                    + "producto.Proveedor_id = proveedor.id WHERE compras.id LIKE '%" + id + "%'"
+                    + "AND fecha LIKE '%" + Fecha + "%' GROUP BY compras.id;";
+            DefaultTableModel modelo = new DefaultTableModel(null, titulos);
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            String registros[] = new String[5];
+            while (rs.next()) {
+                registros[0] = rs.getString("id");
+                registros[1] = rs.getString("Empresa");
+                registros[2] = rs.getString("Distribuidor");
+                registros[3] = rs.getString("fecha");
+                registros[4] = rs.getString("total");
+                modelo.addRow(registros);
+            }
+            return modelo;
+        } catch (SQLException ex) {
+            Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
+    public DefaultTableModel getDCompras(int id, JTable tabla) {
+        try {
+            String titulos[] = new String[4];
+            for (byte i = 0; i < titulos.length; i++) {
+                titulos[i] = tabla.getColumnName(i);
+            }
+            String sql = "SELECT compras.id AS id, detallecompra.cantidad AS cantidad, producto.codigo AS Codigo, "
+                    + "producto.precio AS precio FROM compras "
+                    + "INNER JOIN detallecompra ON compras.id = detallecompra.compras_id INNER JOIN producto ON "
+                    + "detallecompra.Producto_id = producto.id WHERE compras.id = " + id + ";";
+            DefaultTableModel modelo = new DefaultTableModel(null, titulos);
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            String registros[] = new String[4];
+            while (rs.next()) {
+                registros[0] = rs.getString("id");
+                registros[1] = rs.getString("Codigo");
+                registros[2] = rs.getString("cantidad");
+                registros[3] = rs.getString("precio");
+                modelo.addRow(registros);
+            }
+            return modelo;
+        } catch (SQLException ex) {
+            Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
     }
 }

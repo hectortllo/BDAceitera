@@ -162,6 +162,7 @@ public class Principal extends javax.swing.JInternalFrame {
         cmbTProducto = new rojerusan.RSComboMetro();
         cmbProveedor = new rojerusan.RSComboMetro();
         pnlVerCompras = new javax.swing.JPanel();
+        btnBuscarCompras = new javax.swing.JButton();
         lbltitulo6 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
         TBVerCompras = new rojerusan.RSTableMetro();
@@ -175,6 +176,7 @@ public class Principal extends javax.swing.JInternalFrame {
         lbltitulo7 = new javax.swing.JLabel();
         txtNoCompras = new javax.swing.JTextField();
         jLabel32 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         pnlNuevoProveedor = new javax.swing.JPanel();
         lbltitulo8 = new javax.swing.JLabel();
         lblInfoProv = new javax.swing.JLabel();
@@ -1055,6 +1057,16 @@ public class Principal extends javax.swing.JInternalFrame {
         pnlVerCompras.setName("pnlVRealizadas"); // NOI18N
         pnlVerCompras.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnBuscarCompras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/search.png"))); // NOI18N
+        btnBuscarCompras.setContentAreaFilled(false);
+        btnBuscarCompras.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscarCompras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarComprasActionPerformed(evt);
+            }
+        });
+        pnlVerCompras.add(btnBuscarCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 40, -1, -1));
+
         lbltitulo6.setFont(new java.awt.Font("Lucida Calligraphy", 3, 24)); // NOI18N
         lbltitulo6.setForeground(new java.awt.Color(0, 51, 51));
         lbltitulo6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1064,8 +1076,7 @@ public class Principal extends javax.swing.JInternalFrame {
         TBVerCompras.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 51)));
         TBVerCompras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "No", "Nombre Empresa", "Nombre distribuidor", "Fecha", "Total"
@@ -1079,6 +1090,7 @@ public class Principal extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        TBVerCompras.setAltoHead(40);
         TBVerCompras.setColorBackgoundHead(new java.awt.Color(0, 51, 51));
         TBVerCompras.setColorFilasBackgound2(new java.awt.Color(0, 51, 51));
         TBVerCompras.setColorFilasForeground1(new java.awt.Color(0, 51, 51));
@@ -1088,6 +1100,7 @@ public class Principal extends javax.swing.JInternalFrame {
         TBVerCompras.setFuenteFilas(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         TBVerCompras.setFuenteFilasSelect(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         TBVerCompras.setFuenteHead(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        TBVerCompras.setRowHeight(25);
         jScrollPane7.setViewportView(TBVerCompras);
         if (TBVerCompras.getColumnModel().getColumnCount() > 0) {
             TBVerCompras.getColumnModel().getColumn(0).setResizable(false);
@@ -1103,6 +1116,11 @@ public class Principal extends javax.swing.JInternalFrame {
         txtNoCompra.setBackground(new java.awt.Color(0, 51, 51));
         txtNoCompra.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         txtNoCompra.setForeground(new java.awt.Color(255, 255, 255));
+        txtNoCompra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNoCompraKeyPressed(evt);
+            }
+        });
         pnlVerCompras.add(txtNoCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 290, -1));
 
         jLabel29.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
@@ -1135,11 +1153,10 @@ public class Principal extends javax.swing.JInternalFrame {
         TBDetComprasRealizas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 51)));
         TBDetComprasRealizas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "No Venta", "Código producto", "Cantidad", "Precio"
+                "No Compra", "Código producto", "Cantidad", "Precio"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -1150,6 +1167,7 @@ public class Principal extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        TBDetComprasRealizas.setAltoHead(40);
         TBDetComprasRealizas.setColorBackgoundHead(new java.awt.Color(0, 51, 51));
         TBDetComprasRealizas.setColorFilasBackgound2(new java.awt.Color(0, 51, 51));
         TBDetComprasRealizas.setColorFilasForeground1(new java.awt.Color(0, 51, 51));
@@ -1159,6 +1177,7 @@ public class Principal extends javax.swing.JInternalFrame {
         TBDetComprasRealizas.setFuenteFilas(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         TBDetComprasRealizas.setFuenteFilasSelect(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         TBDetComprasRealizas.setFuenteHead(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        TBDetComprasRealizas.setRowHeight(25);
         jScrollPane8.setViewportView(TBDetComprasRealizas);
 
         pnlDetalleCompras.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 1170, 480));
@@ -1178,6 +1197,16 @@ public class Principal extends javax.swing.JInternalFrame {
         jLabel32.setForeground(new java.awt.Color(0, 51, 51));
         jLabel32.setText("No compra: ");
         pnlDetalleCompras.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 60, 130, -1));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Atras.png"))); // NOI18N
+        jButton1.setContentAreaFilled(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        pnlDetalleCompras.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 40, -1, -1));
 
         rSPanelsSlider1.add(pnlDetalleCompras, "card7");
 
@@ -1382,6 +1411,7 @@ public class Principal extends javax.swing.JInternalFrame {
             this.btnNuevoProveedor.setSelected(false);
             this.btnVerProveedor.setSelected(false);
             this.btnAddUser.setSelected(false);
+            VerCompras();
             rSPanelsSlider1.setPanelSlider(10, pnlVerCompras, RSPanelsSlider.DIRECT.LEFT);
         }
     }//GEN-LAST:event_btnVerComprasActionPerformed
@@ -1470,7 +1500,12 @@ public class Principal extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void MIDetComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIDetComprasActionPerformed
-        rSPanelsSlider1.setPanelSlider(10, pnlDetalleCompras, RSPanelsSlider.DIRECT.UP);
+        int seleccion = TBVerCompras.getSelectedRow();
+        if (seleccion != -1) {
+            int id = Integer.parseInt((String) TBVerCompras.getValueAt(seleccion, 0));
+            TBDetComprasRealizas.setModel(compras.getDCompras(id, TBComprar));
+            rSPanelsSlider1.setPanelSlider(10, pnlDetalleCompras, RSPanelsSlider.DIRECT.UP);
+        }
     }//GEN-LAST:event_MIDetComprasActionPerformed
 
     private void MIAddVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIAddVentaActionPerformed
@@ -1610,6 +1645,7 @@ public class Principal extends javax.swing.JInternalFrame {
         CancelarCompra();
         posicion = 0;
         Datos.clear();
+        btnAgregar.setEnabled(true);
     }//GEN-LAST:event_btnNuevaCompra1ActionPerformed
 
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
@@ -1788,6 +1824,18 @@ public class Principal extends javax.swing.JInternalFrame {
         BVentas();
     }//GEN-LAST:event_btnBuscarVentasActionPerformed
 
+    private void txtNoCompraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNoCompraKeyPressed
+        VerCompras();
+    }//GEN-LAST:event_txtNoCompraKeyPressed
+
+    private void btnBuscarComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarComprasActionPerformed
+        VerCompras();
+    }//GEN-LAST:event_btnBuscarComprasActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        limpiarDetVentas_compra(TBDetComprasRealizas, pnlVerCompras);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private boolean verificarProveedor() {
         if (txtNombreEmpresa.getText().length() == 0) {
             new rojerusan.RSNotifyAnimated("¡ERROR!", "Campo Nombre Empresa vacío, por favor llénelo",
@@ -1848,6 +1896,11 @@ public class Principal extends javax.swing.JInternalFrame {
     }
 
     private boolean VerificarRealizarCompras() {
+        String marca = (String)cmbMarca.getSelectedItem();
+        System.out.println(marca);
+        String tProducto = (String)cmbTProducto.getSelectedItem();
+        String proveedor = (String)cmbProveedor.getSelectedItem();
+        String presentCompra = (String)cmbPresentacionCompra.getSelectedItem();
         if (txCódigo.getText().length() == 0) {
             txCódigo.requestFocus();
             new rojerusan.RSNotifyAnimated("¡ERROR!", "Campo Código vacío, por favor llénelo",
@@ -1878,26 +1931,26 @@ public class Principal extends javax.swing.JInternalFrame {
                     RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
             txtDetallePres.requestFocus();
             return false;
-        } else if (cmbMarca.equals("Escoja una opción ") || cmbMarca.equals("Agregar")) {
-            new rojerusan.RSNotifyAnimated("¡ERROR!", "Selecciona una marca correcta",
+        } else if (marca.equals("Escoja una opción") || marca.equals("Agregar")) {
+            new rojerusan.RSNotifyAnimated("¡ERROR!", "Seleccione una marca correcta",
                     5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
                     RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
             cmbMarca.requestFocus();
             return false;
-        } else if (cmbTProducto.equals("Escoja una opción ") || cmbTProducto.equals("Agregar")) {
-            new rojerusan.RSNotifyAnimated("¡ERROR!", "Selecciona una marca correcta",
+        } else if (tProducto.equals("Escoja una opción") || tProducto.equals("Agregar")) {
+            new rojerusan.RSNotifyAnimated("¡ERROR!", "Seleccione un Tipo de Producto correcto",
                     5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
                     RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
             cmbTProducto.requestFocus();
             return false;
-        } else if (cmbProveedor.equals("Escoja una opción ") || cmbProveedor.equals("Agregar")) {
-            new rojerusan.RSNotifyAnimated("¡ERROR!", "Selecciona una marca correcta",
+        } else if (proveedor.equals("Escoja una opción") || proveedor.equals("Agregar")) {
+            new rojerusan.RSNotifyAnimated("¡ERROR!", "Seleccione un Proveedor correcto",
                     5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
                     RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
             cmbProveedor.requestFocus();
             return false;
-        } else if (cmbPresentacionCompra.equals("Escoja una opción ") || cmbPresentacionCompra.equals("Agregar")) {
-            new rojerusan.RSNotifyAnimated("¡ERROR!", "Selecciona una marca correcta",
+        } else if (presentCompra.equals("Escoja una opción") || presentCompra.equals("Agregar")) {
+            new rojerusan.RSNotifyAnimated("¡ERROR!", "Seleccione una Presentación correcta",
                     5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
                     RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
             cmbPresentacionCompra.requestFocus();
@@ -1976,6 +2029,14 @@ public class Principal extends javax.swing.JInternalFrame {
             TBVerVentas.setModel(venta.getVentas(txtNoVenta.getText(), getFecha(DCFechaVenta), TBVerVentas));
         }
     }
+    
+    private void VerCompras()
+    {
+        if(getFecha(DCFechaCompras) == null)
+            TBVerCompras.setModel(compras.getCompras(txtNoCompra.getText(), "", TBVerCompras));
+        else
+            TBVerCompras.setModel(compras.getCompras(txtNoCompra.getText(), getFecha(DCFechaCompras), TBVerCompras));
+    }
 
     private void limpiarDetVentas_compra(RSTableMetro table, JPanel panel) {
         DefaultTableModel modelo = (DefaultTableModel) table.getModel();
@@ -2025,6 +2086,7 @@ public class Principal extends javax.swing.JInternalFrame {
     private rojerusan.RSTableMetro TBVerVentas;
     private javax.swing.JButton btnAddUser;
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnBuscarCompras;
     private javax.swing.JButton btnBuscarVentas;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnComprar;
@@ -2047,6 +2109,7 @@ public class Principal extends javax.swing.JInternalFrame {
     private rojerusan.RSComboMetro cmbPresentacionCompra;
     private rojerusan.RSComboMetro cmbProveedor;
     private rojerusan.RSComboMetro cmbTProducto;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
