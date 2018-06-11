@@ -844,6 +844,7 @@ public class Principal extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        TBComprar.setAltoHead(40);
         TBComprar.setColorBackgoundHead(new java.awt.Color(0, 51, 51));
         TBComprar.setColorFilasBackgound2(new java.awt.Color(0, 51, 51));
         TBComprar.setColorFilasForeground1(new java.awt.Color(0, 51, 51));
@@ -853,6 +854,7 @@ public class Principal extends javax.swing.JInternalFrame {
         TBComprar.setFuenteFilas(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         TBComprar.setFuenteFilasSelect(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         TBComprar.setFuenteHead(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        TBComprar.setRowHeight(25);
         jScrollPane6.setViewportView(TBComprar);
 
         pnlRealizarCompras.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 60, 680, 410));
@@ -910,11 +912,21 @@ public class Principal extends javax.swing.JInternalFrame {
         txtCantidad.setBackground(new java.awt.Color(0, 51, 51));
         txtCantidad.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         txtCantidad.setForeground(new java.awt.Color(255, 255, 255));
+        txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCantidadKeyTyped(evt);
+            }
+        });
         pnlRealizarCompras.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 370, -1));
 
         txtPrecio.setBackground(new java.awt.Color(0, 51, 51));
         txtPrecio.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         txtPrecio.setForeground(new java.awt.Color(255, 255, 255));
+        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyTyped(evt);
+            }
+        });
         pnlRealizarCompras.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 370, -1));
 
         txtDetallePres.setBackground(new java.awt.Color(0, 51, 51));
@@ -925,6 +937,11 @@ public class Principal extends javax.swing.JInternalFrame {
         txtCosto.setBackground(new java.awt.Color(0, 51, 51));
         txtCosto.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         txtCosto.setForeground(new java.awt.Color(255, 255, 255));
+        txtCosto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCostoKeyTyped(evt);
+            }
+        });
         pnlRealizarCompras.add(txtCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 370, -1));
 
         jLabel17.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
@@ -946,6 +963,11 @@ public class Principal extends javax.swing.JInternalFrame {
         txtMontoCompra.setBackground(new java.awt.Color(0, 51, 51));
         txtMontoCompra.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         txtMontoCompra.setForeground(new java.awt.Color(255, 255, 255));
+        txtMontoCompra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMontoCompraKeyTyped(evt);
+            }
+        });
         pnlRealizarCompras.add(txtMontoCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 480, 150, -1));
 
         jLabel22.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
@@ -1120,6 +1142,9 @@ public class Principal extends javax.swing.JInternalFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtNoCompraKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNoCompraKeyTyped(evt);
+            }
         });
         pnlVerCompras.add(txtNoCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 290, -1));
 
@@ -1199,6 +1224,7 @@ public class Principal extends javax.swing.JInternalFrame {
         pnlDetalleCompras.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 60, 130, -1));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Atras.png"))); // NOI18N
+        jButton1.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Agregar más</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
         jButton1.setContentAreaFilled(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -1328,6 +1354,7 @@ public class Principal extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        TBVerProveedor.setAltoHead(40);
         TBVerProveedor.setColorBackgoundHead(new java.awt.Color(0, 51, 51));
         TBVerProveedor.setColorFilasBackgound2(new java.awt.Color(0, 51, 51));
         TBVerProveedor.setColorFilasForeground1(new java.awt.Color(0, 51, 51));
@@ -1336,6 +1363,7 @@ public class Principal extends javax.swing.JInternalFrame {
         TBVerProveedor.setFuenteFilas(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         TBVerProveedor.setFuenteFilasSelect(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         TBVerProveedor.setFuenteHead(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        TBVerProveedor.setRowHeight(25);
         jScrollPane9.setViewportView(TBVerProveedor);
 
         pnlVerProv.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 1170, 480));
@@ -1349,6 +1377,11 @@ public class Principal extends javax.swing.JInternalFrame {
         txtNoCompras1.setBackground(new java.awt.Color(0, 51, 51));
         txtNoCompras1.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         txtNoCompras1.setForeground(new java.awt.Color(255, 255, 255));
+        txtNoCompras1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNoCompras1KeyPressed(evt);
+            }
+        });
         pnlVerProv.add(txtNoCompras1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, 400, -1));
 
         jLabel33.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
@@ -1359,6 +1392,11 @@ public class Principal extends javax.swing.JInternalFrame {
         txtNoCompras2.setBackground(new java.awt.Color(0, 51, 51));
         txtNoCompras2.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         txtNoCompras2.setForeground(new java.awt.Color(255, 255, 255));
+        txtNoCompras2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNoCompras2KeyPressed(evt);
+            }
+        });
         pnlVerProv.add(txtNoCompras2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 50, 380, -1));
 
         jLabel39.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
@@ -1452,6 +1490,7 @@ public class Principal extends javax.swing.JInternalFrame {
             this.btnNuevoProveedor.setSelected(false);
             this.btnVerProveedor.setSelected(true);
             this.btnAddUser.setSelected(false);
+            VerProveedores();
             rSPanelsSlider1.setPanelSlider(10, pnlVerProv, RSPanelsSlider.DIRECT.LEFT);
         }
     }//GEN-LAST:event_btnVerProveedorActionPerformed
@@ -1585,7 +1624,12 @@ public class Principal extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtMontoVentaKeyPressed
 
     private void txtMontoVentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMontoVentaKeyTyped
-        // TODO add your handling code here:
+        if(!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.'){
+            evt.consume();
+        }
+        if(evt.getKeyChar() == '.' && txtMontoVenta.getText().contains(".")){
+            evt.consume();
+        }
     }//GEN-LAST:event_txtMontoVentaKeyTyped
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
@@ -1601,10 +1645,6 @@ public class Principal extends javax.swing.JInternalFrame {
             int tipoProductoId = cmbTProducto.getSelectedIndex() - 1;
             int proveedorId = cmbProveedor.getSelectedIndex() - 1;
             int presentacionId = cmbPresentacionCompra.getSelectedIndex() - 1;
-            System.out.println("Marca: " + marcaId);
-            System.out.println("tipoProductoId: " + tipoProductoId);
-            System.out.println("proveedorId: " + proveedorId);
-            System.out.println("presentacionId: " + presentacionId);
             float subTotal = cantidad * precio;
             float totalCompra = 0;
             if (txtTotalCompra.getText().length() == 0) {
@@ -1638,6 +1678,7 @@ public class Principal extends javax.swing.JInternalFrame {
             Datos.get(posicion).setProveedor_id(proveedorId);
             Datos.get(posicion).setTipoProducto_id(tipoProductoId);
             posicion++;
+            limpiarCompras();
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -1683,9 +1724,6 @@ public class Principal extends javax.swing.JInternalFrame {
                         btnComprar.setEnabled(false);
                         btnAgregar.setEnabled(false);
                         //limpiarCajas();
-                        for (int i = 0; i < Datos.size(); i++) {
-                            System.out.println(Datos.get(i).getCodigo());
-                        }
                         posicion = 0;
                         Datos.clear();
                         TBInventario.setModel(inventario.getInventario("", "", "", "", TBInventario));
@@ -1836,6 +1874,55 @@ public class Principal extends javax.swing.JInternalFrame {
         limpiarDetVentas_compra(TBDetComprasRealizas, pnlVerCompras);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
+        char c = evt.getKeyChar();
+        if (((int) c >= 0 && (int) c <= 47) || ((int) c >= 58 && (int) c <= 255)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCantidadKeyTyped
+
+    private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
+        if(!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.'){
+            evt.consume();
+        }
+        if(evt.getKeyChar() == '.' && txtPrecio.getText().contains(".")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPrecioKeyTyped
+
+    private void txtCostoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCostoKeyTyped
+        if(!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.'){
+            evt.consume();
+        }
+        if(evt.getKeyChar() == '.' && txtCosto.getText().contains(".")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCostoKeyTyped
+
+    private void txtMontoCompraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMontoCompraKeyTyped
+        if(!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.'){
+            evt.consume();
+        }
+        if(evt.getKeyChar() == '.' && txtMontoCompra.getText().contains(".")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtMontoCompraKeyTyped
+
+    private void txtNoCompraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNoCompraKeyTyped
+        char c = evt.getKeyChar();
+        if (((int) c >= 0 && (int) c <= 47) || ((int) c >= 58 && (int) c <= 255)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNoCompraKeyTyped
+
+    private void txtNoCompras1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNoCompras1KeyPressed
+        VerProveedores();
+    }//GEN-LAST:event_txtNoCompras1KeyPressed
+
+    private void txtNoCompras2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNoCompras2KeyPressed
+        VerProveedores();
+    }//GEN-LAST:event_txtNoCompras2KeyPressed
+
     private boolean verificarProveedor() {
         if (txtNombreEmpresa.getText().length() == 0) {
             new rojerusan.RSNotifyAnimated("¡ERROR!", "Campo Nombre Empresa vacío, por favor llénelo",
@@ -1877,6 +1964,17 @@ public class Principal extends javax.swing.JInternalFrame {
     }
 
     private void limpiarCajas() {
+        limpiarCompras();
+        DefaultTableModel modelo = (DefaultTableModel) TBComprar.getModel();
+        for (int i = 0; i < TBComprar.getRowCount(); i++) {
+            modelo.removeRow(i);
+            i -= 1;
+        }
+        btnComprar.setEnabled(false);
+    }
+    
+    private void limpiarCompras()
+    {
         txCódigo.setText("");
         txtCantidad.setText("");
         txtPrecio.setText("");
@@ -1886,13 +1984,6 @@ public class Principal extends javax.swing.JInternalFrame {
         cmbTProducto.setSelectedItem("Escoja una opción");
         cmbProveedor.setSelectedItem("Escoja una opción");
         cmbPresentacionCompra.setSelectedItem("Escoja una opción");
-
-        DefaultTableModel modelo = (DefaultTableModel) TBComprar.getModel();
-        for (int i = 0; i < TBComprar.getRowCount(); i++) {
-            modelo.removeRow(i);
-            i -= 1;
-        }
-        btnComprar.setEnabled(false);
     }
 
     private boolean VerificarRealizarCompras() {
@@ -2036,6 +2127,14 @@ public class Principal extends javax.swing.JInternalFrame {
             TBVerCompras.setModel(compras.getCompras(txtNoCompra.getText(), "", TBVerCompras));
         else
             TBVerCompras.setModel(compras.getCompras(txtNoCompra.getText(), getFecha(DCFechaCompras), TBVerCompras));
+    }
+    
+    private void VerProveedores()
+    {
+        if((txtNoCompras1.getText().length() == 0) && txtNoCompras2.getText().length() == 0 )
+            TBVerProveedor.setModel(proveedor.getProveedores("", "", TBVerProveedor));
+        else
+            TBVerProveedor.setModel(proveedor.getProveedores(txtNoCompras1.getText(), txtNoCompras2.getText(), TBVerProveedor));
     }
 
     private void limpiarDetVentas_compra(RSTableMetro table, JPanel panel) {
