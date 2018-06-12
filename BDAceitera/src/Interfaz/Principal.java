@@ -174,9 +174,9 @@ public class Principal extends javax.swing.JInternalFrame {
         jScrollPane8 = new javax.swing.JScrollPane();
         TBDetComprasRealizas = new rojerusan.RSTableMetro();
         lbltitulo7 = new javax.swing.JLabel();
-        txtNoCompras = new javax.swing.JTextField();
-        jLabel32 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        lblTotalDCompras = new javax.swing.JLabel();
+        lblFechaDCompras = new javax.swing.JLabel();
         pnlNuevoProveedor = new javax.swing.JPanel();
         lbltitulo8 = new javax.swing.JLabel();
         lblInfoProv = new javax.swing.JLabel();
@@ -1213,18 +1213,8 @@ public class Principal extends javax.swing.JInternalFrame {
         lbltitulo7.setText("Detalle de las compras");
         pnlDetalleCompras.add(lbltitulo7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1190, 50));
 
-        txtNoCompras.setBackground(new java.awt.Color(0, 51, 51));
-        txtNoCompras.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
-        txtNoCompras.setForeground(new java.awt.Color(255, 255, 255));
-        pnlDetalleCompras.add(txtNoCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 50, 180, -1));
-
-        jLabel32.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
-        jLabel32.setForeground(new java.awt.Color(0, 51, 51));
-        jLabel32.setText("No compra: ");
-        pnlDetalleCompras.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 60, 130, -1));
-
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Atras.png"))); // NOI18N
-        jButton1.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Agregar más</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
+        jButton1.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Regresar a Compras Realizadas</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
         jButton1.setContentAreaFilled(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -1233,6 +1223,16 @@ public class Principal extends javax.swing.JInternalFrame {
             }
         });
         pnlDetalleCompras.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 40, -1, -1));
+
+        lblTotalDCompras.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        lblTotalDCompras.setForeground(new java.awt.Color(0, 51, 51));
+        lblTotalDCompras.setText("Total:");
+        pnlDetalleCompras.add(lblTotalDCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, 270, -1));
+
+        lblFechaDCompras.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        lblFechaDCompras.setForeground(new java.awt.Color(0, 51, 51));
+        lblFechaDCompras.setText("Fecha:");
+        pnlDetalleCompras.add(lblFechaDCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 210, -1));
 
         rSPanelsSlider1.add(pnlDetalleCompras, "card7");
 
@@ -1542,6 +1542,8 @@ public class Principal extends javax.swing.JInternalFrame {
         int seleccion = TBVerCompras.getSelectedRow();
         if (seleccion != -1) {
             int id = Integer.parseInt((String) TBVerCompras.getValueAt(seleccion, 0));
+            lblFechaDCompras.setText("Fecha: " + TBVerCompras.getValueAt(seleccion, 3));
+            lblTotalDCompras.setText("Total: " + TBVerCompras.getValueAt(seleccion, 4));
             TBDetComprasRealizas.setModel(compras.getDCompras(id, TBComprar));
             rSPanelsSlider1.setPanelSlider(10, pnlDetalleCompras, RSPanelsSlider.DIRECT.UP);
         }
@@ -2231,7 +2233,6 @@ public class Principal extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
@@ -2251,8 +2252,10 @@ public class Principal extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private rojeru_san.RSLabelFecha lblFecha;
+    private javax.swing.JLabel lblFechaDCompras;
     private javax.swing.JLabel lblFechaDVentas;
     private javax.swing.JLabel lblInfoProv;
+    private javax.swing.JLabel lblTotalDCompras;
     private javax.swing.JLabel lblTotalDVentas;
     private javax.swing.JLabel lbltitulo;
     private javax.swing.JLabel lbltitulo1;
@@ -2283,7 +2286,6 @@ public class Principal extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtMontoCompra;
     private javax.swing.JTextField txtMontoVenta;
     private javax.swing.JTextField txtNoCompra;
-    private javax.swing.JTextField txtNoCompras;
     private javax.swing.JTextField txtNoCompras1;
     private javax.swing.JTextField txtNoCompras2;
     private javax.swing.JTextField txtNoTelefonoD;
