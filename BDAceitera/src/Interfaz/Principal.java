@@ -1181,11 +1181,11 @@ public class Principal extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "No Compra", "Código producto", "Cantidad", "Precio"
+                "No Compra", "Código producto", "Cantidad", "Precio", "Subtotal"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1544,7 +1544,7 @@ public class Principal extends javax.swing.JInternalFrame {
             int id = Integer.parseInt((String) TBVerCompras.getValueAt(seleccion, 0));
             lblFechaDCompras.setText("Fecha: " + TBVerCompras.getValueAt(seleccion, 3));
             lblTotalDCompras.setText("Total: " + TBVerCompras.getValueAt(seleccion, 4));
-            TBDetComprasRealizas.setModel(compras.getDCompras(id, TBComprar));
+            TBDetComprasRealizas.setModel(compras.getDCompras(id, TBDetComprasRealizas));
             rSPanelsSlider1.setPanelSlider(10, pnlDetalleCompras, RSPanelsSlider.DIRECT.UP);
         }
     }//GEN-LAST:event_MIDetComprasActionPerformed

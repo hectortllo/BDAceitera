@@ -150,23 +150,24 @@ public class Compras {
     
     public DefaultTableModel getDCompras(int id, JTable tabla) {
         try {
-            String titulos[] = new String[4];
+            String titulos[] = new String[5];
             for (byte i = 0; i < titulos.length; i++) {
                 titulos[i] = tabla.getColumnName(i);
             }
-            String sql = "SELECT compras.id AS id, detallecompra.cantidad AS cantidad, producto.codigo AS Codigo, "
-                    + "producto.precio AS precio FROM compras "
-                    + "INNER JOIN detallecompra ON compras.id = detallecompra.compras_id INNER JOIN producto ON "
-                    + "detallecompra.Producto_id = producto.id WHERE compras.id = " + id + ";";
+            String sql = "SELECT detallecompra.compras_id AS id, producto.codigo AS codigo, "
+                    + "producto.cantidad AS cantidad, producto.precio AS precio FROM producto INNER JOIN " 
+                    + "detallecompra ON producto.id = detallecompra.Producto_id "
+                    + "WHERE detallecompra.compras_id = " + id + ";";
             DefaultTableModel modelo = new DefaultTableModel(null, titulos);
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
-            String registros[] = new String[4];
+            String registros[] = new String[5];
             while (rs.next()) {
                 registros[0] = rs.getString("id");
                 registros[1] = rs.getString("Codigo");
                 registros[2] = rs.getString("cantidad");
                 registros[3] = rs.getString("precio");
+                registros[4] = "" + (Float.parseFloat(registros[3]) * Integer.parseInt(registros[2]));
                 modelo.addRow(registros);
             }
             return modelo;
