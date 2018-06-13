@@ -181,13 +181,13 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel1MouseDragged
 
     private void PssContraseniaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PssContraseniaKeyPressed
-        if(evt.getKeyChar()==10){
+        if (evt.getKeyChar() == 10) {
             IncioSesion();
         }
     }//GEN-LAST:event_PssContraseniaKeyPressed
 
     private void txtUsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsKeyPressed
-        if(evt.getKeyChar()==10){
+        if (evt.getKeyChar() == 10) {
             PssContrasenia.setText("");
             PssContrasenia.requestFocus();
         }
@@ -198,7 +198,7 @@ public class Login extends javax.swing.JFrame {
             this.dispose();
             Menus m = new Menus();
             m.setVisible(true);
-            m.setUs(user.getUsuario(),user.getId());
+            m.setUs(user.getUsuario(), user.getId(), user.isAdmin());
         } else {
             new rojerusan.RSNotifyAnimated("¡ERROR!", "Usuario y/o contraseña incorrecta",
                     5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
@@ -206,6 +206,7 @@ public class Login extends javax.swing.JFrame {
             txtUs.requestFocus();
         }
     }
+
     /**
      * @param args the command line arguments
      */

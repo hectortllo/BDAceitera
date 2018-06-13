@@ -46,7 +46,7 @@ public class Compras {
         try {
             Calendar c = Calendar.getInstance();
             String dia = Integer.toString(c.get(Calendar.DATE));
-            String mes = Integer.toString(c.get(Calendar.MONTH)+1);
+            String mes = Integer.toString(c.get(Calendar.MONTH) + 1);
             String anio = Integer.toString(c.get(Calendar.YEAR));
             String fecha = anio + "/" + mes + "/" + dia;
             String query = "INSERT INTO compras(total, fecha) VALUES(?,?);";
@@ -115,7 +115,7 @@ public class Compras {
         }
         return true;
     }
-    
+
     public DefaultTableModel getCompras(String id, String Fecha, JTable tabla) {
         try {
             String titulos[] = new String[5];
@@ -147,7 +147,7 @@ public class Compras {
             return null;
         }
     }
-    
+
     public DefaultTableModel getDCompras(int id, JTable tabla) {
         try {
             String titulos[] = new String[5];
@@ -155,7 +155,7 @@ public class Compras {
                 titulos[i] = tabla.getColumnName(i);
             }
             String sql = "SELECT detallecompra.compras_id AS id, producto.codigo AS codigo, "
-                    + "producto.cantidad AS cantidad, producto.precio AS precio FROM producto INNER JOIN " 
+                    + "producto.cantidad AS cantidad, producto.precio AS precio FROM producto INNER JOIN "
                     + "detallecompra ON producto.id = detallecompra.Producto_id "
                     + "WHERE detallecompra.compras_id = " + id + ";";
             DefaultTableModel modelo = new DefaultTableModel(null, titulos);

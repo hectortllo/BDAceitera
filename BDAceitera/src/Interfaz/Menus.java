@@ -22,13 +22,14 @@ public class Menus extends javax.swing.JFrame {
      * Creates new form Menus
      */
     private Principal cargar = new Principal();
+
     public Menus() {
         this.setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
         Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 27, 27);
         AWTUtilities.setWindowShape(this, forma);
-        
+
         DesktopPane.add(cargar);
         try {
             cargar.setMaximum(true);
@@ -38,10 +39,10 @@ public class Menus extends javax.swing.JFrame {
         cargar.setVisible(true);
     }
 
-    public void setUs(String us,int id) {
-        this.us = us;
+    public void setUs(String us, int id, boolean admin) {
         lblUsuario.setText(us);
         cargar.setIdUs(id);
+        cargar.setButtons(admin);
     }
 
     /**
@@ -134,7 +135,6 @@ public class Menus extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private int x, y;
-    private String us;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane DesktopPane;
     private javax.swing.JButton btnCerrar;

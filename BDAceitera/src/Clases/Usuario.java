@@ -24,10 +24,15 @@ public class Usuario {
     private final Conexion conexion;
     private String usuario;
     private int id;
+    private boolean admin;
 
     public Usuario() {
         conexion = new Conexion();
         con = conexion.getConnection();
+    }
+
+    public boolean isAdmin() {
+        return admin;
     }
 
     public int getId() {
@@ -40,7 +45,7 @@ public class Usuario {
 
     public boolean IncioSesion(String Contrasenia, String Usuario) {
         try {
-            String sql = "SELECT contrasenia, nombre,id FROM usuario where nombre = '" + Usuario + "' and activo = true;";
+            String sql = "SELECT contrasenia, nombre, id, tipousuario_id FROM usuario where nombre = '" + Usuario + "' and activo = true;";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
             String pass = "";
@@ -50,6 +55,7 @@ public class Usuario {
                 if (pass.equals(Contrasenia)) {
                     usuario = rs.getString("nombre");
                     id = rs.getInt("id");
+                    admin = rs.getInt("tipousuario_id") == 1;
                     encontrado = true;
                     break;
                 }
