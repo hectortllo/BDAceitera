@@ -90,7 +90,7 @@ public class Menus extends javax.swing.JFrame {
         });
         jPanel2.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 0, 60, -1));
 
-        lblUsuario.setFont(new java.awt.Font("Lucida Calligraphy", 3, 14)); // NOI18N
+        lblUsuario.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 14)); // NOI18N
         lblUsuario.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 360, 40));
 

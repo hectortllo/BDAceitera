@@ -85,48 +85,48 @@ public class Registro extends javax.swing.JFrame {
         });
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Nombre:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 100, 20));
 
-        jLabel5.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Apellido:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 100, 20));
 
-        jLabel6.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("No telefono:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 130, 20));
 
-        jLabel7.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Contraseña:");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 130, 20));
 
-        jLabel8.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Confirmar Contraseña:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 260, 20));
 
-        jLabel9.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Puesto:");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 80, 20));
 
-        jLabel10.setFont(new java.awt.Font("Lucida Calligraphy", 3, 24)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Registrar");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 160, 40));
 
-        jLabel11.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Activo:");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 90, 20));
 
         txtUsuario.setBackground(new java.awt.Color(255, 255, 255));
-        txtUsuario.setFont(new java.awt.Font("Lucida Calligraphy", 3, 14)); // NOI18N
+        txtUsuario.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 14)); // NOI18N
         txtUsuario.setForeground(new java.awt.Color(0, 51, 51));
         txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -136,7 +136,7 @@ public class Registro extends javax.swing.JFrame {
         jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 300, -1));
 
         txtNombre.setBackground(new java.awt.Color(255, 255, 255));
-        txtNombre.setFont(new java.awt.Font("Lucida Calligraphy", 3, 14)); // NOI18N
+        txtNombre.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 14)); // NOI18N
         txtNombre.setForeground(new java.awt.Color(0, 51, 51));
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,7 +154,7 @@ public class Registro extends javax.swing.JFrame {
         jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 330, -1));
 
         txtApellido.setBackground(new java.awt.Color(255, 255, 255));
-        txtApellido.setFont(new java.awt.Font("Lucida Calligraphy", 3, 14)); // NOI18N
+        txtApellido.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 14)); // NOI18N
         txtApellido.setForeground(new java.awt.Color(0, 51, 51));
         txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -164,7 +164,7 @@ public class Registro extends javax.swing.JFrame {
         jPanel1.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 330, -1));
 
         PssConfirContrasenia.setBackground(new java.awt.Color(255, 255, 255));
-        PssConfirContrasenia.setFont(new java.awt.Font("Lucida Calligraphy", 3, 14)); // NOI18N
+        PssConfirContrasenia.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 14)); // NOI18N
         PssConfirContrasenia.setForeground(new java.awt.Color(0, 51, 51));
         PssConfirContrasenia.setText("jPasswordField1");
         PssConfirContrasenia.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -175,7 +175,7 @@ public class Registro extends javax.swing.JFrame {
         jPanel1.add(PssConfirContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, 300, -1));
 
         PssContrasenia.setBackground(new java.awt.Color(255, 255, 255));
-        PssContrasenia.setFont(new java.awt.Font("Lucida Calligraphy", 3, 14)); // NOI18N
+        PssContrasenia.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 14)); // NOI18N
         PssContrasenia.setForeground(new java.awt.Color(0, 51, 51));
         PssContrasenia.setText("jPasswordField1");
         PssContrasenia.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -187,7 +187,7 @@ public class Registro extends javax.swing.JFrame {
 
         RBSi.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(RBSi);
-        RBSi.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        RBSi.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 18)); // NOI18N
         RBSi.setForeground(new java.awt.Color(255, 255, 255));
         RBSi.setSelected(true);
         RBSi.setText("Si");
@@ -200,7 +200,7 @@ public class Registro extends javax.swing.JFrame {
 
         RBNo.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(RBNo);
-        RBNo.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        RBNo.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 18)); // NOI18N
         RBNo.setForeground(new java.awt.Color(255, 255, 255));
         RBNo.setText("No");
         RBNo.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -215,11 +215,11 @@ public class Registro extends javax.swing.JFrame {
         cmbPuestos.setColorArrow(new java.awt.Color(0, 51, 51));
         cmbPuestos.setColorBorde(new java.awt.Color(255, 255, 255));
         cmbPuestos.setColorFondo(new java.awt.Color(0, 51, 51));
-        cmbPuestos.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        cmbPuestos.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 18)); // NOI18N
         jPanel1.add(cmbPuestos, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, 320, -1));
 
         btnInsertar.setBackground(new java.awt.Color(255, 255, 255));
-        btnInsertar.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        btnInsertar.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 18)); // NOI18N
         btnInsertar.setForeground(new java.awt.Color(255, 255, 255));
         btnInsertar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/checkmark.png"))); // NOI18N
         btnInsertar.setBorderPainted(false);
@@ -232,7 +232,7 @@ public class Registro extends javax.swing.JFrame {
         });
         jPanel1.add(btnInsertar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 390, 50, 40));
 
-        jLabel12.setFont(new java.awt.Font("Lucida Calligraphy", 3, 24)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 24)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Cancelar");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 390, 150, 40));
@@ -248,7 +248,7 @@ public class Registro extends javax.swing.JFrame {
         });
         jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 390, 50, 40));
 
-        jLabel13.setFont(new java.awt.Font("Lucida Calligraphy", 3, 24)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 24)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Registrar");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 150, 40));

@@ -37,8 +37,7 @@ public class Ventas {
             pst.setFloat(1, 0);
             pst.setString(2, "2018-01-01");
             pst.setInt(3, id);
-            int n = pst.executeUpdate();
-            return n != 0;
+            return pst.executeUpdate() != 0;
         } catch (SQLException ex) {
             Logger.getLogger(Compras.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -96,12 +95,12 @@ public class Ventas {
 
     public DefaultTableModel getDVentas(int id, JTable tabla) {
         try {
-            String titulos[] = new String[5];
+            String titulos[] = new String[4];
             for (byte i = 0; i < titulos.length; i++) {
                 titulos[i] = tabla.getColumnName(i);
             }
             String sql = "SELECT \n"
-                    + "    dv.ventas_id AS num, dv.cantidad, dv.precio, p.codigo\n"
+                    + "    dv.cantidad, dv.precio, p.codigo\n"
                     + "FROM\n"
                     + "    detalleventas dv\n"
                     + "        INNER JOIN\n"
@@ -110,13 +109,12 @@ public class Ventas {
             DefaultTableModel modelo = new DefaultTableModel(null, titulos);
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
-            String registros[] = new String[5];
+            String registros[] = new String[4];
             while (rs.next()) {
-                registros[0] = rs.getString("num");
-                registros[1] = rs.getString("codigo");
-                registros[2] = rs.getString("cantidad");
-                registros[3] = rs.getString("precio");
-                registros[4] = "" + (Float.parseFloat(registros[3]) * Integer.parseInt(registros[2]));
+                registros[0] = rs.getString("codigo");
+                registros[1] = rs.getString("cantidad");
+                registros[2] = rs.getString("precio");
+                registros[3] = "" + (Float.parseFloat(registros[2]) * Integer.parseInt(registros[1]));
                 modelo.addRow(registros);
             }
             return modelo;

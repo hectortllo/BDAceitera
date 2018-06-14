@@ -11,6 +11,12 @@ import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import org.apache.commons.codec.digest.DigestUtils;
 import rojerusan.RSNotifyAnimated;
 
@@ -42,8 +48,9 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txtTelefono = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblOlvideContrasenia = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
@@ -55,6 +62,8 @@ public class Login extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         btnCerrar = new javax.swing.JButton();
+
+        txtTelefono.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -72,10 +81,16 @@ public class Login extends javax.swing.JFrame {
         });
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Olvidaste tu contraseña ?");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 280, 30));
+        lblOlvideContrasenia.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 18)); // NOI18N
+        lblOlvideContrasenia.setForeground(new java.awt.Color(255, 255, 255));
+        lblOlvideContrasenia.setText("Olvidaste tu contraseña ?");
+        lblOlvideContrasenia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblOlvideContrasenia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblOlvideContraseniaMouseClicked(evt);
+            }
+        });
+        jPanel1.add(lblOlvideContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 280, 30));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Login.png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 200, 270));
@@ -91,18 +106,18 @@ public class Login extends javax.swing.JFrame {
         jSeparator2.setOpaque(true);
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 60, -1, 260));
 
-        jLabel4.setFont(new java.awt.Font("Lucida Calligraphy", 3, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Login");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 90, 50));
 
-        jLabel5.setFont(new java.awt.Font("Lucida Calligraphy", 3, 24)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Nombres:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 140, 30));
 
         txtUs.setBackground(new java.awt.Color(255, 255, 255));
-        txtUs.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        txtUs.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 18)); // NOI18N
         txtUs.setForeground(new java.awt.Color(0, 51, 51));
         txtUs.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -112,7 +127,7 @@ public class Login extends javax.swing.JFrame {
         jPanel1.add(txtUs, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 280, 40));
 
         PssContrasenia.setBackground(new java.awt.Color(255, 255, 255));
-        PssContrasenia.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
+        PssContrasenia.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 18)); // NOI18N
         PssContrasenia.setForeground(new java.awt.Color(0, 51, 51));
         PssContrasenia.setText("jPasswordField1");
         PssContrasenia.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -128,20 +143,21 @@ public class Login extends javax.swing.JFrame {
         btnEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/checkmark.png"))); // NOI18N
         btnEntrar.setBorderPainted(false);
         btnEntrar.setContentAreaFilled(false);
+        btnEntrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEntrar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Checkmark Select.png"))); // NOI18N
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEntrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, 50, 40));
+        jPanel1.add(btnEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 50, 40));
 
-        jLabel6.setFont(new java.awt.Font("Lucida Calligraphy", 3, 24)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Contraseña:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 180, 30));
 
-        jLabel7.setFont(new java.awt.Font("Lucida Calligraphy", 3, 24)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Entrar");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 100, 30));
@@ -193,6 +209,29 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtUsKeyPressed
 
+    private void lblOlvideContraseniaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOlvideContraseniaMouseClicked
+        txtTelefono.setText("");
+        int respuesta = JOptionPane.showConfirmDialog(null, txtTelefono, "Ingrese su número de teléfono: ", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (respuesta == 0) {
+            String tel = txtTelefono.getText();
+            String ContraseniaNueva = GenerarContrasenia();
+            if (!tel.equals("Admin")) {
+                if (user.RecuperarUsuario(tel, DigestUtils.md5Hex(ContraseniaNueva))) {
+                    txtTelefono.setText(ContraseniaNueva);
+                    JOptionPane.showConfirmDialog(null, txtTelefono, "Contraseña nueva: ", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+                } else {
+                    new rojerusan.RSNotifyAnimated("¡ERROR!", "Ingrese un número de teléfono válido\nPuede que el mismo número este registrado más de 1 vez",
+                            10, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
+                            RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
+                }
+            } else {
+                new rojerusan.RSNotifyAnimated("¡ERROR!", "Por favor Ingrese un número de teléfono válido",
+                        10, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
+                        RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_lblOlvideContraseniaMouseClicked
+
     private void IncioSesion() {
         if (user.IncioSesion(DigestUtils.md5Hex(PssContrasenia.getText()), txtUs.getText())) {
             this.dispose();
@@ -204,6 +243,22 @@ public class Login extends javax.swing.JFrame {
                     5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
                     RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
             txtUs.requestFocus();
+        }
+    }
+
+    private String GenerarContrasenia() {
+        try {
+            String[] symbols = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"};
+            Random random = SecureRandom.getInstanceStrong(); // as of JDK 8, this should return the strongest algorithm available to the JVM
+            StringBuilder sb = new StringBuilder(10);
+            for (int i = 0; i < 10; i++) {
+                int indexRandom = random.nextInt(symbols.length);
+                sb.append(symbols[indexRandom]);
+            }
+            return sb.toString();
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
     }
 
@@ -250,7 +305,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPasswordField PssContrasenia;
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnEntrar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -259,6 +313,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel lblOlvideContrasenia;
+    private javax.swing.JTextField txtTelefono;
     private javax.swing.JTextField txtUs;
     // End of variables declaration//GEN-END:variables
 }

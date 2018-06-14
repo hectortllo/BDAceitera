@@ -7,12 +7,14 @@ package Clases;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import org.omg.CosNaming.BindingType;
 
 /**
  *
@@ -97,6 +99,22 @@ public class Usuario {
         } catch (SQLException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
             return null;
+        }
+    }
+
+    public boolean RecuperarUsuario(String noTel, String contrasenia) {
+        try {
+            String sql = "SELECT recuperarUsuario(?,?);";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1, noTel);
+            pst.setString(2, contrasenia);
+            System.out.println(contrasenia);
+            ResultSet rs = pst.executeQuery();
+            rs.next();
+            return rs.getBoolean(1);
+        } catch (SQLException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
     }
 }
