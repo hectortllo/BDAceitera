@@ -102,6 +102,7 @@ public class Principal extends javax.swing.JInternalFrame {
         btnRealizarCompras = new javax.swing.JButton();
         btnNuevoProveedor = new javax.swing.JButton();
         btnVerProveedor = new javax.swing.JButton();
+        btnVerUsuarios = new javax.swing.JButton();
         rSPanelsSlider1 = new rojerusan.RSPanelsSlider();
         pnlInventario = new javax.swing.JPanel();
         txtCodigo = new javax.swing.JTextField();
@@ -217,6 +218,14 @@ public class Principal extends javax.swing.JInternalFrame {
         jLabel33 = new javax.swing.JLabel();
         txtDistribuidor = new javax.swing.JTextField();
         jLabel39 = new javax.swing.JLabel();
+        pnlVerUsuarios = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TBVerUsuarios = new rojerusan.RSTableMetro();
+        lbltitulo10 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtNombreUsuario = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txtApellido = new javax.swing.JTextField();
 
         PMVerVentas.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 18)); // NOI18N
 
@@ -457,6 +466,18 @@ public class Principal extends javax.swing.JInternalFrame {
             }
         });
         PnlControl.add(btnVerProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 70, 50));
+
+        btnVerUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ver usuarios.png"))); // NOI18N
+        btnVerUsuarios.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Ver Usuarios</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
+        btnVerUsuarios.setContentAreaFilled(false);
+        btnVerUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVerUsuarios.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ver usuarios select.png"))); // NOI18N
+        btnVerUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerUsuariosActionPerformed(evt);
+            }
+        });
+        PnlControl.add(btnVerUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 0, -1, -1));
 
         jPanel1.add(PnlControl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 50));
 
@@ -1475,6 +1496,69 @@ public class Principal extends javax.swing.JInternalFrame {
 
         rSPanelsSlider1.add(pnlVerProv, "card9");
 
+        pnlVerUsuarios.setName("pnlVerUsuarios"); // NOI18N
+        pnlVerUsuarios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jScrollPane2.setBorder(null);
+
+        TBVerUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "No.", "Nombres", "Apellidos", "No Teléfono", "Activo", "Tipo"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TBVerUsuarios.setColorBackgoundHead(new java.awt.Color(0, 51, 51));
+        TBVerUsuarios.setColorFilasBackgound2(new java.awt.Color(0, 51, 51));
+        TBVerUsuarios.setColorFilasForeground1(new java.awt.Color(0, 51, 51));
+        TBVerUsuarios.setFuenteFilas(new java.awt.Font("Microsoft JhengHei UI Light", 1, 18)); // NOI18N
+        TBVerUsuarios.setFuenteFilasSelect(new java.awt.Font("Microsoft JhengHei UI Light", 1, 18)); // NOI18N
+        TBVerUsuarios.setFuenteHead(new java.awt.Font("Microsoft JhengHei UI Light", 1, 18)); // NOI18N
+        TBVerUsuarios.setRowHeight(25);
+        jScrollPane2.setViewportView(TBVerUsuarios);
+        if (TBVerUsuarios.getColumnModel().getColumnCount() > 0) {
+            TBVerUsuarios.getColumnModel().getColumn(0).setMinWidth(0);
+            TBVerUsuarios.getColumnModel().getColumn(0).setMaxWidth(75);
+        }
+
+        pnlVerUsuarios.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 1130, 420));
+
+        lbltitulo10.setFont(new java.awt.Font("Microsoft JhengHei UI", 3, 24)); // NOI18N
+        lbltitulo10.setForeground(new java.awt.Color(0, 51, 51));
+        lbltitulo10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbltitulo10.setText("Ver Usuarios");
+        lbltitulo10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        pnlVerUsuarios.add(lbltitulo10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1190, 50));
+
+        jLabel6.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel6.setText("Nombre:");
+        pnlVerUsuarios.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 100, -1));
+
+        txtNombreUsuario.setBackground(new java.awt.Color(0, 51, 51));
+        txtNombreUsuario.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 18)); // NOI18N
+        pnlVerUsuarios.add(txtNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 360, 40));
+
+        jLabel7.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel7.setText("Apellidos:");
+        pnlVerUsuarios.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 100, -1));
+
+        txtApellido.setBackground(new java.awt.Color(0, 51, 51));
+        txtApellido.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 18)); // NOI18N
+        pnlVerUsuarios.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 70, 360, 40));
+
+        rSPanelsSlider1.add(pnlVerUsuarios, "card11");
+
         jPanel1.add(rSPanelsSlider1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 1200, 600));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 650));
@@ -1491,6 +1575,7 @@ public class Principal extends javax.swing.JInternalFrame {
             this.btnNuevoProveedor.setSelected(false);
             this.btnVerProveedor.setSelected(false);
             this.btnAddUser.setSelected(false);
+            this.btnVerUsuarios.setSelected(false);
             rSPanelsSlider1.setPanelSlider(10, pnlInventario, RSPanelsSlider.DIRECT.LEFT);
         }
     }//GEN-LAST:event_btnHomeActionPerformed
@@ -1504,6 +1589,7 @@ public class Principal extends javax.swing.JInternalFrame {
             this.btnNuevoProveedor.setSelected(false);
             this.btnVerProveedor.setSelected(false);
             this.btnAddUser.setSelected(false);
+            this.btnVerUsuarios.setSelected(true);
             BVentas();
             rSPanelsSlider1.setPanelSlider(10, pnlVerVentas, RSPanelsSlider.DIRECT.LEFT);
         }
@@ -1518,6 +1604,7 @@ public class Principal extends javax.swing.JInternalFrame {
             this.btnNuevoProveedor.setSelected(false);
             this.btnVerProveedor.setSelected(false);
             this.btnAddUser.setSelected(false);
+            this.btnVerUsuarios.setSelected(true);
             VerCompras();
             rSPanelsSlider1.setPanelSlider(10, pnlVerCompras, RSPanelsSlider.DIRECT.LEFT);
         }
@@ -1532,6 +1619,7 @@ public class Principal extends javax.swing.JInternalFrame {
             this.btnNuevoProveedor.setSelected(false);
             this.btnVerProveedor.setSelected(false);
             this.btnAddUser.setSelected(false);
+            this.btnVerUsuarios.setSelected(true);
             rSPanelsSlider1.setPanelSlider(10, pnlRealizarCompras, RSPanelsSlider.DIRECT.LEFT);
         }
 
@@ -1546,6 +1634,7 @@ public class Principal extends javax.swing.JInternalFrame {
             this.btnNuevoProveedor.setSelected(true);
             this.btnVerProveedor.setSelected(false);
             this.btnAddUser.setSelected(false);
+            this.btnVerUsuarios.setSelected(true);
             rSPanelsSlider1.setPanelSlider(10, pnlNuevoProveedor, RSPanelsSlider.DIRECT.LEFT);
         }
     }//GEN-LAST:event_btnNuevoProveedorActionPerformed
@@ -1560,6 +1649,7 @@ public class Principal extends javax.swing.JInternalFrame {
             this.btnNuevoProveedor.setSelected(false);
             this.btnVerProveedor.setSelected(true);
             this.btnAddUser.setSelected(false);
+            this.btnVerUsuarios.setSelected(true);
             VerProveedores();
         }
     }//GEN-LAST:event_btnVerProveedorActionPerformed
@@ -1573,6 +1663,7 @@ public class Principal extends javax.swing.JInternalFrame {
             this.btnNuevoProveedor.setSelected(false);
             this.btnVerProveedor.setSelected(false);
             this.btnAddUser.setSelected(true);
+            this.btnVerUsuarios.setSelected(true);
             new Registro().setVisible(true);
         }
     }//GEN-LAST:event_btnAddUserActionPerformed
@@ -1719,7 +1810,7 @@ public class Principal extends javax.swing.JInternalFrame {
             int tipoProductoId = cmbTProducto.getSelectedIndex() - 1;
             int proveedorId = cmbProveedor.getSelectedIndex() - 1;
             int presentacionId = cmbPresentacionCompra.getSelectedIndex() - 1;
-            float subTotal = cantidad * precio;
+            float subTotal = cantidad * costo;
             float totalCompra = 0;
             if (txtTotalCompra.getText().length() == 0) {
                 totalCompra = subTotal;
@@ -2012,6 +2103,20 @@ public class Principal extends javax.swing.JInternalFrame {
             limpiarVentas();
         }
     }//GEN-LAST:event_btnRegresarInventarioActionPerformed
+
+    private void btnVerUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerUsuariosActionPerformed
+        if (!this.btnVerUsuarios.isSelected()) {
+            this.btnHome.setSelected(false);
+            this.btnVerVentas.setSelected(false);
+            this.btnRealizarCompras.setSelected(false);
+            this.btnVerCompras.setSelected(false);
+            this.btnNuevoProveedor.setSelected(false);
+            this.btnVerProveedor.setSelected(false);
+            this.btnAddUser.setSelected(false);
+            this.btnVerUsuarios.setSelected(true);
+            rSPanelsSlider1.setPanelSlider(10, pnlVerUsuarios, RSPanelsSlider.DIRECT.LEFT);
+        }
+    }//GEN-LAST:event_btnVerUsuariosActionPerformed
     
     private boolean verificarProveedor() {
         if (txtNombreEmpresa.getText().length() == 0) {
@@ -2274,6 +2379,7 @@ public class Principal extends javax.swing.JInternalFrame {
     private rojerusan.RSTableMetro TBVentas;
     private rojerusan.RSTableMetro TBVerCompras;
     private rojerusan.RSTableMetro TBVerProveedor;
+    private rojerusan.RSTableMetro TBVerUsuarios;
     private rojerusan.RSTableMetro TBVerVentas;
     private javax.swing.JButton btnAddUser;
     private javax.swing.JButton btnAgregar;
@@ -2292,6 +2398,7 @@ public class Principal extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnVender;
     private javax.swing.JButton btnVerCompras;
     private javax.swing.JButton btnVerProveedor;
+    private javax.swing.JButton btnVerUsuarios;
     private javax.swing.JButton btnVerVentas;
     private javax.swing.JTextField btnVueltoCompra;
     private rojerusan.RSComboMetro cmbInventarioMarca;
@@ -2333,8 +2440,11 @@ public class Principal extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -2352,6 +2462,7 @@ public class Principal extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblVentano;
     private javax.swing.JLabel lbltitulo;
     private javax.swing.JLabel lbltitulo1;
+    private javax.swing.JLabel lbltitulo10;
     private javax.swing.JLabel lbltitulo2;
     private javax.swing.JLabel lbltitulo3;
     private javax.swing.JLabel lbltitulo4;
@@ -2368,9 +2479,11 @@ public class Principal extends javax.swing.JInternalFrame {
     private javax.swing.JPanel pnlRealizarVentas;
     private javax.swing.JPanel pnlVerCompras;
     private javax.swing.JPanel pnlVerProv;
+    private javax.swing.JPanel pnlVerUsuarios;
     private javax.swing.JPanel pnlVerVentas;
     private rojerusan.RSPanelsSlider rSPanelsSlider1;
     private javax.swing.JTextField txCódigo;
+    private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtCantidadVenta;
     private javax.swing.JTextField txtCodigo;
@@ -2385,6 +2498,7 @@ public class Principal extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtNoVenta;
     private javax.swing.JTextField txtNombreDistri;
     private javax.swing.JTextField txtNombreEmpresa;
+    private javax.swing.JTextField txtNombreUsuario;
     private javax.swing.JTextField txtNotelefonoE;
     private javax.swing.JTextField txtPrecio;
     private javax.swing.JTextField txtTotalCompra;
