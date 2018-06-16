@@ -14,6 +14,8 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import org.omg.CosNaming.BindingType;
 
 /**
@@ -115,6 +117,47 @@ public class Usuario {
         } catch (SQLException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
             return false;
+        }
+    }
+    
+    public DefaultTableModel getUsuarios(String nombre, String apellido, JTable tabla) {
+        try {
+            boolean activo;
+            int tipoUsuario = 0;
+            String titulos[] = new String[6];
+            for (byte i = 0; i < titulos.length; i++) {
+                titulos[i] = tabla.getColumnName(i);
+            }
+            String sql = "SELECT id AS No, nombre AS Nombre, apellido AS Apellido, "
+                    + "noTelefono AS telefono, activo AS Activo, TipoUsuario_id AS tUsuario FROM Usuario"
+                    + " WHERE nombre LIKE '%" + nombre + "%' AND apellido LIKE '%"
+                    + apellido + "%'";
+            DefaultTableModel modelo = new DefaultTableModel(null, titulos);
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            String registros[] = new String[6];
+            while (rs.next()) {
+                registros[0] = rs.getString("No");
+                registros[1] = rs.getString("Nombre");
+                registros[2] = rs.getString("Apellido");
+                registros[3] = rs.getString("telefono");
+                activo = rs.getBoolean("Activo");
+                if(activo)
+                    registros[4] = "Activo";
+                else
+                    registros[4] = "No Activo";
+                
+                tipoUsuario = rs.getInt("tUsuario");
+                if(tipoUsuario == 1)
+                    registros[5] = "Admin";
+                else
+                    registros[5] = "Vendedor";
+                modelo.addRow(registros);
+            }
+            return modelo;
+        } catch (SQLException ex) {
+            Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
     }
 }

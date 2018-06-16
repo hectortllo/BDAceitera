@@ -33,12 +33,14 @@ public class Principal extends javax.swing.JInternalFrame {
     /**
      * Creates new form Principal
      */
+    String id = "";
     public Principal() {
         inventario = new Inventario();
         compras = new Compras();
         proveedor = new Proveedor();
         producto = new Producto();
         venta = new Ventas();
+        user = new Usuario();
         BasicInternalFrameUI bi = (BasicInternalFrameUI) this.getUI();
         bi.setNorthPane(null);
         this.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -92,6 +94,9 @@ public class Principal extends javax.swing.JInternalFrame {
         PMRealizarCompras = new javax.swing.JPopupMenu();
         MnOpcionesRCompras = new javax.swing.JMenu();
         MIEliminar = new javax.swing.JMenuItem();
+        PMVerUsuario = new javax.swing.JPopupMenu();
+        MnOpcionesUsuario = new javax.swing.JMenu();
+        MIEditarUsuario = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         PnlControl = new javax.swing.JPanel();
         lbltitulo = new javax.swing.JLabel();
@@ -358,6 +363,26 @@ public class Principal extends javax.swing.JInternalFrame {
         MnOpcionesRCompras.add(MIEliminar);
 
         PMRealizarCompras.add(MnOpcionesRCompras);
+
+        PMVerUsuario.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 18)); // NOI18N
+
+        MnOpcionesUsuario.setBackground(new java.awt.Color(0, 51, 51));
+        MnOpcionesUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        MnOpcionesUsuario.setText("Opciones");
+        MnOpcionesUsuario.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 18)); // NOI18N
+
+        MIEditarUsuario.setBackground(new java.awt.Color(0, 51, 51));
+        MIEditarUsuario.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 18)); // NOI18N
+        MIEditarUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        MIEditarUsuario.setText("Editar Usuario");
+        MIEditarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MIEditarUsuarioActionPerformed(evt);
+            }
+        });
+        MnOpcionesUsuario.add(MIEditarUsuario);
+
+        PMVerUsuario.add(MnOpcionesUsuario);
 
         setPreferredSize(new java.awt.Dimension(1100, 640));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1500,6 +1525,11 @@ public class Principal extends javax.swing.JInternalFrame {
         pnlVerUsuarios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jScrollPane2.setBorder(null);
+        jScrollPane2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jScrollPane2MouseClicked(evt);
+            }
+        });
 
         TBVerUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1520,10 +1550,17 @@ public class Principal extends javax.swing.JInternalFrame {
         TBVerUsuarios.setColorBackgoundHead(new java.awt.Color(0, 51, 51));
         TBVerUsuarios.setColorFilasBackgound2(new java.awt.Color(0, 51, 51));
         TBVerUsuarios.setColorFilasForeground1(new java.awt.Color(0, 51, 51));
+        TBVerUsuarios.setColorFilasForeground2(new java.awt.Color(255, 255, 255));
+        TBVerUsuarios.setComponentPopupMenu(PMVerUsuario);
         TBVerUsuarios.setFuenteFilas(new java.awt.Font("Microsoft JhengHei UI Light", 1, 18)); // NOI18N
         TBVerUsuarios.setFuenteFilasSelect(new java.awt.Font("Microsoft JhengHei UI Light", 1, 18)); // NOI18N
         TBVerUsuarios.setFuenteHead(new java.awt.Font("Microsoft JhengHei UI Light", 1, 18)); // NOI18N
         TBVerUsuarios.setRowHeight(25);
+        TBVerUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TBVerUsuariosMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(TBVerUsuarios);
         if (TBVerUsuarios.getColumnModel().getColumnCount() > 0) {
             TBVerUsuarios.getColumnModel().getColumn(0).setMinWidth(0);
@@ -1546,6 +1583,15 @@ public class Principal extends javax.swing.JInternalFrame {
 
         txtNombreUsuario.setBackground(new java.awt.Color(0, 51, 51));
         txtNombreUsuario.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 18)); // NOI18N
+        txtNombreUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        txtNombreUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreUsuarioKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreUsuarioKeyTyped(evt);
+            }
+        });
         pnlVerUsuarios.add(txtNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 360, 40));
 
         jLabel7.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 18)); // NOI18N
@@ -1555,6 +1601,15 @@ public class Principal extends javax.swing.JInternalFrame {
 
         txtApellido.setBackground(new java.awt.Color(0, 51, 51));
         txtApellido.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 18)); // NOI18N
+        txtApellido.setForeground(new java.awt.Color(255, 255, 255));
+        txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtApellidoKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidoKeyTyped(evt);
+            }
+        });
         pnlVerUsuarios.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 70, 360, 40));
 
         rSPanelsSlider1.add(pnlVerUsuarios, "card11");
@@ -1589,7 +1644,7 @@ public class Principal extends javax.swing.JInternalFrame {
             this.btnNuevoProveedor.setSelected(false);
             this.btnVerProveedor.setSelected(false);
             this.btnAddUser.setSelected(false);
-            this.btnVerUsuarios.setSelected(true);
+            this.btnVerUsuarios.setSelected(false);
             BVentas();
             rSPanelsSlider1.setPanelSlider(10, pnlVerVentas, RSPanelsSlider.DIRECT.LEFT);
         }
@@ -1604,7 +1659,7 @@ public class Principal extends javax.swing.JInternalFrame {
             this.btnNuevoProveedor.setSelected(false);
             this.btnVerProveedor.setSelected(false);
             this.btnAddUser.setSelected(false);
-            this.btnVerUsuarios.setSelected(true);
+            this.btnVerUsuarios.setSelected(false);
             VerCompras();
             rSPanelsSlider1.setPanelSlider(10, pnlVerCompras, RSPanelsSlider.DIRECT.LEFT);
         }
@@ -1619,7 +1674,7 @@ public class Principal extends javax.swing.JInternalFrame {
             this.btnNuevoProveedor.setSelected(false);
             this.btnVerProveedor.setSelected(false);
             this.btnAddUser.setSelected(false);
-            this.btnVerUsuarios.setSelected(true);
+            this.btnVerUsuarios.setSelected(false);
             rSPanelsSlider1.setPanelSlider(10, pnlRealizarCompras, RSPanelsSlider.DIRECT.LEFT);
         }
 
@@ -1634,7 +1689,7 @@ public class Principal extends javax.swing.JInternalFrame {
             this.btnNuevoProveedor.setSelected(true);
             this.btnVerProveedor.setSelected(false);
             this.btnAddUser.setSelected(false);
-            this.btnVerUsuarios.setSelected(true);
+            this.btnVerUsuarios.setSelected(false);
             rSPanelsSlider1.setPanelSlider(10, pnlNuevoProveedor, RSPanelsSlider.DIRECT.LEFT);
         }
     }//GEN-LAST:event_btnNuevoProveedorActionPerformed
@@ -1649,7 +1704,7 @@ public class Principal extends javax.swing.JInternalFrame {
             this.btnNuevoProveedor.setSelected(false);
             this.btnVerProveedor.setSelected(true);
             this.btnAddUser.setSelected(false);
-            this.btnVerUsuarios.setSelected(true);
+            this.btnVerUsuarios.setSelected(false);
             VerProveedores();
         }
     }//GEN-LAST:event_btnVerProveedorActionPerformed
@@ -1663,7 +1718,7 @@ public class Principal extends javax.swing.JInternalFrame {
             this.btnNuevoProveedor.setSelected(false);
             this.btnVerProveedor.setSelected(false);
             this.btnAddUser.setSelected(true);
-            this.btnVerUsuarios.setSelected(true);
+            this.btnVerUsuarios.setSelected(false);
             new Registro().setVisible(true);
         }
     }//GEN-LAST:event_btnAddUserActionPerformed
@@ -2114,9 +2169,55 @@ public class Principal extends javax.swing.JInternalFrame {
             this.btnVerProveedor.setSelected(false);
             this.btnAddUser.setSelected(false);
             this.btnVerUsuarios.setSelected(true);
+            verUsuarios();
             rSPanelsSlider1.setPanelSlider(10, pnlVerUsuarios, RSPanelsSlider.DIRECT.LEFT);
         }
     }//GEN-LAST:event_btnVerUsuariosActionPerformed
+
+    private void MIEditarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIEditarUsuarioActionPerformed
+        ActualizarUsuario usuario = new ActualizarUsuario();
+        usuario.setVisible(true);
+        usuario.buscarUsuario(obtenerId());
+    }//GEN-LAST:event_MIEditarUsuarioActionPerformed
+
+    private void txtNombreUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreUsuarioKeyTyped
+        char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z'))
+                evt.consume();
+    }//GEN-LAST:event_txtNombreUsuarioKeyTyped
+
+    private void txtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyTyped
+        char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z'))
+                evt.consume();
+    }//GEN-LAST:event_txtApellidoKeyTyped
+
+    private void txtApellidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyPressed
+        verUsuarios();
+    }//GEN-LAST:event_txtApellidoKeyPressed
+
+    private void txtNombreUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreUsuarioKeyPressed
+        verUsuarios();
+    }//GEN-LAST:event_txtNombreUsuarioKeyPressed
+
+    private void jScrollPane2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane2MouseClicked
+
+    }//GEN-LAST:event_jScrollPane2MouseClicked
+
+    private void TBVerUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TBVerUsuariosMouseClicked
+        int fila = TBVerUsuarios.getSelectedRow();
+        String id = (String) TBVerUsuarios.getValueAt(fila, 0);
+        setId(id);
+    }//GEN-LAST:event_TBVerUsuariosMouseClicked
+    
+    private void setId(String id_proyecto) {
+        id = id_proyecto;
+    }
+
+    private String obtenerId() {
+        return id;
+    }
+    
     
     private boolean verificarProveedor() {
         if (txtNombreEmpresa.getText().length() == 0) {
@@ -2325,6 +2426,14 @@ public class Principal extends javax.swing.JInternalFrame {
         }
     }
     
+    public void verUsuarios()
+    {
+        if((txtNombreUsuario.getText().length() == 0) && txtApellido.getText().length() == 0)
+            TBVerUsuarios.setModel(user.getUsuarios("", "", TBVerUsuarios));
+        else
+            TBVerUsuarios.setModel(user.getUsuarios(txtNombreUsuario.getText(), txtApellido.getText(), TBVerUsuarios));
+    }
+    
     private void VerProveedores() {
         if ((txtEmpresa.getText().length() == 0) && txtDistribuidor.getText().length() == 0) {
             TBVerProveedor.setModel(proveedor.getProveedores("", "", TBVerProveedor));
@@ -2353,6 +2462,7 @@ public class Principal extends javax.swing.JInternalFrame {
     private final Compras compras;
     private final Proveedor proveedor;
     private final Producto producto;
+    private final Usuario user;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rojeru_san.componentes.RSDateChooser DCFechaCompras;
     private rojeru_san.componentes.RSDateChooser DCFechaVenta;
@@ -2360,16 +2470,19 @@ public class Principal extends javax.swing.JInternalFrame {
     private javax.swing.JMenuItem MIAddVenta;
     private javax.swing.JMenuItem MIDetCompras;
     private javax.swing.JMenuItem MIDetVenta;
+    private javax.swing.JMenuItem MIEditarUsuario;
     private javax.swing.JMenuItem MIEliminar;
     private javax.swing.JMenuItem MIRegresarVenta;
     private javax.swing.JMenu MnAgregarInventario;
     private javax.swing.JMenu MnOpcionesCompras;
     private javax.swing.JMenu MnOpcionesRCompras;
+    private javax.swing.JMenu MnOpcionesUsuario;
     private javax.swing.JMenu MnOpcionesVentas;
     private javax.swing.JMenu MnRegresarInventario;
     private javax.swing.JPopupMenu PMInventario;
     private javax.swing.JPopupMenu PMRealizarCompras;
     private javax.swing.JPopupMenu PMVerCompras;
+    private javax.swing.JPopupMenu PMVerUsuario;
     private javax.swing.JPopupMenu PMVerVentas;
     private javax.swing.JPanel PnlControl;
     private rojerusan.RSTableMetro TBComprar;

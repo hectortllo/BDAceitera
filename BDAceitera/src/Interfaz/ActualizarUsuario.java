@@ -5,6 +5,7 @@
  */
 package Interfaz;
 
+import Clases.Conexion;
 import Clases.Usuario;
 import com.sun.awt.AWTUtilities;
 import java.awt.MouseInfo;
@@ -12,20 +13,30 @@ import java.awt.Point;
 import java.awt.Shape;
 import java.awt.event.KeyEvent;
 import java.awt.geom.RoundRectangle2D;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import org.apache.commons.codec.digest.DigestUtils;
 import rojerusan.RSNotifyAnimated;
+import Interfaz.Principal.*;
 
 /**
  *
  * @author mynor
  */
-public class Registro extends javax.swing.JFrame {
+public class ActualizarUsuario extends javax.swing.JFrame {
 
     /**
      * Creates new form Registro
      */
-    public Registro() {
+    String id = "";
+    public ActualizarUsuario() {
+        principal = new Principal();
         user = new Usuario();
         this.setUndecorated(true);
         initComponents();
@@ -45,6 +56,7 @@ public class Registro extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        lblIdUsuario = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -67,10 +79,12 @@ public class Registro extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         btnCerrar = new javax.swing.JButton();
-        lblIdUsuario = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblIdUsuario.setForeground(new java.awt.Color(0, 51, 51));
+        getContentPane().add(lblIdUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 51));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
@@ -118,7 +132,7 @@ public class Registro extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Lucida Calligraphy", 3, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Registrar");
+        jLabel10.setText("Actualizar");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 160, 40));
 
         jLabel11.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
@@ -250,7 +264,7 @@ public class Registro extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("Lucida Calligraphy", 3, 24)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Registrar");
+        jLabel13.setText("Guardar");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 150, 40));
 
         btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Cerrar.png"))); // NOI18N
@@ -263,7 +277,6 @@ public class Registro extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 60, -1));
-        jPanel1.add(lblIdUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 440));
 
@@ -272,20 +285,33 @@ public class Registro extends javax.swing.JFrame {
 
     private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
         if (verificar()) {
-            String contrasenia = DigestUtils.md5Hex(PssContrasenia.getText());
-
-            boolean activo = RBSi.isSelected();
-            int id = cmbPuestos.getSelectedIndex() + 1;
-            if (user.insertarUsuario(txtNombre.getText(), txtApellido.getText(), txtUsuario.getText(),
-                    contrasenia, activo, id)) {
-                new rojerusan.RSNotifyAnimated("¡Correcto!", "Usuario ingresado correctamente",
-                        5, RSNotifyAnimated.PositionNotify.BottomLeft, RSNotifyAnimated.AnimationNotify.BottomUp,
-                        RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
-                this.dispose();
-            } else {
-                new rojerusan.RSNotifyAnimated("¡ERROR!", "Usuario no ingresado correctamente.",
-                        5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
-                        RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
+            if(PssContrasenia.getText().length() == 0)
+            {
+                if (actualizarUsuario(lblIdUsuario.getText(), "")) {
+                    new rojerusan.RSNotifyAnimated("¡Correcto!", "Usuario ingresado correctamente",
+                            5, RSNotifyAnimated.PositionNotify.BottomLeft, RSNotifyAnimated.AnimationNotify.BottomUp,
+                            RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
+                    principal.verUsuarios();
+                    this.dispose();
+                } else {
+                    new rojerusan.RSNotifyAnimated("¡ERROR!", "Usuario no ingresado correctamente.",
+                            5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
+                            RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
+                }
+            }
+            else
+            {
+                String contrasenia = DigestUtils.md5Hex(PssContrasenia.getText());
+                if (actualizarUsuario(lblIdUsuario.getText(), contrasenia)) {
+                    new rojerusan.RSNotifyAnimated("¡Correcto!", "Usuario ingresado correctamente",
+                            5, RSNotifyAnimated.PositionNotify.BottomLeft, RSNotifyAnimated.AnimationNotify.BottomUp,
+                            RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
+                    this.dispose();
+                } else {
+                    new rojerusan.RSNotifyAnimated("¡ERROR!", "Usuario no ingresado correctamente.",
+                            5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
+                            RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
+                }
             }
         } else {
             new rojerusan.RSNotifyAnimated("¡ERROR!", "Usuario no ingresado correctamente.\nVerifique los campos",
@@ -342,6 +368,77 @@ public class Registro extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_PssContraseniaKeyTyped
     
+    public void buscarUsuario(String idUsuario)
+    {
+        lblIdUsuario.setText(idUsuario);
+        try {
+            int id = Integer.parseInt(idUsuario);
+            Connection con = null;
+            Conexion conexion;
+            conexion = new Conexion();
+            con = conexion.getConnection();
+            String sql = "SELECT * FROM usuario WHERE id LIKE '%" + id + "%'";
+            PreparedStatement st = con.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            if(rs.next())
+            {
+                PssContrasenia.setText("");
+                PssConfirContrasenia.setText("");
+                txtNombre.setText(rs.getString("nombre"));
+                txtApellido.setText(rs.getString("apellido"));
+                txtUsuario.setText(rs.getString("noTelefono"));
+                boolean activo = rs.getBoolean("activo");
+                if(activo)
+                    RBSi.setSelected(true);
+                else
+                    RBNo.setSelected(true);
+                int puesto = rs.getInt("TipoUsuario_id");
+                if(puesto == 1)
+                    cmbPuestos.setSelectedItem("Admin");
+                else
+                    cmbPuestos.setSelectedItem("Vendedor");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ActualizarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public boolean actualizarUsuario(String idUsuario, String contrasenia) {
+        try { 
+            int id = Integer.parseInt(idUsuario);
+            Connection con = null;
+            Conexion conexion;
+            conexion = new Conexion();
+            con = conexion.getConnection();
+            String sql = "SELECT verificarContrasenia(?,?,?,?,?,?,?)";
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, txtNombre.getText());
+            st.setString(2, txtApellido.getText());
+            st.setString(3, txtUsuario.getText());
+            st.setString(4, contrasenia);
+            boolean activo = RBSi.isSelected();
+            if(activo == true)
+                st.setBoolean(5, true);
+            else
+                st.setBoolean(5, false);
+            int tipoUsuario = cmbPuestos.getSelectedIndex()+1;
+            if(tipoUsuario == 1)
+                st.setInt(6, 1);
+            else
+                st.setInt(6, 2);
+            st.setInt(7, id);
+
+            ResultSet rs = st.executeQuery();
+            rs.next();
+            return rs.getBoolean(1);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ActualizarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+
+    
     private void PssConfirContraseniaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PssConfirContraseniaKeyTyped
         if (evt.getKeyChar() == 10) {
             RBSi.requestFocus();
@@ -383,10 +480,6 @@ public class Registro extends javax.swing.JFrame {
             return false;
         } else if (txtUsuario.getText().length() == 0) {
             return false;
-        } else if (PssContrasenia.getText().length() == 0) {
-            return false;
-        } else if (PssConfirContrasenia.getText().length() == 0) {
-            return false;
         } else {
             return PssConfirContrasenia.getText().equals(PssContrasenia.getText());
         }
@@ -394,6 +487,7 @@ public class Registro extends javax.swing.JFrame {
 
     private final Usuario user;
     private int x, y;
+    private final Principal principal;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField PssConfirContrasenia;
     private javax.swing.JPasswordField PssContrasenia;
