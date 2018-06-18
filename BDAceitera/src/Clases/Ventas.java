@@ -95,26 +95,41 @@ public class Ventas {
 
     public DefaultTableModel getDVentas(int id, JTable tabla) {
         try {
-            String titulos[] = new String[4];
+            String titulos[] = new String[7];
             for (byte i = 0; i < titulos.length; i++) {
                 titulos[i] = tabla.getColumnName(i);
             }
             String sql = "SELECT \n"
-                    + "    dv.cantidad, dv.precio, p.codigo\n"
+                    + "    p.tipoProducto AS producto,\n"
+                    + "    i.codigo,\n"
+                    + "    m.marca,\n"
+                    + "    dp.detalle_presentacion AS detalle,\n"
+                    + "    dv.cantidad,\n"
+                    + "    dv.precio\n"
                     + "FROM\n"
                     + "    detalleventas dv\n"
                     + "        INNER JOIN\n"
-                    + "    producto p ON p.id = dv.Producto_id\n"
-                    + "    where dv.ventas_id =" + id + ";";
+                    + "    producto i ON i.id = dv.producto_id\n"
+                    + "        INNER JOIN\n"
+                    + "    marca m ON m.id = i.marca_id\n"
+                    + "        INNER JOIN\n"
+                    + "    tipoproducto p ON p.id = i.tipoproducto_id\n"
+                    + "        INNER JOIN\n"
+                    + "    detallepresentacion dp ON i.id = dp.producto_id\n"
+                    + "WHERE\n"
+                    + "    dv.ventas_id = " + id + ";";
             DefaultTableModel modelo = new DefaultTableModel(null, titulos);
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
-            String registros[] = new String[4];
+            String registros[] = new String[7];
             while (rs.next()) {
-                registros[0] = rs.getString("codigo");
-                registros[1] = rs.getString("cantidad");
-                registros[2] = rs.getString("precio");
-                registros[3] = "" + (Float.parseFloat(registros[2]) * Integer.parseInt(registros[1]));
+                registros[0] = rs.getString("producto");
+                registros[1] = rs.getString("codigo");
+                registros[2] = rs.getString("marca");
+                registros[3] = rs.getString("detalle");
+                registros[4] = rs.getString("cantidad");
+                registros[5] = rs.getString("precio");
+                registros[6] = "" + (Float.parseFloat(registros[5]) * Integer.parseInt(registros[4]));
                 modelo.addRow(registros);
             }
             return modelo;

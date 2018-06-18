@@ -119,11 +119,9 @@ public class Usuario {
             return false;
         }
     }
-    
+
     public DefaultTableModel getUsuarios(String nombre, String apellido, JTable tabla) {
         try {
-            boolean activo;
-            int tipoUsuario = 0;
             String titulos[] = new String[6];
             for (byte i = 0; i < titulos.length; i++) {
                 titulos[i] = tabla.getColumnName(i);
@@ -141,17 +139,16 @@ public class Usuario {
                 registros[1] = rs.getString("Nombre");
                 registros[2] = rs.getString("Apellido");
                 registros[3] = rs.getString("telefono");
-                activo = rs.getBoolean("Activo");
-                if(activo)
+                if (rs.getBoolean("Activo")) {
                     registros[4] = "Activo";
-                else
+                } else {
                     registros[4] = "No Activo";
-                
-                tipoUsuario = rs.getInt("tUsuario");
-                if(tipoUsuario == 1)
+                }
+                if (rs.getInt("tUsuario") == 1) {
                     registros[5] = "Admin";
-                else
+                } else {
                     registros[5] = "Vendedor";
+                }
                 modelo.addRow(registros);
             }
             return modelo;

@@ -81,25 +81,31 @@ public class Inventario {
             for (byte i = 0; i < titulos.length; i++) {
                 titulos[i] = tabla.getColumnName(i);
             }
-            String sql = "SELECT "
-                    + "i.id AS num, "
-                    + "i.codigo AS cod, "
-                    + "i.cantidad AS cant, "
-                    + "i.precio, "
-                    + "m.marca, "
-                    + "dp.detalle_presentacion AS detalle, "
-                    + "p.nombreempresa AS prov "
-                    + "FROM producto i "
-                    + "INNER JOIN marca m ON m.id = i.marca_id  "
-                    + "INNER JOIN detallepresentacion dp ON dp.producto_id = i.id "
-                    + "INNER JOIN proveedor p ON p.id = i.proveedor_id "
-                    + "INNER JOIN presentacion pres ON pres.id = dp.Presentacion_id "
-                    + "INNER JOIN tipoproducto tp ON tp.id = i.TipoProducto_id "
-                    + "WHERE "
-                    + "i.codigo LIKE '%" + codigo + "%' "
-                    + "AND m.marca LIKE '%" + marca + "%' "
-                    + "AND pres.presentacion LIKE '%" + presentacion + "%' "
-                    + "AND tp.tipoProducto LIKE '%" + TProd + "%'"
+            String sql = "SELECT \n"
+                    + "    i.id AS num,\n"
+                    + "    p.tipoProducto AS producto,\n"
+                    + "    i.codigo AS cod,\n"
+                    + "    m.marca,\n"
+                    + "    dp.detalle_presentacion AS detalle,\n"
+                    + "    i.cantidad AS cant,\n"
+                    + "    i.precio\n"
+                    + "FROM\n"
+                    + "    producto i\n"
+                    + "        INNER JOIN\n"
+                    + "    marca m ON m.id = i.marca_id\n"
+                    + "        INNER JOIN\n"
+                    + "    detallepresentacion dp ON dp.producto_id = i.id\n"
+                    + "        INNER JOIN\n"
+                    + "    tipoproducto p ON p.id = i.TipoProducto_id\n"
+                    + "        INNER JOIN\n"
+                    + "    presentacion pres ON pres.id = dp.Presentacion_id\n"
+                    + "        INNER JOIN\n"
+                    + "    tipoproducto tp ON tp.id = i.TipoProducto_id\n"
+                    + "WHERE\n"
+                    + "    i.codigo LIKE '%" + codigo + "%' \n"
+                    + "    AND m.marca LIKE '%" + marca + "%'\n"
+                    + "    AND pres.presentacion LIKE '%" + presentacion + "%'\n"
+                    + "    AND tp.tipoProducto LIKE '%" + TProd + "%'\n"
                     + "ORDER BY num;";
             DefaultTableModel modelo = new DefaultTableModel(null, titulos);
             Statement st = con.createStatement();
@@ -107,12 +113,12 @@ public class Inventario {
             String registros[] = new String[7];
             while (rs.next()) {
                 registros[0] = rs.getString("num");
-                registros[1] = rs.getString("cod");
-                registros[2] = rs.getString("cant");
-                registros[3] = rs.getString("precio");
+                registros[1] = rs.getString("producto");
+                registros[2] = rs.getString("cod");
+                registros[3] = rs.getString("marca");
                 registros[4] = rs.getString("detalle");
-                registros[5] = rs.getString("prov");
-                registros[6] = rs.getString("marca");
+                registros[5] = rs.getString("cant");
+                registros[6] = rs.getString("precio");
                 modelo.addRow(registros);
             }
             return modelo;
