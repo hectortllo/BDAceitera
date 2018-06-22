@@ -142,6 +142,7 @@ public class ActualizarUsuario extends javax.swing.JFrame {
 
         txtUsuario.setFont(new java.awt.Font("Lucida Calligraphy", 3, 14)); // NOI18N
         txtUsuario.setForeground(new java.awt.Color(0, 51, 51));
+        txtUsuario.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>No telefono del usuario</h2>\n\t\t<h2>Recuerde que el número</h2> \n\t\t<h2>debe ser unico</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
         txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtUsuarioKeyTyped(evt);
@@ -151,6 +152,7 @@ public class ActualizarUsuario extends javax.swing.JFrame {
 
         txtNombre.setFont(new java.awt.Font("Lucida Calligraphy", 3, 14)); // NOI18N
         txtNombre.setForeground(new java.awt.Color(0, 51, 51));
+        txtNombre.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Nombre del usuario</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreActionPerformed(evt);
@@ -168,6 +170,7 @@ public class ActualizarUsuario extends javax.swing.JFrame {
 
         txtApellido.setFont(new java.awt.Font("Lucida Calligraphy", 3, 14)); // NOI18N
         txtApellido.setForeground(new java.awt.Color(0, 51, 51));
+        txtApellido.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Apellido del usuario</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
         txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtApellidoKeyTyped(evt);
@@ -178,6 +181,7 @@ public class ActualizarUsuario extends javax.swing.JFrame {
         PssConfirContrasenia.setFont(new java.awt.Font("Lucida Calligraphy", 3, 14)); // NOI18N
         PssConfirContrasenia.setForeground(new java.awt.Color(0, 51, 51));
         PssConfirContrasenia.setText("jPasswordField1");
+        PssConfirContrasenia.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Confirme su contraseña</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
         PssConfirContrasenia.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 PssConfirContraseniaKeyTyped(evt);
@@ -188,6 +192,7 @@ public class ActualizarUsuario extends javax.swing.JFrame {
         PssContrasenia.setFont(new java.awt.Font("Lucida Calligraphy", 3, 14)); // NOI18N
         PssContrasenia.setForeground(new java.awt.Color(0, 51, 51));
         PssContrasenia.setText("jPasswordField1");
+        PssContrasenia.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Contraseña del usuario</h2>\n\t\t<h2>Recuerde que la contraseña</h2> \n\t\t<h2>debe ser única</h2>\n\t\t<!-- <img src=\"Path img\"> -->\n\t</div>\n</body>\n</html>");
         PssContrasenia.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 PssContraseniaKeyTyped(evt);
@@ -221,6 +226,7 @@ public class ActualizarUsuario extends javax.swing.JFrame {
         jPanel1.add(RBNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 300, 60, -1));
 
         cmbPuestos.setMaximumRowCount(4);
+        cmbPuestos.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Puesto del usuario</h2>\n\t</div>\n</body>\n</html>");
         cmbPuestos.setColorArrow(new java.awt.Color(0, 51, 51));
         cmbPuestos.setColorBorde(new java.awt.Color(255, 255, 255));
         cmbPuestos.setColorFondo(new java.awt.Color(0, 51, 51));
@@ -236,6 +242,7 @@ public class ActualizarUsuario extends javax.swing.JFrame {
         btnInsertar.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         btnInsertar.setForeground(new java.awt.Color(255, 255, 255));
         btnInsertar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/checkmark.png"))); // NOI18N
+        btnInsertar.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Guardar cambios</h2>\n\t</div>\n</body>\n</html>");
         btnInsertar.setBorderPainted(false);
         btnInsertar.setContentAreaFilled(false);
         btnInsertar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Checkmark Select.png"))); // NOI18N
@@ -252,6 +259,7 @@ public class ActualizarUsuario extends javax.swing.JFrame {
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 390, 150, 40));
 
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Cerrar.png"))); // NOI18N
+        btnCancelar.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Cancelar</h2>\n\t</div>\n</body>\n</html>");
         btnCancelar.setBorderPainted(false);
         btnCancelar.setContentAreaFilled(false);
         btnCancelar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Cerrar Select.png"))); // NOI18N
@@ -268,6 +276,7 @@ public class ActualizarUsuario extends javax.swing.JFrame {
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 150, 40));
 
         btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Cerrar.png"))); // NOI18N
+        btnCerrar.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Cerrar ventana</h2>\n\t</div>\n</body>\n</html>");
         btnCerrar.setBorderPainted(false);
         btnCerrar.setContentAreaFilled(false);
         btnCerrar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Cerrar Select.png"))); // NOI18N

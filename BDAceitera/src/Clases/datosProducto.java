@@ -4,19 +4,27 @@ package Clases;
  *
  * @author hectortllo
  */
-public class datosProducto 
-{
-    public datosProducto()
-    {
+public class datosProducto {
+
+    public datosProducto() {
+        this.Producto_id = 0;
         this.codigo = "";
         this.cantidad = 0;
         this.precio = 0;
-        this.TipoProducto_id = 0;
-        this.Proveedor_id = 0;
-        this.marca_id = 0;
-        this.presentacion_id = 0;
+        this.TipoProducto_id = -1;
+        this.Proveedor_id = -1;
+        this.marca_id = -1;
+        this.presentacion_id = -1;
         this.detalle_presentacion = "";
         this.costo = 0;
+    }
+
+    public int getProducto_id() {
+        return Producto_id;
+    }
+
+    public void setProducto_id(int Producto_id) {
+        this.Producto_id = Producto_id;
     }
 
     public String getCodigo() {
@@ -90,8 +98,8 @@ public class datosProducto
     public void setCosto(float costo) {
         this.costo = costo;
     }
-    
-    
+
+    private int Producto_id;
     private String codigo;
     private int cantidad;
     private float precio;
@@ -100,5 +108,5 @@ public class datosProducto
     private int marca_id;
     private int presentacion_id;
     private String detalle_presentacion;
-    private float costo;    
+    private float costo;
 }

@@ -16,7 +16,6 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import org.omg.CosNaming.BindingType;
 
 /**
  *
@@ -134,8 +133,9 @@ public class Usuario {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
             String registros[] = new String[6];
+            rs.next();
             while (rs.next()) {
-                registros[0] = rs.getString("No");
+                registros[0] = "" + (rs.getInt("No") - 1);
                 registros[1] = rs.getString("Nombre");
                 registros[2] = rs.getString("Apellido");
                 registros[3] = rs.getString("telefono");

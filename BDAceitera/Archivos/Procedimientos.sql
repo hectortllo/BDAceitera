@@ -3,6 +3,8 @@ DROP PROCEDURE IF EXISTS InsertarUsuario //
 DROP PROCEDURE IF EXISTS InsertarProveedor //
 DROP PROCEDURE IF EXISTS InsertarProducto //
 DROP PROCEDURE IF EXISTS InsertarVenta //
+DROP PROCEDURE IF EXISTS ActualizarProducto//
+
 CREATE PROCEDURE InsertarUsuario(vNombre VARCHAR(25), vApellido VARCHAR(25), vtelefono VARCHAR(12), vPassword VARCHAR(150), 
 	vActivo BOOLEAN, vIdTipoUsuario INT)
     
@@ -36,9 +38,18 @@ BEGIN
     VALUES(vIdProducto, vIdCompra, vCantidad, vCosto);
 END; //
 
-CREATE PROCEDURE InsertarVenta(vIdProducto INT, vCantidad INT,vIdUs INT)
-BEGIN
-	DECLARE vIdVenta INT UNSIGNED DEFAULT 0;
+create procedure ActualizarProducto (vId int, vCantidad int, vPrecio float, vCosto float)
+begin
+	declare vIdCompra int unsigned default 0;
+    update producto set cantidad=cantidad+vCantidad, precio=vPrecio where id=vId;
+    select max(id) into vIdCompra from compras;
+    insert into detallecompra(Producto_id, compras_id, cantidad, costo) 
+    values(vId, vIdCompra, vCantidad, vCosto);
+end; //
+
+create procedure InsertarVenta(vIdProducto int, vCantidad int)
+begin
+	declare vIdVenta int unsigned default 0;
     
     select max(id) into vIdVenta from ventas;
     
@@ -46,6 +57,6 @@ BEGIN
     values(vIdVenta,vIdProducto,vCantidad,0);
     
     update producto set cantidad=cantidad-vCantidad where id=vIdProducto;
-END; //
+end; //
 
 delimiter ;

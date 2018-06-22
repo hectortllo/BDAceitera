@@ -84,6 +84,7 @@ public class Login extends javax.swing.JFrame {
         lblOlvideContrasenia.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 18)); // NOI18N
         lblOlvideContrasenia.setForeground(new java.awt.Color(255, 255, 255));
         lblOlvideContrasenia.setText("Olvidaste tu contraseña ?");
+        lblOlvideContrasenia.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Si olvido su contraseña</h2>\n\t\t<h2>Presione este texto</h2>\n\t</div>\n</body>\n</html>");
         lblOlvideContrasenia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblOlvideContrasenia.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -119,6 +120,7 @@ public class Login extends javax.swing.JFrame {
         txtUs.setBackground(new java.awt.Color(255, 255, 255));
         txtUs.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 18)); // NOI18N
         txtUs.setForeground(new java.awt.Color(0, 51, 51));
+        txtUs.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Nombre del usuario</h2>\n\t</div>\n</body>\n</html>");
         txtUs.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtUsKeyPressed(evt);
@@ -130,6 +132,7 @@ public class Login extends javax.swing.JFrame {
         PssContrasenia.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 18)); // NOI18N
         PssContrasenia.setForeground(new java.awt.Color(0, 51, 51));
         PssContrasenia.setText("jPasswordField1");
+        PssContrasenia.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Contraseña del usuario</h2>\n\t</div>\n</body>\n</html>");
         PssContrasenia.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 PssContraseniaKeyPressed(evt);
@@ -141,6 +144,7 @@ public class Login extends javax.swing.JFrame {
         btnEntrar.setFont(new java.awt.Font("Lucida Calligraphy", 3, 18)); // NOI18N
         btnEntrar.setForeground(new java.awt.Color(255, 255, 255));
         btnEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/checkmark.png"))); // NOI18N
+        btnEntrar.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Entrar</h2>\n\t</div>\n</body>\n</html>");
         btnEntrar.setBorderPainted(false);
         btnEntrar.setContentAreaFilled(false);
         btnEntrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -163,6 +167,7 @@ public class Login extends javax.swing.JFrame {
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 100, 30));
 
         btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Cerrar.png"))); // NOI18N
+        btnCerrar.setToolTipText("<html>\n<head>\n\t<style>\n\t\t #contenido{ \n\t\tbackground: #003333;  /*Se le da un color de fondo*/\n\t\tcolor: white;\t\t  /*Color a la letra*/\n\t\t}\n\t</style>\n</head>\n<body>\n\t<div id=contenido>\n\t\t<h2>Cerrar Programa</h2>\n\t</div>\n</body>\n</html>");
         btnCerrar.setBorderPainted(false);
         btnCerrar.setContentAreaFilled(false);
         btnCerrar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Cerrar Select.png"))); // NOI18N

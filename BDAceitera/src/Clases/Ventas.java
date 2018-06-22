@@ -44,12 +44,11 @@ public class Ventas {
         return false;
     }
 
-    public boolean insertarDVentas(int idProducto, int cantidad, int idUs) {
+    public boolean insertarDVentas(int idProducto, int cantidad) {
         try {
-            CallableStatement procedimiento = con.prepareCall("{call InsertarVenta(?,?,?)}");
+            CallableStatement procedimiento = con.prepareCall("{call InsertarVenta(?,?)}");
             procedimiento.setInt(1, idProducto);
             procedimiento.setInt(2, cantidad);
-            procedimiento.setInt(3, idUs);
             procedimiento.execute();
         } catch (SQLException ex) {
             Logger.getLogger(Proveedor.class.getName()).log(Level.SEVERE, null, ex);

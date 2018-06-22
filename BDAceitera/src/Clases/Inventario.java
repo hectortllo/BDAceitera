@@ -77,7 +77,7 @@ public class Inventario {
     public DefaultTableModel getInventario(String codigo, String presentacion, String marca, String TProd, JTable tabla) {
 
         try {
-            String titulos[] = new String[7];
+            String titulos[] = new String[8];
             for (byte i = 0; i < titulos.length; i++) {
                 titulos[i] = tabla.getColumnName(i);
             }
@@ -88,11 +88,14 @@ public class Inventario {
                     + "    m.marca,\n"
                     + "    dp.detalle_presentacion AS detalle,\n"
                     + "    i.cantidad AS cant,\n"
-                    + "    i.precio\n"
+                    + "    i.precio,\n"
+                    + "    pv.nombreEmpresa AS empresa\n"
                     + "FROM\n"
                     + "    producto i\n"
                     + "        INNER JOIN\n"
                     + "    marca m ON m.id = i.marca_id\n"
+                    + "        INNER JOIN\n"
+                    + "    proveedor pv ON pv.id = i.Proveedor_id\n"
                     + "        INNER JOIN\n"
                     + "    detallepresentacion dp ON dp.producto_id = i.id\n"
                     + "        INNER JOIN\n"
@@ -102,15 +105,15 @@ public class Inventario {
                     + "        INNER JOIN\n"
                     + "    tipoproducto tp ON tp.id = i.TipoProducto_id\n"
                     + "WHERE\n"
-                    + "    i.codigo LIKE '%" + codigo + "%' \n"
-                    + "    AND m.marca LIKE '%" + marca + "%'\n"
-                    + "    AND pres.presentacion LIKE '%" + presentacion + "%'\n"
-                    + "    AND tp.tipoProducto LIKE '%" + TProd + "%'\n"
+                    + "    i.codigo LIKE '%" + codigo + "%'\n"
+                    + "        AND m.marca LIKE '%" + marca + "%'\n"
+                    + "        AND pres.presentacion LIKE '%" + presentacion + "%'\n"
+                    + "        AND tp.tipoProducto LIKE '%" + TProd + "%'\n"
                     + "ORDER BY num;";
             DefaultTableModel modelo = new DefaultTableModel(null, titulos);
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
-            String registros[] = new String[7];
+            String registros[] = new String[8];
             while (rs.next()) {
                 registros[0] = rs.getString("num");
                 registros[1] = rs.getString("producto");
@@ -119,6 +122,7 @@ public class Inventario {
                 registros[4] = rs.getString("detalle");
                 registros[5] = rs.getString("cant");
                 registros[6] = rs.getString("precio");
+                registros[7] = rs.getString("empresa");
                 modelo.addRow(registros);
             }
             return modelo;

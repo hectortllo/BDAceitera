@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  * @author hectortllo
  */
 public class Producto {
-    
+
     private final Connection con;
     private final Conexion conexion;
 
@@ -24,10 +24,9 @@ public class Producto {
         conexion = new Conexion();
         con = conexion.getConnection();
     }
-    
+
     public boolean insertarProducto(String codigo, int cantidad, float precio,
-            int idTipoProducto, int proveedorId, int idMarca, int idPresentacion, String detallePresent, float costo)
-    {
+            int idTipoProducto, int proveedorId, int idMarca, int idPresentacion, String detallePresent, float costo) {
         try {
             CallableStatement procedimiento = con.prepareCall("{call InsertarProducto(?,?,?,?,?,?,?,?,?)}");
             procedimiento.setString(1, codigo);
@@ -40,9 +39,25 @@ public class Producto {
             procedimiento.setString(8, detallePresent);
             procedimiento.setFloat(9, costo);
             procedimiento.execute();
+            return true;
         } catch (SQLException ex) {
             Logger.getLogger(Producto.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
-        return true;
+    }
+
+    public boolean ActualizarProducto(int id, int cantidad, float precio, float costo) {
+        try {
+            CallableStatement procedimiento = con.prepareCall("{call ActualizarProducto(?,?,?,?)}");
+            procedimiento.setInt(1, id);
+            procedimiento.setInt(2, cantidad);
+            procedimiento.setFloat(3, precio);
+            procedimiento.setFloat(4, costo);
+            procedimiento.execute();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(Producto.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
     }
 }
