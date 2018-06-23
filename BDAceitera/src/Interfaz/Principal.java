@@ -56,7 +56,6 @@ public class Principal extends javax.swing.JInternalFrame {
         cmbProveedor.setModel(compras.getProveedor((DefaultComboBoxModel) cmbProveedor.getModel()));
         cmbTProducto.setModel(inventario.getTProd((DefaultComboBoxModel) cmbTProducto.getModel()));
         btnComprar.setEnabled(false);
-        TBVerVentas.setMultipleSeleccion(false);
         btnRegresarInvenrtario1.setVisible(false);
     }
     
@@ -587,7 +586,6 @@ public class Principal extends javax.swing.JInternalFrame {
 
         jScrollPane1.setBackground(new java.awt.Color(0, 51, 51));
         jScrollPane1.setFont(new java.awt.Font("Yu Gothic", 2, 24)); // NOI18N
-        jScrollPane1.setOpaque(true);
 
         TBInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 51)));
         TBInventario.setModel(new javax.swing.table.DefaultTableModel(
@@ -859,6 +857,7 @@ public class Principal extends javax.swing.JInternalFrame {
         TBVerVentas.setFuenteFilas(new java.awt.Font("Microsoft JhengHei UI Light", 1, 18)); // NOI18N
         TBVerVentas.setFuenteFilasSelect(new java.awt.Font("Microsoft JhengHei Light", 3, 18)); // NOI18N
         TBVerVentas.setFuenteHead(new java.awt.Font("Microsoft JhengHei UI Light", 1, 18)); // NOI18N
+        TBVerVentas.setMultipleSeleccion(false);
         TBVerVentas.setRowHeight(25);
         jScrollPane3.setViewportView(TBVerVentas);
         if (TBVerVentas.getColumnModel().getColumnCount() > 0) {
@@ -2201,7 +2200,7 @@ public class Principal extends javax.swing.JInternalFrame {
                         for (int i = 0; i < TBVentas.getRowCount(); i++) {
                             if (insertados) {
                                 id = Integer.parseInt((String) TBVentas.getValueAt(i, 0));
-                                cantidad = Integer.parseInt((String) TBVentas.getValueAt(i, 2));
+                                cantidad = Integer.parseInt((String) TBVentas.getValueAt(i, 5));
                                 insertados = venta.insertarDVentas(id, cantidad);
                             } else {
                                 break;
