@@ -1855,7 +1855,9 @@ public class Principal extends javax.swing.JInternalFrame {
                 new rojerusan.RSNotifyAnimated("¡ÉXITO!", "Proveedor ingresado correctamente",
                         5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
                         RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
-                cmbProveedor.removeAllItems();
+                for (int i = cmbProveedor.getItemCount() - 1; i > 0; i--) {
+                    cmbProveedor.removeItemAt(i);
+                }
                 cmbProveedor.addItem("Escoja una opción");
                 cmbProveedor.addItem("Agregar");
                 cmbProveedor.setModel(compras.getProveedor((DefaultComboBoxModel) cmbProveedor.getModel()));
