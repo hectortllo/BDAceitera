@@ -1857,7 +1857,6 @@ public class Principal extends javax.swing.JInternalFrame {
                 for (int i = cmbProveedor.getItemCount() - 1; i > 0; i--) {
                     cmbProveedor.removeItemAt(i);
                 }
-                cmbProveedor.addItem("Escoja una opción");
                 cmbProveedor.addItem("Agregar");
                 cmbProveedor.setModel(compras.getProveedor((DefaultComboBoxModel) cmbProveedor.getModel()));
                 rSPanelsSlider1.setPanelSlider(10, pnlRealizarCompras, RSPanelsSlider.DIRECT.LEFT);
@@ -2063,6 +2062,7 @@ public class Principal extends javax.swing.JInternalFrame {
                         boolean actualizado = btnRegresarInvenrtario1.isVisible();
                         for (int i = 0; i < Datos.size(); i++) {
                             if (!actualizado) {
+                                System.out.println("proveedor: " + Datos.get(i).getProveedor_id());
                                 producto.insertarProducto(Datos.get(i).getCodigo(), Datos.get(i).getCantidad(),
                                         Datos.get(i).getPrecio(), Datos.get(i).getTipoProducto_id(), Datos.get(i).getProveedor_id(),
                                         Datos.get(i).getMarca_id(), Datos.get(i).getPresentacion_id(),
