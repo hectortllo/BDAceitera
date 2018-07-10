@@ -459,7 +459,7 @@ public class Principal extends javax.swing.JInternalFrame {
         lbltitulo.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 24)); // NOI18N
         lbltitulo.setForeground(new java.awt.Color(255, 255, 255));
         lbltitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbltitulo.setText("Aceitera de occidente");
+        lbltitulo.setText("Aceitera de Occidente");
         PnlControl.add(lbltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 300, 50));
 
         btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Home.png"))); // NOI18N
@@ -1859,11 +1859,19 @@ public class Principal extends javax.swing.JInternalFrame {
                 }
                 cmbProveedor.addItem("Agregar");
                 cmbProveedor.setModel(compras.getProveedor((DefaultComboBoxModel) cmbProveedor.getModel()));
+                limpiarProveedor();
                 rSPanelsSlider1.setPanelSlider(10, pnlRealizarCompras, RSPanelsSlider.DIRECT.LEFT);
             }
         }
     }//GEN-LAST:event_btnInsertarProveedorActionPerformed
 
+    private void limpiarProveedor()
+    {
+        txtNombreEmpresa.setText("");
+        txtNombreDistri.setText("");
+        txtNotelefonoE.setText("");
+        txtNoTelefonoD.setText("");
+    }
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
@@ -1991,45 +1999,54 @@ public class Principal extends javax.swing.JInternalFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         if (VerificarRealizarCompras()) {
-            Datos.add(new datosProducto());
-            DefaultTableModel modelo = (DefaultTableModel) TBComprar.getModel();
-            String codigo = txtCodigoCompras.getText();
-            int cantidad = Integer.parseInt(txtCantidad.getText());
-            float precio = Float.parseFloat(txtPrecio.getText());
-            float costo = Float.parseFloat(txtCosto.getText());
-            String detalle = txtDetallePres.getText();
-            int marcaId = cmbMarca.getSelectedIndex() - 1;
-            int tipoProductoId = cmbTProducto.getSelectedIndex() - 1;
-            int proveedorId = cmbProveedor.getSelectedIndex() - 1;
-            int presentacionId = cmbPresentacionCompra.getSelectedIndex() - 1;
-            float subTotal = cantidad * costo;
-            float totalCompra = 0;
-            if (txtTotalCompra.getText().length() == 0) {
-                totalCompra = subTotal;
-            } else {
-                totalCompra = Float.parseFloat(txtTotalCompra.getText()) + subTotal;
+            if(repeticionCodigoProducto(txtCodigoCompras.getText()) && producto.repetirCodigoProducto(txtCodigoCompras.getText()))
+            {
+                Datos.add(new datosProducto());
+                DefaultTableModel modelo = (DefaultTableModel) TBComprar.getModel();
+                String codigo = txtCodigoCompras.getText();
+                int cantidad = Integer.parseInt(txtCantidad.getText());
+                float precio = Float.parseFloat(txtPrecio.getText());
+                float costo = Float.parseFloat(txtCosto.getText());
+                String detalle = txtDetallePres.getText();
+                int marcaId = cmbMarca.getSelectedIndex() - 1;
+                int tipoProductoId = cmbTProducto.getSelectedIndex() - 1;
+                int proveedorId = cmbProveedor.getSelectedIndex() - 1;
+                int presentacionId = cmbPresentacionCompra.getSelectedIndex() - 1;
+                float subTotal = cantidad * costo;
+                float totalCompra = 0;
+                if (txtTotalCompra.getText().length() == 0) {
+                    totalCompra = subTotal;
+                } else {
+                    totalCompra = Float.parseFloat(txtTotalCompra.getText()) + subTotal;
+                }
+                String[] datos = new String[4];
+                datos[0] = codigo;
+                datos[1] = String.valueOf(cantidad);
+                datos[2] = String.valueOf(costo);
+                datos[3] = String.valueOf(subTotal);
+                modelo.addRow(datos);
+                txtTotalCompra.setText(String.valueOf(totalCompra));
+                btnNuevaCompra.setEnabled(true);
+                btnComprar.setEnabled(true);
+                //Se agrega la información necesaria al ArrayList
+                Datos.get(posicion).setCantidad(cantidad);
+                Datos.get(posicion).setCodigo(codigo);
+                Datos.get(posicion).setCosto(costo);
+                Datos.get(posicion).setDetalle_presentacion(detalle);
+                Datos.get(posicion).setMarca_id(marcaId);
+                Datos.get(posicion).setPrecio(precio);
+                Datos.get(posicion).setPresentacion_id(presentacionId);
+                Datos.get(posicion).setProveedor_id(proveedorId);
+                Datos.get(posicion).setTipoProducto_id(tipoProductoId);
+                posicion++;
+                limpiarCompras();
             }
-            String[] datos = new String[4];
-            datos[0] = codigo;
-            datos[1] = String.valueOf(cantidad);
-            datos[2] = String.valueOf(costo);
-            datos[3] = String.valueOf(subTotal);
-            modelo.addRow(datos);
-            txtTotalCompra.setText(String.valueOf(totalCompra));
-            btnNuevaCompra.setEnabled(true);
-            btnComprar.setEnabled(true);
-            //Se agrega la información necesaria al ArrayList
-            Datos.get(posicion).setCantidad(cantidad);
-            Datos.get(posicion).setCodigo(codigo);
-            Datos.get(posicion).setCosto(costo);
-            Datos.get(posicion).setDetalle_presentacion(detalle);
-            Datos.get(posicion).setMarca_id(marcaId);
-            Datos.get(posicion).setPrecio(precio);
-            Datos.get(posicion).setPresentacion_id(presentacionId);
-            Datos.get(posicion).setProveedor_id(proveedorId);
-            Datos.get(posicion).setTipoProducto_id(tipoProductoId);
-            posicion++;
-            limpiarCompras();
+            else
+            {
+                new rojerusan.RSNotifyAnimated("¡ERROR!", "El Código ingresado ya existe",
+                            5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
+                            RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
+            }
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -2040,6 +2057,22 @@ public class Principal extends javax.swing.JInternalFrame {
         btnAgregar.setSelected(false);
     }//GEN-LAST:event_btnNuevaCompraActionPerformed
 
+    private boolean repeticionCodigoProducto(String codigo)
+    {
+        boolean encontrado = false;
+        if(TBComprar.getRowCount() > 0)
+        {
+            for(int i=0; i<TBComprar.getRowCount(); i++)
+            {
+                if(codigo.equals(TBComprar.getValueAt(i, 0)))
+                    encontrado = true;
+            }
+            return !encontrado;
+        }
+        else 
+            return true;
+    }
+    
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
         int n = JOptionPane.showConfirmDialog(null, "¿Finalizar Compra?", "FINALIZAR", JOptionPane.YES_NO_OPTION);
         if (n == JOptionPane.YES_OPTION) {
@@ -2062,7 +2095,6 @@ public class Principal extends javax.swing.JInternalFrame {
                         boolean actualizado = btnRegresarInvenrtario1.isVisible();
                         for (int i = 0; i < Datos.size(); i++) {
                             if (!actualizado) {
-                                System.out.println("proveedor: " + Datos.get(i).getProveedor_id());
                                 producto.insertarProducto(Datos.get(i).getCodigo(), Datos.get(i).getCantidad(),
                                         Datos.get(i).getPrecio(), Datos.get(i).getTipoProducto_id(), Datos.get(i).getProveedor_id(),
                                         Datos.get(i).getMarca_id(), Datos.get(i).getPresentacion_id(),
@@ -2080,11 +2112,11 @@ public class Principal extends javax.swing.JInternalFrame {
                         BigDecimal redondeo = new BigDecimal(vuelto).setScale(2, RoundingMode.HALF_EVEN);
                         btnVueltoCompra.setText(String.valueOf(redondeo));
                         btnComprar.setEnabled(false);
-                        btnAgregar.setEnabled(false);
-                        //limpiarCajas();
+                        btnAgregar.setEnabled(true);
                         posicion = 0;
                         Datos.clear();
                         TBInventario.setModel(inventario.getInventario("", "", "", "", TBInventario));
+                        limpiarCajas();
                     } else {
                         JOptionPane.showMessageDialog(null, "Error", "Error", JOptionPane.ERROR_MESSAGE);
                     }
@@ -2609,6 +2641,8 @@ public class Principal extends javax.swing.JInternalFrame {
         Datos.clear();
         MIRegresarCompras.setEnabled(false);
         btnComprar.setEnabled(false);
+        txtTotalCompra.setText("");
+        txtMontoCompra.setText("");
     }
     
     private void limpiarCompras() {
@@ -2718,7 +2752,7 @@ public class Principal extends javax.swing.JInternalFrame {
     }
     
     private void puntoFlotante(KeyEvent e, JTextField txt) {
-        if (!Character.isDigit(e.getKeyChar()) && e.getKeyChar() != '.') {
+        if (!Character.isDigit(e.getKeyChar()) && e.getKeyChar() != '.' && e.getKeyChar() != 8) {
             e.consume();
         }
         if (e.getKeyChar() == '.' && txt.getText().contains(".")) {

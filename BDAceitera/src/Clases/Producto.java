@@ -7,6 +7,8 @@ package Clases;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -57,6 +59,23 @@ public class Producto {
             return true;
         } catch (SQLException ex) {
             Logger.getLogger(Producto.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+    
+    public boolean repetirCodigoProducto(String codigo) {
+        try {
+            String sql = "SELECT repetirCodigoProducto(?);";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1, codigo);
+            ResultSet rs = pst.executeQuery();
+            rs.next();
+            System.out.println("codigo: " + codigo);
+            System.out.println(rs.getBoolean(1));
+            return rs.getBoolean(1);
+        } catch (SQLException ex) {
+            Logger.getLogger(Producto.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("codigo: " + codigo);
             return false;
         }
     }
