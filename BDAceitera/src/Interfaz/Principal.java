@@ -12,6 +12,7 @@ import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -46,7 +47,7 @@ public class Principal extends javax.swing.JInternalFrame {
         BasicInternalFrameUI bi = (BasicInternalFrameUI) this.getUI();
         bi.setNorthPane(null);
         this.setBorder(new EmptyBorder(0, 0, 0, 0));
-        initComponents();
+        initComponents();       
         cmbInventarioMarca.setModel(inventario.getMarca((DefaultComboBoxModel) cmbInventarioMarca.getModel()));
         cmbInventarioPresentacion.setModel(inventario.getPresentacion((DefaultComboBoxModel) cmbInventarioPresentacion.getModel()));
         cmbInventarioTProd.setModel(inventario.getTProd((DefaultComboBoxModel) cmbInventarioTProd.getModel()));
@@ -459,7 +460,7 @@ public class Principal extends javax.swing.JInternalFrame {
         lbltitulo.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 3, 24)); // NOI18N
         lbltitulo.setForeground(new java.awt.Color(255, 255, 255));
         lbltitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbltitulo.setText("Aceitera de Occidente");
+        lbltitulo.setText("Aceitera El Occidente");
         PnlControl.add(lbltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 300, 50));
 
         btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Home.png"))); // NOI18N
