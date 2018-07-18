@@ -11,6 +11,7 @@ import java.awt.Point;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
 import java.beans.PropertyVetoException;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -26,6 +27,7 @@ public class Menus extends javax.swing.JFrame {
     public Menus() {
         this.setUndecorated(true);
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("../Imagenes/iconito.png")).getImage());
         this.setLocationRelativeTo(null);
         Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 27, 27);
         AWTUtilities.setWindowShape(this, forma);
