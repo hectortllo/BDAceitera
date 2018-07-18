@@ -5,12 +5,16 @@
  */
 package Interfaz;
 
+import com.panamahitek.ArduinoException;
+import com.panamahitek.PanamaHitek_Arduino;
 import com.sun.awt.AWTUtilities;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
 import java.beans.PropertyVetoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 /**
@@ -22,7 +26,9 @@ public class Menus extends javax.swing.JFrame {
     /**
      * Creates new form Menus
      */
-    private Principal cargar = new Principal();
+    private Principal principal = new Principal();
+
+    private PanamaHitek_Arduino puerto = new PanamaHitek_Arduino();
 
     public Menus() {
         this.setUndecorated(true);
@@ -32,19 +38,20 @@ public class Menus extends javax.swing.JFrame {
         Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 27, 27);
         AWTUtilities.setWindowShape(this, forma);
 
-        DesktopPane.add(cargar);
+        DesktopPane.add(principal);
         try {
-            cargar.setMaximum(true);
+            principal.setMaximum(true);
+            principal.setPuerto(puerto);
         } catch (PropertyVetoException e) {
             e.printStackTrace();
         }
-        cargar.setVisible(true);
+        principal.setVisible(true);
     }
 
     public void setUs(String us, int id, boolean admin) {
         lblUsuario.setText(us);
-        cargar.setIdUs(id);
-        cargar.setButtons(admin);
+        principal.setIdUs(id);
+        principal.setButtons(admin);
     }
 
     /**
@@ -118,7 +125,12 @@ public class Menus extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
-        this.dispose();
+        try {
+            this.dispose();
+            puerto.killArduinoConnection();
+        } catch (ArduinoException ex) {
+            Logger.getLogger(Menus.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void jPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MousePressed
@@ -132,8 +144,13 @@ public class Menus extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel2MouseDragged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.dispose();
-        new Login().setVisible(true);
+        try {
+            this.dispose();
+            puerto.killArduinoConnection();
+            new Login().setVisible(true);
+        } catch (ArduinoException ex) {
+            Logger.getLogger(Menus.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private int x, y;

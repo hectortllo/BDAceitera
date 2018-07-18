@@ -6,19 +6,23 @@
 package Interfaz;
 
 import Clases.*;
+import com.panamahitek.ArduinoException;
+import com.panamahitek.PanamaHitek_Arduino;
 import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
+import jssc.SerialPortException;
 import rojeru_san.componentes.RSDateChooser;
 import rojerusan.RSComboMetro;
 import rojerusan.RSNotifyAnimated;
@@ -34,8 +38,18 @@ public class Principal extends javax.swing.JInternalFrame {
     /**
      * Creates new form Principal
      */
-    String id = "";
-    
+    private String id = "";
+    public PanamaHitek_Arduino puerto;
+
+    public void setPuerto(PanamaHitek_Arduino puerto) {
+        this.puerto = puerto;
+        try {
+            puerto.arduinoRX("COM4", 9600, listener);
+        } catch (ArduinoException | SerialPortException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public Principal() {
         inventario = new Inventario();
         compras = new Compras();
@@ -47,7 +61,7 @@ public class Principal extends javax.swing.JInternalFrame {
         BasicInternalFrameUI bi = (BasicInternalFrameUI) this.getUI();
         bi.setNorthPane(null);
         this.setBorder(new EmptyBorder(0, 0, 0, 0));
-        initComponents();       
+        initComponents();
         cmbInventarioMarca.setModel(inventario.getMarca((DefaultComboBoxModel) cmbInventarioMarca.getModel()));
         cmbInventarioPresentacion.setModel(inventario.getPresentacion((DefaultComboBoxModel) cmbInventarioPresentacion.getModel()));
         cmbInventarioTProd.setModel(inventario.getTProd((DefaultComboBoxModel) cmbInventarioTProd.getModel()));
@@ -59,7 +73,7 @@ public class Principal extends javax.swing.JInternalFrame {
         btnComprar.setEnabled(false);
         btnRegresarInvenrtario1.setVisible(false);
     }
-    
+
     public void setButtons(boolean admin) {
         if (!admin) {
             this.btnVerVentas.setVisible(false);
@@ -1729,6 +1743,20 @@ public class Principal extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    jssc.SerialPortEventListener listener = new jssc.SerialPortEventListener() {
+        @Override
+        public void serialEvent(jssc.SerialPortEvent spe) {
+            try {
+                String texto = new String(puerto.receiveData());
+                if (texto.length() > 0) {
+                    txtCodigoInventario.setText(texto);
+                    BInventario();
+                }
+            } catch (SerialPortException | ArduinoException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    };
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         if (!this.btnHome.isSelected()) {
             this.btnHome.setSelected(true);
@@ -1866,8 +1894,7 @@ public class Principal extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnInsertarProveedorActionPerformed
 
-    private void limpiarProveedor()
-    {
+    private void limpiarProveedor() {
         txtNombreEmpresa.setText("");
         txtNombreDistri.setText("");
         txtNotelefonoE.setText("");
@@ -1888,7 +1915,7 @@ public class Principal extends javax.swing.JInternalFrame {
             rSPanelsSlider1.setPanelSlider(10, pnlDetalleCompras, RSPanelsSlider.DIRECT.UP);
         }
     }//GEN-LAST:event_MIDetComprasActionPerformed
-    
+
     private boolean verificarCantidad(int cantidadIN, int cantidadEx) {
         return cantidadIN <= cantidadEx;
     }
@@ -2000,8 +2027,7 @@ public class Principal extends javax.swing.JInternalFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         if (VerificarRealizarCompras()) {
-            if(repeticionCodigoProducto(txtCodigoCompras.getText()) && producto.repetirCodigoProducto(txtCodigoCompras.getText()))
-            {
+            if (repeticionCodigoProducto(txtCodigoCompras.getText()) && producto.repetirCodigoProducto(txtCodigoCompras.getText())) {
                 Datos.add(new datosProducto());
                 DefaultTableModel modelo = (DefaultTableModel) TBComprar.getModel();
                 String codigo = txtCodigoCompras.getText();
@@ -2041,12 +2067,10 @@ public class Principal extends javax.swing.JInternalFrame {
                 Datos.get(posicion).setTipoProducto_id(tipoProductoId);
                 posicion++;
                 limpiarCompras();
-            }
-            else
-            {
+            } else {
                 new rojerusan.RSNotifyAnimated("¡ERROR!", "El Código ingresado ya existe",
-                            5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
-                            RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
+                        5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
+                        RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
             }
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
@@ -2058,22 +2082,20 @@ public class Principal extends javax.swing.JInternalFrame {
         btnAgregar.setSelected(false);
     }//GEN-LAST:event_btnNuevaCompraActionPerformed
 
-    private boolean repeticionCodigoProducto(String codigo)
-    {
+    private boolean repeticionCodigoProducto(String codigo) {
         boolean encontrado = false;
-        if(TBComprar.getRowCount() > 0)
-        {
-            for(int i=0; i<TBComprar.getRowCount(); i++)
-            {
-                if(codigo.equals(TBComprar.getValueAt(i, 0)))
+        if (TBComprar.getRowCount() > 0) {
+            for (int i = 0; i < TBComprar.getRowCount(); i++) {
+                if (codigo.equals(TBComprar.getValueAt(i, 0))) {
                     encontrado = true;
+                }
             }
             return !encontrado;
-        }
-        else 
+        } else {
             return true;
+        }
     }
-    
+
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
         int n = JOptionPane.showConfirmDialog(null, "¿Finalizar Compra?", "FINALIZAR", JOptionPane.YES_NO_OPTION);
         if (n == JOptionPane.YES_OPTION) {
@@ -2105,7 +2127,6 @@ public class Principal extends javax.swing.JInternalFrame {
                                         Datos.get(i).getPrecio(), Datos.get(i).getCosto());
                             }
                         }
-                        
                         new rojerusan.RSNotifyAnimated("¡ÉXITO!", "Compra realizada correctamente",
                                 5, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
                                 RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
@@ -2125,7 +2146,7 @@ public class Principal extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_btnComprarActionPerformed
-    
+
     private void AgregarCmb(RSComboMetro comboCompas, RSComboMetro comboinventario, byte eleccion, String dato) {
         if (dato != null && dato.length() != 0) {
             for (int i = comboinventario.getItemCount() - 1; i > 0; i--) {
@@ -2152,7 +2173,7 @@ public class Principal extends javax.swing.JInternalFrame {
                     break;
             }
         }
-        
+
     }
     private void cmbMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbMarcaActionPerformed
         if (cmbMarca.getSelectedItem().equals("Agregar")) {
@@ -2394,7 +2415,7 @@ public class Principal extends javax.swing.JInternalFrame {
 
     private void TBVerUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TBVerUsuariosMouseClicked
         int fila = TBVerUsuarios.getSelectedRow();
-        String id = ""+(Integer.parseInt((String) TBVerUsuarios.getValueAt(fila, 0))+1);
+        String id = "" + (Integer.parseInt((String) TBVerUsuarios.getValueAt(fila, 0)) + 1);
         setId(id);
     }//GEN-LAST:event_TBVerUsuariosMouseClicked
 
@@ -2534,7 +2555,7 @@ public class Principal extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_btnEditarActionPerformed
-    
+
     private void Noactualizar(int posicion) {
         float total = Float.parseFloat(txtTotalCompra.getText());
         total -= Datos.get(posicion).getCantidad() * Datos.get(posicion).getCosto();
@@ -2565,7 +2586,7 @@ public class Principal extends javax.swing.JInternalFrame {
         txtTotalCompra.setText("" + total);
         btnEditar.setEnabled(false);
     }
-    
+
     private void actualizar(int seleccion) {
         String cantidad = txtCantidad.getText();
         float total = (txtTotalCompra == null || txtTotalCompra.getText().equals("")) ? 0 : Float.parseFloat(txtTotalCompra.getText());
@@ -2583,15 +2604,15 @@ public class Principal extends javax.swing.JInternalFrame {
         txtTotalCompra.setText("" + total);
         btnEditar.setEnabled(false);
     }
-    
+
     private void setId(String id_proyecto) {
         id = id_proyecto;
     }
-    
+
     private String obtenerId() {
         return id;
     }
-    
+
     private boolean verificarProveedor() {
         if (txtNombreEmpresa.getText().length() == 0) {
             new rojerusan.RSNotifyAnimated("¡ERROR!", "Campo Nombre Empresa vacío, por favor llénelo",
@@ -2621,7 +2642,7 @@ public class Principal extends javax.swing.JInternalFrame {
             return true;
         }
     }
-    
+
     private void CancelarCompra() {
         int n = JOptionPane.showConfirmDialog(null, "¿Cancelar Compra o Limpiar?", "CANCELAR", JOptionPane.YES_NO_OPTION);
         if (n == JOptionPane.YES_OPTION) {
@@ -2631,7 +2652,7 @@ public class Principal extends javax.swing.JInternalFrame {
             btnVueltoCompra.setText("");
         }
     }
-    
+
     private void limpiarCajas() {
         limpiarCompras();
         DefaultTableModel modelo = (DefaultTableModel) TBComprar.getModel();
@@ -2645,7 +2666,7 @@ public class Principal extends javax.swing.JInternalFrame {
         txtTotalCompra.setText("");
         txtMontoCompra.setText("");
     }
-    
+
     private void limpiarCompras() {
         txtCodigoCompras.setText("");
         txtCantidad.setText("");
@@ -2657,7 +2678,7 @@ public class Principal extends javax.swing.JInternalFrame {
         cmbProveedor.setSelectedItem("Escoja una opción");
         cmbPresentacionCompra.setSelectedItem("Escoja una opción");
     }
-    
+
     private boolean VerificarRealizarCompras() {
         String marca = (String) cmbMarca.getSelectedItem();
         String tProducto = (String) cmbTProducto.getSelectedItem();
@@ -2728,7 +2749,7 @@ public class Principal extends javax.swing.JInternalFrame {
             }
         }
         return true;
-        
+
     }
 
     //Búsqueda en el panel de inventario.
@@ -2751,7 +2772,7 @@ public class Principal extends javax.swing.JInternalFrame {
             e.consume();
         }
     }
-    
+
     private void puntoFlotante(KeyEvent e, JTextField txt) {
         if (!Character.isDigit(e.getKeyChar()) && e.getKeyChar() != '.' && e.getKeyChar() != 8) {
             e.consume();
@@ -2760,7 +2781,7 @@ public class Principal extends javax.swing.JInternalFrame {
             e.consume();
         }
     }
-    
+
     private void Letras(KeyEvent e) {
         char c = e.getKeyChar();
         if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) {
@@ -2813,7 +2834,7 @@ public class Principal extends javax.swing.JInternalFrame {
             return null;
         }
     }
-    
+
     private void BVentas() {
         if (getFecha(DCFechaVenta) == null) {
             TBVerVentas.setModel(venta.getVentas(txtNoVenta.getText(), "", TBVerVentas));
@@ -2821,7 +2842,7 @@ public class Principal extends javax.swing.JInternalFrame {
             TBVerVentas.setModel(venta.getVentas(txtNoVenta.getText(), getFecha(DCFechaVenta), TBVerVentas));
         }
     }
-    
+
     private void VerCompras() {
         if (getFecha(DCFechaCompras) == null) {
             TBVerCompras.setModel(compras.getCompras(txtNoCompra.getText(), "", TBVerCompras));
@@ -2829,7 +2850,7 @@ public class Principal extends javax.swing.JInternalFrame {
             TBVerCompras.setModel(compras.getCompras(txtNoCompra.getText(), getFecha(DCFechaCompras), TBVerCompras));
         }
     }
-    
+
     public void verUsuarios() {
         if ((txtNombreUsuario.getText().length() == 0) && txtApellido.getText().length() == 0) {
             TBVerUsuarios.setModel(user.getUsuarios("", "", TBVerUsuarios));
@@ -2837,7 +2858,7 @@ public class Principal extends javax.swing.JInternalFrame {
             TBVerUsuarios.setModel(user.getUsuarios(txtNombreUsuario.getText(), txtApellido.getText(), TBVerUsuarios));
         }
     }
-    
+
     private void VerProveedores() {
         if ((txtEmpresa.getText().length() == 0) && txtDistribuidor.getText().length() == 0) {
             TBVerProveedor.setModel(proveedor.getProveedores("", "", TBVerProveedor));
@@ -2863,7 +2884,7 @@ public class Principal extends javax.swing.JInternalFrame {
         }
         rSPanelsSlider1.setPanelSlider(10, panel, RSPanelsSlider.DIRECT.DOWN);
     }
-    
+
     private final SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
     private int idUs;
     private ArrayList<datosProducto> Datos;
