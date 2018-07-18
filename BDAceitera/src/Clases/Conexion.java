@@ -22,7 +22,8 @@ public class Conexion {
 //    private String usuario = "administrador";
 //    private String password = "adminbdaceitera";
 //    private String url = "jdbc:mysql://bdaceitera.celujtgsiraq.us-east-1.rds.amazonaws.com:3306/" + nombreBD + "?autoReconnect=true&useSSL=false";
-    private String nombreBD = "bd_aceitera";
+    
+    private String nombreBD = "bdaceitera";
     private String usuario = "root";
     private String password = "";
     private String url = "jdbc:mysql://localhost:3306/" + nombreBD + "?autoReconnect=true&useSSL=false";

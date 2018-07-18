@@ -23,9 +23,10 @@ public class Proveedor {
         conexion = new Conexion();
         con = conexion.getConnection();
     }
-
+    
     public boolean insertarProveedor(String nombreEmpresa, String nombreDistribuidor,
-            String telefonoEmpresa, String telefonoDistribuidor) {
+            String telefonoEmpresa, String telefonoDistribuidor)
+    {
         try {
             CallableStatement procedimiento = con.prepareCall("{call InsertarProveedor(?,?,?,?)}");
             procedimiento.setString(1, nombreEmpresa);
@@ -39,7 +40,7 @@ public class Proveedor {
         }
         return true;
     }
-
+    
     public DefaultTableModel getProveedores(String empresa, String distribuidor, JTable tabla) {
         try {
             String titulos[] = new String[4];

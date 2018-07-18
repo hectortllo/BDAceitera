@@ -62,7 +62,7 @@ public class Producto {
             return false;
         }
     }
-
+    
     public boolean repetirCodigoProducto(String codigo) {
         try {
             String sql = "SELECT repetirCodigoProducto(?);";
